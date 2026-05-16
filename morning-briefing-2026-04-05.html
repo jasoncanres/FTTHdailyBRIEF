@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Briefing — April 5, 2026 | Fiber/FTTH Executive Intelligence</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+      line-height: 1.6;
+      padding: 24px 16px 48px;
+    }
+
+    .wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: #0f172a;
+      border-radius: 12px;
+      padding: 32px 36px 28px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #3b82f6;
+      margin-bottom: 6px;
+    }
+    .header-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 4px;
+    }
+    .header-sub {
+      font-size: 14px;
+      color: #94a3b8;
+    }
+    .header-meta {
+      margin-top: 16px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .header-meta span {
+      font-size: 12px;
+      color: #64748b;
+    }
+    .header-meta strong {
+      color: #cbd5e1;
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #64748b;
+      margin: 28px 0 10px;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(15,23,42,0.08), 0 4px 16px rgba(15,23,42,0.05);
+      padding: 24px 28px;
+      margin-bottom: 16px;
+    }
+
+    /* ── OPPORTUNITY CARD HEADER ── */
+    .opp-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .opp-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #0f172a;
+      flex: 1;
+      min-width: 200px;
+    }
+    .badges {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .badge-score {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+    .badge-red    { background: #ef4444; color: #fff; }
+    .badge-yellow { background: #f59e0b; color: #fff; }
+    .badge-green  { background: #10b981; color: #fff; }
+
+    /* ── SCORE BAR ── */
+    .score-bar-wrap {
+      margin-bottom: 14px;
+    }
+    .score-bar-label {
+      font-size: 11px;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
+    .score-bar-track {
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #60a5fa);
+      border-radius: 99px;
+      transition: width 0.4s ease;
+    }
+
+    /* ── CONTENT BLOCKS ── */
+    .opp-section {
+      margin-top: 10px;
+    }
+    .opp-section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
+    .opp-section p {
+      font-size: 14px;
+      color: #334155;
+    }
+
+    .action-block {
+      margin-top: 14px;
+      padding: 12px 16px;
+      background: #f0f9ff;
+      border-left: 3px solid #3b82f6;
+      border-radius: 0 8px 8px 0;
+    }
+    .action-block .opp-section-label {
+      color: #1d4ed8;
+    }
+    .action-block p {
+      font-size: 14px;
+      color: #0f172a;
+      font-weight: 500;
+    }
+
+    /* ── QUICK HITS ── */
+    .quick-hits-list {
+      list-style: none;
+      padding: 0;
+    }
+    .quick-hits-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 13.5px;
+      color: #334155;
+    }
+    .quick-hits-list li:last-child { border-bottom: none; }
+    .qh-score {
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 700;
+      color: #3b82f6;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 2px 6px;
+      margin-top: 1px;
+    }
+    .qh-dot {
+      flex-shrink: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #94a3b8;
+      margin-top: 7px;
+    }
+
+    /* ── RECOMMENDATION ── */
+    .rec-card {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+    .rec-card .section-label {
+      color: #1d4ed8;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    .rec-card p {
+      font-size: 15px;
+      color: #0f172a;
+      font-weight: 500;
+      line-height: 1.65;
+    }
+
+    /* ── SOURCES ── */
+    .sources-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px 24px;
+    }
+    .sources-card .section-label { margin-top: 0; margin-bottom: 10px; }
+    .sources-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 20px;
+    }
+    @media (max-width: 600px) {
+      .sources-list { grid-template-columns: 1fr; }
+    }
+    .sources-list li a {
+      font-size: 12px;
+      color: #3b82f6;
+      text-decoration: none;
+    }
+    .sources-list li a:hover { text-decoration: underline; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: #e2e8f0;
+      margin: 8px 0 20px;
+    }
+
+    /* ── RANK MARKER ── */
+    .rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #0f172a;
+      color: #f8fafc;
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Fiber / FTTH Executive Intelligence</div>
+    <div class="header-title">Morning Briefing — April 5, 2026</div>
+    <div class="header-sub">For: Jason Carnes &nbsp;·&nbsp; Bluffton, SC</div>
+    <div class="header-meta">
+      <span><strong>10</strong> signals scanned</span>
+      <span><strong>3</strong> top opportunities</span>
+      <span><strong>5</strong> quick hits</span>
+      <span>Generated 04/05/2026</span>
+    </div>
+  </div>
+
+  <!-- TOP OPPORTUNITIES -->
+  <div class="section-label">Top Opportunities</div>
+
+  <!-- #1 -->
+  <div class="card">
+    <div class="opp-header">
+      <div class="opp-title"><span class="rank">1</span>BEAD Pipeline Is Live — Funding Distribution Underway Now</div>
+      <div class="badges">
+        <span class="badge badge-score">22 / 22</span>
+        <span class="badge badge-red">🔴 Act Today</span>
+      </div>
+    </div>
+    <div class="score-bar-wrap">
+      <div class="score-bar-label">Signal Strength</div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:100%;"></div></div>
+    </div>
+
+    <div class="opp-section">
+      <div class="opp-section-label">What Happened</div>
+      <p>As of April 2, 2026, 53 of 56 states and territories have received NTIA approval of their Final BEAD Proposals; 50 have received NIST sign-off, releasing grant funds; 38 have executed their award agreements. The Fiber Broadband Association confirmed this week that distribution through state broadband offices is occurring in Q1 2026, with construction ramp expected in H2 2026. Permitting cycles of 4–6 months mean construction-ready ISPs who already have permits in hand will be first to break ground.</p>
+    </div>
+
+    <div class="opp-section" style="margin-top:10px;">
+      <div class="opp-section-label">Why It Matters</div>
+      <p>The funding window is open. Operators without executed state agreements today are 90 days behind those who do. First-mover fiber construction starts in eligible areas lock in the most favorable deployment zones before secondary applicants compete.</p>
+    </div>
+
+    <div class="action-block">
+      <div class="opp-section-label">Recommended Action</div>
+      <p>Identify which of your target market states are in the 38 with executed agreements. Contact those state broadband offices directly this week to confirm project eligibility and subgrantee timeline. Simultaneously, confirm permitting status on your top 3 deployment corridors — the 4–6 month permit clock should already be running.</p>
+    </div>
+  </div>
+
+  <!-- #2 -->
+  <div class="card">
+    <div class="opp-header">
+      <div class="opp-title"><span class="rank">2</span>Verizon-Frontier Integration Live — 30M Passings, SE Markets Reshaping</div>
+      <div class="badges">
+        <span class="badge badge-score">22 / 22</span>
+        <span class="badge badge-red">🔴 Act Today</span>
+      </div>
+    </div>
+    <div class="score-bar-wrap">
+      <div class="score-bar-label">Signal Strength</div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:100%;"></div></div>
+    </div>
+
+    <div class="opp-section">
+      <div class="opp-section-label">What Happened</div>
+      <p>Verizon closed its $20B acquisition of Frontier Communications on January 20, 2026, immediately gaining ~30 million fiber passings across 31 states. The combined entity has committed to 1 million+ new fiber passings per year and Frontier's pre-close commitment of 2.8 million additional locations by end of 2026 remains in the deployment plan. Integration is active — brand consolidation underway, and Verizon has confirmed it is targeting 35–40 million total passings as the long-term build goal.</p>
+    </div>
+
+    <div class="opp-section" style="margin-top:10px;">
+      <div class="opp-section-label">Why It Matters</div>
+      <p>In any market where Frontier previously operated, you now have a better-capitalized, 5G-bundling tier-1 carrier deploying fiber at institutional scale — the competitive window in those footprints is closing fast.</p>
+    </div>
+
+    <div class="action-block">
+      <div class="opp-section-label">Recommended Action</div>
+      <p>Run a Frontier/Verizon footprint overlap against your current and pipeline markets this week. Any market where Frontier had copper but hadn't begun fiber conversion is now a priority target — Verizon will get there, but integration lag is your 12–18 month window. Accelerate permitting and pre-sell in those corridors before Verizon's 1M/yr pace reaches them.</p>
+    </div>
+  </div>
+
+  <!-- #3 -->
+  <div class="card">
+    <div class="opp-header">
+      <div class="opp-title"><span class="rank">3</span>BEAD's $21B Surplus + Tech-Neutrality Shift Creates Competitive Risk for Fiber Operators</div>
+      <div class="badges">
+        <span class="badge badge-score">21 / 22</span>
+        <span class="badge badge-red">🔴 Act Today</span>
+      </div>
+    </div>
+    <div class="score-bar-wrap">
+      <div class="score-bar-label">Signal Strength</div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:95.5%;"></div></div>
+    </div>
+
+    <div class="opp-section">
+      <div class="opp-section-label">What Happened</div>
+      <p>NTIA has confirmed that states collectively came in $21 billion under initial BEAD budget projections and has signaled guidance on reallocation in early 2026 — that guidance is now overdue and expected imminently. Simultaneously, the June 2025 BEAD Restructuring Policy Notice established technology neutrality, meaning Fixed Wireless Access (FWA) and Low Earth Orbit satellite providers (SpaceX Starlink et al.) are now eligible to compete for the same funding pools previously reserved for fiber. NTIA also rescinded all non-deployment spending approvals, including digital equity funds.</p>
+    </div>
+
+    <div class="opp-section" style="margin-top:10px;">
+      <div class="opp-section-label">Why It Matters</div>
+      <p>$21B of reallocation funds will be contested by FWA and LEO operators who have lower capital requirements — fiber operators must make the cost-per-passing and performance case explicitly to state offices, or risk losing reallocation awards to faster-to-deploy alternatives.</p>
+    </div>
+
+    <div class="action-block">
+      <div class="opp-section-label">Recommended Action</div>
+      <p>Prepare a concise fiber-vs-FWA-vs-LEO cost/performance one-pager benchmarked to NTIA scoring criteria and get it in front of your target state broadband directors before the reallocation guidance drops. Frame it around long-term performance thresholds and total lifecycle cost — the metrics where fiber wins. Do not wait for the guidance to be published to start this conversation.</p>
+    </div>
+  </div>
+
+  <!-- QUICK HITS -->
+  <div class="section-label">Quick Hits</div>
+  <div class="card">
+    <ul class="quick-hits-list">
+      <li>
+        <span class="qh-score">19/22</span>
+        <span><strong>Corning fiber inventory sold through 2026.</strong> AI data center buildouts are absorbing supply — at least one major fiber manufacturer is fully booked. Lock in 2026–2027 supply contracts now; spot-market pricing will be punitive by Q3 2026.</span>
+      </li>
+      <li>
+        <span class="qh-score">19/22</span>
+        <span><strong>GFiber + Astound merge to form 7.1M-location national altnet (announced March 11, 2026).</strong> Alphabet spun off Google Fiber, merging with Stonepeak's Astound across 26 states. Deal closes Q4 2026. A well-capitalized independent is forming with national reach — watch for it to absorb smaller altnets and enter underserved Southeast corridors post-close.</span>
+      </li>
+      <li>
+        <span class="qh-score">18/22</span>
+        <span><strong>AI data centers require 36x more fiber than traditional server racks.</strong> U.S. needs 213M additional fiber miles by 2029 — more than doubling current installed base. Operators who can credibly serve data center adjacency corridors have a secondary revenue channel materializing now. FTTH market projected at $77.89B in 2026 vs. $65.49B in 2025 (18.95% CAGR).</span>
+      </li>
+      <li>
+        <span class="qh-score">17/22</span>
+        <span><strong>XGS-PON OLT upgrade cycle at peak global adoption in 2026.</strong> GPON still holds 54% of installed lines but urban operators are deploying XGS-PON at scale for 10 Gbps symmetry without outside plant reconstruction. Operators not planning OLT upgrades in 2026–2027 capex cycles will face customer churn as XGS-PON competitors market 10G symmetry.</span>
+      </li>
+      <li>
+        <span class="qh-score">17/22</span>
+        <span><strong>Point Broadband + Clearwave Fiber combine into 12-state independent operator.</strong> Creates "one of the largest independent fiber operators in the U.S." with 500K+ locations. Consolidation among mid-tier altnets is accelerating — either acquire or differentiate before these combined entities enter your markets.</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- RECOMMENDATION -->
+  <div class="section-label">My Recommendation</div>
+  <div class="rec-card">
+    <div class="section-label">Priority Call</div>
+    <p>
+      Hit BEAD first. With 38 states executing award agreements and construction windows opening in H2 2026,
+      the operators who have already cleared permitting and are in active dialogue with state subgrantee programs
+      will capture the best deployment corridors. Your second move is defensive: run the Verizon-Frontier footprint
+      overlap against your pipeline markets immediately — integration lag is your only window in those territories,
+      and it is already burning. The $21B reallocation fight is coming within weeks; you need your fiber-vs-FWA
+      positioning paper in front of state directors before the NTIA guidance drops and FWA operators flood the
+      conversation.
+    </p>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources-card">
+    <div class="section-label">Sources</div>
+    <ul class="sources-list">
+      <li><a href="https://fiberbroadband.org/2026/04/02/bead-funding-moves-forward/" target="_blank">FBA — BEAD Funding Moves Forward (Apr 2, 2026)</a></li>
+      <li><a href="https://broadbandusa.ntia.gov/funding-programs/broadband-equity-access-and-deployment-bead-program/progress-dashboard" target="_blank">NTIA — BEAD Progress Dashboard</a></li>
+      <li><a href="https://www.roi-nj.com/2026/01/27/tech/verizon-completes-20b-acquisition-of-frontier-communications/" target="_blank">ROI-NJ — Verizon Completes $20B Frontier Acquisition</a></li>
+      <li><a href="https://www.telecomreviewamericas.com/articles/telecom-operators/verizon-closes-frontier-deal-sets-stage-for-fiber-5g-dominance/" target="_blank">Telecom Review Americas — Verizon Closes Frontier Deal</a></li>
+      <li><a href="https://stonepeak.com/news/gfiber-and-stonepeaks-astound-to-combine-creating-a-leading-independent-broadband-provider" target="_blank">Stonepeak — GFiber + Astound Combination Announcement</a></li>
+      <li><a href="https://www.fierce-network.com/broadband/gfiber-merge-astound-after-alphabet-sells-majority-stake-private-equity" target="_blank">Fierce Network — GFiber / Astound Merger Details</a></li>
+      <li><a href="https://techblog.comsoc.org/2025/12/23/how-will-fiber-and-equipment-vendors-meet-the-increased-demand-for-fiber-in-2026-due-to-ai-data-center-buildouts/" target="_blank">IEEE ComSoc — Fiber Demand from AI Data Centers 2026</a></li>
+      <li><a href="https://www.fierce-network.com/broadband/major-fiber-vendors-strategize-huge-demand-ai-2026" target="_blank">Fierce Network — Fiber Vendors Strategize for AI Demand</a></li>
+      <li><a href="https://www.openpr.com/news/4275743/2026-global-ftth-deployment-outlook-shows-strong-demand" target="_blank">OpenPR — 2026 Global FTTH Deployment Outlook</a></li>
+      <li><a href="https://ontolt.com/2025/10/26/olt-2026-upgrades-what-isps-need-to-future-proof-networks/" target="_blank">OntOLT — OLT 2026 Upgrades: XGS-PON Readiness</a></li>
+      <li><a href="https://www.fierce-network.com/broadband/2026-ma-tracker" target="_blank">Fierce Network — 2026 M&amp;A Tracker</a></li>
+      <li><a href="https://alec.org/article/broadband-update-a-benefit-of-the-bargain-for-the-bead-program/" target="_blank">ALEC — BEAD Tech Neutrality &amp; Restructuring Analysis</a></li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

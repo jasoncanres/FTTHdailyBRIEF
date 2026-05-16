@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Morning Briefing — Thursday, April 23, 2026 | Fiber/FTTH Executive Intelligence</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+    line-height: 1.5;
+    padding: 32px 16px 64px;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  header.hero {
+    background: #0f172a;
+    color: #fff;
+    border-radius: 14px;
+    padding: 32px 32px 28px;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.18);
+  }
+  header.hero .kicker {
+    color: #3b82f6;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  header.hero h1 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  header.hero .subtitle {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  header.hero .meta {
+    display: flex;
+    gap: 18px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  header.hero .meta span {
+    background: rgba(59,130,246,0.14);
+    color: #cbd5e1;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  section.sec {
+    background: #fff;
+    border-radius: 14px;
+    margin-top: 22px;
+    padding: 26px 28px;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.06);
+  }
+  section.sec h2 {
+    font-size: 20px;
+    font-weight: 700;
+    padding-left: 12px;
+    border-left: 4px solid #3b82f6;
+    margin-bottom: 18px;
+    letter-spacing: -0.005em;
+  }
+  section.mna h2 { border-left-color: #8b5cf6; }
+  section.tech h2 { border-left-color: #06b6d4; }
+  .cat-divider {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #64748b;
+    margin: 20px 0 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .cat-divider:first-of-type { margin-top: 0; }
+  .card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    background: #fff;
+    transition: box-shadow 0.15s;
+  }
+  .card:hover { box-shadow: 0 4px 12px rgba(15,23,42,0.08); }
+  .card .head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .card h3 {
+    font-size: 15.5px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #0f172a;
+    flex: 1;
+  }
+  .score-badge {
+    background: #0f172a;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .mna .score-badge { background: #8b5cf6; }
+  .tech .score-badge { background: #06b6d4; }
+  .tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .tag.cat { background: #e0e7ff; color: #3730a3; }
+  .tag.status { background: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; }
+  .urg-red { background: #ef4444; color: #fff; }
+  .urg-yel { background: #f59e0b; color: #fff; }
+  .urg-grn { background: #10b981; color: #fff; }
+  .score-bar {
+    height: 5px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 4px 0 12px;
+  }
+  .score-bar .fill {
+    height: 100%;
+    background: #3b82f6;
+    border-radius: 999px;
+  }
+  .mna .score-bar .fill { background: #8b5cf6; }
+  .tech .score-bar .fill { background: #06b6d4; }
+  .card p { font-size: 13.5px; margin-bottom: 7px; color: #334155; }
+  .card p strong { color: #0f172a; font-weight: 700; }
+  .card p.action {
+    background: #f8fafc;
+    border-left: 3px solid #3b82f6;
+    padding: 8px 12px;
+    margin-top: 8px;
+    border-radius: 0 6px 6px 0;
+    font-size: 13.5px;
+  }
+  .mna .card p.action { border-left-color: #8b5cf6; }
+  .tech .card p.action { border-left-color: #06b6d4; }
+  .quick-hit {
+    font-size: 13.5px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+  }
+  .quick-hit:last-child { border-bottom: none; }
+  .quick-hit .cat-pill {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #3730a3;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-right: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .rec-callout {
+    background: #dbeafe;
+    border-left: 5px solid #2563eb;
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #0f172a;
+  }
+  .rec-callout strong { color: #1d4ed8; font-weight: 700; }
+  details.discard, details.sources {
+    background: #fff;
+    border-radius: 14px;
+    margin-top: 22px;
+    padding: 18px 24px;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.06);
+  }
+  details.discard summary, details.sources summary {
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 6px 0;
+    color: #475569;
+    outline: none;
+  }
+  details.discard summary:hover, details.sources summary:hover { color: #0f172a; }
+  details[open] summary { margin-bottom: 14px; }
+  .disc-card {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    opacity: 0.72;
+  }
+  .disc-card h4 {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #64748b;
+    text-decoration: line-through;
+    text-decoration-color: #94a3b8;
+    margin-bottom: 4px;
+  }
+  .disc-card .disc-meta { display: flex; gap: 8px; margin-bottom: 6px; }
+  .disc-card .sb { background: #94a3b8; color: #fff; padding: 2px 8px; border-radius: 999px; font-size: 10.5px; font-weight: 700; }
+  .disc-card .tag.cat { background: #e2e8f0; color: #64748b; }
+  .disc-card p { font-size: 12.5px; color: #64748b; margin-top: 4px; }
+  ul.src-list { list-style: none; padding: 0; }
+  ul.src-list li { font-size: 13px; padding: 6px 0; border-bottom: 1px solid #f1f5f9; }
+  ul.src-list li:last-child { border-bottom: none; }
+  ul.src-list a { color: #2563eb; text-decoration: none; }
+  ul.src-list a:hover { text-decoration: underline; }
+  ul.src-list .src-cat {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #3730a3;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    margin-right: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ============== HERO ============== -->
+<header class="hero">
+  <div class="kicker">Fiber / FTTH Executive Intelligence</div>
+  <h1>Morning Briefing — Thursday, April 23, 2026</h1>
+  <div class="subtitle">Scanning the fiber, FTTH, and broadband telecom landscape for the past 48 hours.</div>
+  <div class="meta">
+    <span>24 sources scanned</span>
+    <span>17 findings scored</span>
+    <span>Threshold: 12/22</span>
+  </div>
+</header>
+
+<!-- ============== SECTION 1: INTELLIGENCE FEED ============== -->
+<section class="sec">
+  <h2>Section 1 — Intelligence Feed</h2>
+
+  <div class="cat-divider">Policy / Regulatory</div>
+
+  <div class="card">
+    <div class="head">
+      <h3>BEAD at the finish line: 53 of 56 states approved, 44 signed — six-month ISP contracting window is running</h3>
+      <span class="score-badge">18/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:82%"></div></div>
+    <div class="tags"><span class="tag cat">Policy / Regulatory</span><span class="tag urg-red">🔴 Act Today</span></div>
+    <p><strong>What happened:</strong> NTIA has approved 53 of 56 Eligible Entity Final Proposals, with 51 NIST-cleared and 44 states having signed return award agreements. States now have a six-month ticking clock to finalize contracts with subgrantee ISPs.</p>
+    <p><strong>Why it matters:</strong> Subgrantee selection, construction capacity, fiber allocation, and labor bookings all tighten from here. Operators that haven't locked contracts, permits, and supply are about to be squeezed by competitors that did.</p>
+    <p class="action"><strong>Action:</strong> Pull your subgrantee contract status and construction-start timeline by state this week. Escalate any state where contracts aren't signed within 60 days of final approval.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>NTIA pulls co-ops and munis into FCC pole attachment regime under BEAD — effective now</h3>
+      <span class="score-badge">15/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:68%"></div></div>
+    <div class="tags"><span class="tag cat">Policy / Regulatory</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> Under BEAD rules, cooperatives and municipal utilities participating as subgrantees must now comply with FCC pole attachment rules. State broadband offices are required to enforce FCC attachment rules on poles not otherwise federally or state-regulated.</p>
+    <p><strong>Why it matters:</strong> Pole owner intransigence has been the #1 time-killer on rural fiber builds. This materially shortens make-ready timelines and caps fees in BEAD-funded projects — a real cycle-time unlock in rural markets.</p>
+    <p class="action"><strong>Action:</strong> Direct your OSP team to re-baseline make-ready schedules in co-op and muni-pole territories this week and flag any pole owner refusing the new BEAD standard for formal state broadband office dispute.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>California turns on the nation's largest public broadband network — state-owned middle-mile now live</h3>
+      <span class="score-badge">13/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:59%"></div></div>
+    <div class="tags"><span class="tag cat">Policy / Regulatory</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> Governor Newsom announced California activated the first segment of its state-owned middle-mile broadband network on April 2, 2026, connecting the Bishop Paiute Tribe as the first rural community. The network is the largest publicly owned broadband infrastructure in the U.S.</p>
+    <p><strong>Why it matters:</strong> Every state watching California will accelerate middle-mile public builds, pressuring wholesale transport pricing and giving smaller FTTH overbuilders a cheaper path into rural markets that were uneconomic on private backhaul.</p>
+    <p class="action"><strong>Action:</strong> Have strategy pull the California middle-mile IRU pricing sheet when published and benchmark it against your current transport costs in comparable rural corridors.</p>
+  </div>
+
+  <div class="cat-divider">Supply Chain</div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Corning fiber lead times blow out: 60+ weeks on ribbon, loose tube backordered into Q3 2026</h3>
+      <span class="score-badge">20/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:91%"></div></div>
+    <div class="tags"><span class="tag cat">Supply Chain</span><span class="tag urg-red">🔴 Act Today</span></div>
+    <p><strong>What happened:</strong> Corning's SVP and GM of Optical Communications confirmed ribbon fiber lead times are now 60+ weeks, with loose tube cable — the workhorse for outdoor FTTH — backordered into Q3 2026. Hyperscaler lockups, including the $6B Meta-Corning agreement, have consumed available 2026 capacity.</p>
+    <p><strong>Why it matters:</strong> Any FTTH build planned for H2 2026 that doesn't already have fiber on a signed purchase order is at real risk of slipping 6–9 months. BEAD milestones, investor-committed homes passed, and competitive footprint races all depend on cable delivery you can hold in your hand.</p>
+    <p class="action"><strong>Action:</strong> By Friday, cut a rolling 18-month fiber commit with Corning, Prysmian, or OFS locking SKU, quantities, and delivery windows. Treat fiber allocation as your #1 constraint and price it accordingly in build ROI models.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>China germanium export curbs + Trump tariffs compressing fiber cost stack</h3>
+      <span class="score-badge">15/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:68%"></div></div>
+    <div class="tags"><span class="tag cat">Supply Chain</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> China, source of ~80% of the germanium used in fiber glass preforms, has restricted exports, and Trump-era tariffs on imported telecom components remain active. Vendors cite both factors as structural pressure on 2026 cable pricing.</p>
+    <p><strong>Why it matters:</strong> Expect mid-to-high-single-digit cable price increases in 2026 contracts. Operators that priced fiber builds on 2024 inputs will see margin compression on every mile deployed.</p>
+    <p class="action"><strong>Action:</strong> Re-model FTTH unit economics with a 6–10% fiber cost increase by next week's operating review and force CFO conversation on whether pass-price or ARPU needs to move.</p>
+  </div>
+
+  <div class="cat-divider">Competitive Intelligence</div>
+
+  <div class="card">
+    <div class="head">
+      <h3>AT&T commits $250B, targets 40M fiber passings by year-end — pace accelerating to ~5M/year</h3>
+      <span class="score-badge">18/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:82%"></div></div>
+    <div class="tags"><span class="tag cat">Competitive Intelligence</span><span class="tag urg-red">🔴 Act Today</span></div>
+    <p><strong>What happened:</strong> AT&T announced a $250B, five-year capital commitment across fiber, wireless, and satellite. It will add 8M fiber locations in 2026 — 4M organic and 4M from the closed Lumen consumer asset purchase — pushing to 40M passings by year-end and 60M by decade's end.</p>
+    <p><strong>Why it matters:</strong> AT&T and Verizon are building at a combined ~7M passings/year. For any mid-market operator not inside 3–5 years of an incumbent overbuild, the exit window on independent fiber plays is closing. Footprint locked now is worth more tomorrow.</p>
+    <p class="action"><strong>Action:</strong> Map your top 20 MSA expansion candidates against AT&T and Verizon announced 2026–2027 build zones. Commit capital to markets where you arrive first, and re-evaluate any market where AT&T/Verizon ships within 18 months of your go-live.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Charter CEO says fiber overbuilds are slowing — capital discipline returning to the market</h3>
+      <span class="score-badge">16/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:73%"></div></div>
+    <div class="tags"><span class="tag cat">Competitive Intelligence</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> Charter CEO Chris Winfrey publicly stated that competitive fiber overbuild activity has slowed as financing costs rose and operators reassessed ROI, noting the market is "waking up to the fact that much of it wasn't positive ROI to begin with." Charter itself is pushing its HFC upgrade completion into 2026.</p>
+    <p><strong>Why it matters:</strong> Cap-light PE-backed overbuilders are the ones pulling back — not AT&T or Verizon. That means less subscale overbuild noise in your markets and a real M&A opening to pick up distressed or unfinished fiber footprints at better multiples.</p>
+    <p class="action"><strong>Action:</strong> Have corp dev generate a target list by Friday of PE-backed overbuilders with paused builds or covenant pressure within 250 miles of your existing footprint. Open conversations with two of them this month.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Verizon-Frontier integration complete: 30M passings, >1M annual build cadence</h3>
+      <span class="score-badge">17/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:77%"></div></div>
+    <div class="tags"><span class="tag cat">Competitive Intelligence</span><span class="tag urg-red">🔴 Act Today</span></div>
+    <p><strong>What happened:</strong> Verizon closed the $20B Frontier acquisition in Q1 2026 and integrated operations under "Frontier, a Verizon Company." Combined footprint is ~30M passings across 31 states plus DC, with combined annual build cadence now exceeding 1M passings per year and a 40–50M long-term target.</p>
+    <p><strong>Why it matters:</strong> Verizon is now a credible coast-to-coast FTTH peer to AT&T. Every Frontier legacy market will see ARPU, speed tier, and bundling repositioned this year — your competitive assumptions in overlapping markets are now stale.</p>
+    <p class="action"><strong>Action:</strong> Refresh competitive teardowns on every Frontier/Verizon overlap market by May 15 — pricing, speed tiers, mobile bundle discounts, and churn triggers — and set a Q2 pricing response.</p>
+  </div>
+
+  <div class="cat-divider">Market Trends</div>
+
+  <div class="card">
+    <div class="head">
+      <h3>U.S. fiber passes 58% of households — cable tipping into second place in 2026</h3>
+      <span class="score-badge">14/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:64%"></div></div>
+    <div class="tags"><span class="tag cat">Market Trends</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> FTTH now passes 58% of U.S. households, up 13 points YoY. Analysts expect cable to lose #1 access-technology share to fiber inside 2026, mirroring a crossover Canada hit in 2025.</p>
+    <p><strong>Why it matters:</strong> The narrative flip — "fiber is now the default" — unlocks MDU bulk wins, homebuilder exclusives, and wholesale conversations that were friction-heavy a year ago. Sales motion should lean into "you're the last cable holdout on your block."</p>
+    <p class="action"><strong>Action:</strong> Direct sales to rebuild the MDU and new-construction pitch deck around the cable-to-fiber crossover by next Monday — lead with "fiber is the majority" framing, not "fiber is the upgrade."</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Starlink at ~3M U.S. subs; FWA covers 60% of residential — the rural competitive set is no longer just cable</h3>
+      <span class="score-badge">13/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:59%"></div></div>
+    <div class="tags"><span class="tag cat">Market Trends</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> Starlink ended 2025 with ~3M U.S. subscribers and is now offered to effectively 100% of U.S. addresses. Fixed wireless from AT&T, T-Mobile, and Verizon climbed from 44% to 60% residential coverage between 2022 and 2025.</p>
+    <p><strong>Why it matters:</strong> In rural FTTH builds, your real churn risk isn't cable — it's Starlink and FWA sitting at $50–70/month with no install friction. Take-rate models built on "fiber is the only alternative" overstate penetration.</p>
+    <p class="action"><strong>Action:</strong> Cut take-rate assumptions in rural BEAD markets by 5–8 points in the next financial model refresh and validate against actual 12-month take-rate data from your most-mature rural buildout.</p>
+  </div>
+
+  <div class="cat-divider">Breaking News</div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Ziply lights up 2,100-mile, 400G "Northern Link" — Pacific Northwest to Midwest long-haul open for wholesale</h3>
+      <span class="score-badge">13/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:59%"></div></div>
+    <div class="tags"><span class="tag cat">Breaking News</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> Ziply Fiber announced full commercial activation of its 2,100-mile, 400G low-latency Northern Link Route connecting Portland, Seattle, Spokane, Missoula, Billings, Bismarck, Fargo, Minneapolis, Madison, and Chicago.</p>
+    <p><strong>Why it matters:</strong> BCE-owned Ziply is now a serious long-haul wholesale competitor to Lumen and Zayo along the northern corridor — relevant for any operator buying wave/IP transit or siting AI compute in secondary-tier northern markets.</p>
+    <p class="action"><strong>Action:</strong> Request a wholesale rate card from Ziply this week for any route you currently buy from Lumen or Zayo in the Northwest-to-Midwest corridor; use as leverage at next renewal.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Brightspeed Arkansas build hits 50%; South Carolina build crosses 75%</h3>
+      <span class="score-badge">12/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:55%"></div></div>
+    <div class="tags"><span class="tag cat">Breaking News</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> Brightspeed announced its Arkansas fiber network is 50% built (101K of 202K planned locations live) and separately confirmed South Carolina is ~75% complete. Combined with $528M in BEAD wins across 17 states, Brightspeed is executing at a materially faster cadence than many peers.</p>
+    <p><strong>Why it matters:</strong> Brightspeed is the operator to beat in the Southeast — in SC in particular, the window to pass households ahead of them is closing fast. Their Arkansas pace also signals credible labor and construction capacity.</p>
+    <p class="action"><strong>Action:</strong> Within two weeks, overlay the Brightspeed public build map against your own SC footprint and identify any census block where they will be live before your planned go-live; re-sequence construction or concede those blocks explicitly.</p>
+  </div>
+
+</section>
+
+<!-- ============== SECTION 2: M&A WATCH ============== -->
+<section class="sec mna">
+  <h2>Section 2 — M&amp;A Watch</h2>
+
+  <div class="card">
+    <div class="head">
+      <h3>GFiber + Astound merger — Stonepeak takes control, Alphabet keeps minority, Q4 2026 close</h3>
+      <span class="score-badge">17/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:77%"></div></div>
+    <div class="tags"><span class="tag cat">M&amp;A</span><span class="tag urg-red">🔴 Act Today</span></div>
+    <p><strong>What happened:</strong> Alphabet agreed to spin GFiber into a merger with Stonepeak-owned Astound Broadband. GFiber contributes ~2.8M fiber passings across 15 states; Astound adds ~4.5M passings across 13 states. Stonepeak holds the majority; Alphabet retains a minority stake. Expected close Q4 2026.</p>
+    <p><strong>Why it matters:</strong> This creates the largest pure-play fiber/cable challenger to AT&T and Verizon outside the big incumbents — ~7M passings under PE control, free to price aggressively and expand. Expect promotional intensity wherever the footprints overlap yours.</p>
+    <p class="action"><strong>Action:</strong> Identify every market where GFiber or Astound currently operates or announced builds. Pre-position Q3 retention and win-back programs before the combined entity launches rebranded offers post-close.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Charter–Cox $34.5B merger — FCC cleared, mid-2026 close, creates 38M-sub cable giant</h3>
+      <span class="score-badge">16/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:73%"></div></div>
+    <div class="tags"><span class="tag cat">M&amp;A</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> FCC approved Charter's $34.5B acquisition of Cox in February 2026. New York approved in March; California is the final state holdout. Close expected mid-2026. The combined entity will pass ~38M subs and surpass Comcast as the largest U.S. cable/broadband provider.</p>
+    <p><strong>Why it matters:</strong> Charter made explicit FCC commitments to build fiber in small cities and rural areas as part of the approval. That is a funded, obligated fiber build cadence from the largest U.S. cable operator in exactly the markets independent FTTH operators target.</p>
+    <p class="action"><strong>Action:</strong> Pull Charter's FCC commitment filings this week and identify which specific rural and small-city markets they've pledged fiber in — treat those as new competitive builds, not distant threats.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Pilot Fiber buying ExteNet's enterprise fiber carve-out from DigitalBridge</h3>
+      <span class="score-badge">13/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:59%"></div></div>
+    <div class="tags"><span class="tag cat">M&amp;A</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> Pilot Fiber announced it is acquiring the enterprise fiber business carved out of DigitalBridge-backed ExteNet. Deal size undisclosed; it gives Pilot a denser urban enterprise fiber footprint.</p>
+    <p><strong>Why it matters:</strong> Signals infrastructure funds continuing to rotate — DigitalBridge keeping towers/dark fiber, shedding operating enterprise accounts. Expect more carve-outs of sub-scale enterprise fiber from PE portfolios through 2026.</p>
+    <p class="action"><strong>Action:</strong> Have corp dev add ExteNet, Zayo, and Uniti enterprise-fiber segments to a quarterly carve-out watch list; revisit if valuations reset.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Point Broadband + Clearwave Fiber combining — new 500K+ passing independent across 12 states</h3>
+      <span class="score-badge">13/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:59%"></div></div>
+    <div class="tags"><span class="tag cat">M&amp;A</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> Point Broadband signed an agreement to combine with Clearwave Fiber, a Cable One/PE joint venture. Combined entity spans 12 states with 500K+ homes and businesses, positioned as one of the largest independent fiber operators in the U.S.</p>
+    <p><strong>Why it matters:</strong> Regional independents are consolidating into PE-backed platforms with enough scale to bid for BEAD awards and refinance at better rates. Sub-250K-passing operators that don't combine are the next margin-squeeze target.</p>
+    <p class="action"><strong>Action:</strong> Treat the 250–500K passing tier as an M&amp;A market — decide by end of Q2 whether you're a consolidator or a consolidatee, and brief the board accordingly.</p>
+  </div>
+
+</section>
+
+<!-- ============== SECTION 3: TECHNOLOGY & GROWTH STRATEGY ============== -->
+<section class="sec tech">
+  <h2>Section 3 — Technology &amp; Growth Strategy</h2>
+
+  <div class="card">
+    <div class="head">
+      <h3>AI data centers reshaping the fiber market: +213M miles needed by 2029, 10–20x fiber per rack</h3>
+      <span class="score-badge">17/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:77%"></div></div>
+    <div class="tags"><span class="tag cat">Technology</span><span class="tag urg-red">🔴 Act Today</span></div>
+    <p><strong>What happened:</strong> Analysts now project the U.S. needs to add 213M fiber miles by 2029, more than doubling today's ~160M. Blackwell-class AI racks use 16x the fiber of traditional cloud racks. Ciena raised FY26 revenue guidance to $5.7–6.1B on AI demand; Nokia committed $4B to U.S. AI-ready network R&amp;D and manufacturing.</p>
+    <p><strong>Why it matters:</strong> FTTH operators are no longer just residential ISPs — dark fiber, wave, and on-ramp capacity to hyperscale campuses is the highest-ARPU wholesale product in the market. Any metro within 50 miles of a planned AI data center is now a wholesale revenue opportunity.</p>
+    <p class="action"><strong>Action:</strong> Commission a data-center-adjacency map of your existing fiber plant within 30 days and have sales stand up a wholesale/hyperscaler product line by Q3.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>XGS-PON is now the default; 25G PON ramping for operators with headroom ambitions</h3>
+      <span class="score-badge">13/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:59%"></div></div>
+    <div class="tags"><span class="tag cat">Technology</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> Nokia launched a 16-port high-density 25G PON line card supporting GPON/XGS-PON/25G PON concurrently; Calix has active 25G trials with ALLO and Brightspeed; Adtran/Netomnia announced the first U.K. commercial 50G PON deployment. XGS-PON is now the mainstream residential PON standard.</p>
+    <p><strong>Why it matters:</strong> A residential-only operator building new plant today in GPON is building a legacy network. XGS-PON is table stakes; 25G PON on the same OLT line card futureproofs the enterprise/wholesale upside.</p>
+    <p class="action"><strong>Action:</strong> Mandate XGS-PON minimum for all new OLT deployments and require any new platform RFP to include a validated 25G PON upgrade path on the same chassis.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>ARPU and churn dynamics flipping: price locks beat promo churn in 2026</h3>
+      <span class="score-badge">13/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:59%"></div></div>
+    <div class="tags"><span class="tag cat">Technology</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> Spectrum, Verizon, and Xfinity have normalized no-contract price locks, trading ARPU ceiling for churn reduction and trust. Analysts expect cable broadband ARPU to decline in 2026 as fiber gains share, while fiber-driven churn benefits become more visible for telcos that lead with transparent pricing.</p>
+    <p><strong>Why it matters:</strong> Promo/rate-shock churn is now the biggest lifetime-value leak in fiber. Price-lock models with auto-renew at current rate outperform traditional 12-month promos in LTV, even at lower initial ARPU.</p>
+    <p class="action"><strong>Action:</strong> Pilot a 36-month price-lock SKU in one market this quarter; measure 90-day and 180-day take-rate and churn vs. control cell before rolling out broadly.</p>
+  </div>
+
+</section>
+
+<!-- ============== SECTION 4: QUICK HITS ============== -->
+<section class="sec">
+  <h2>Section 4 — Quick Hits</h2>
+  <div class="quick-hit"><span class="cat-pill">M&amp;A</span>BCE closed $3.6B Ziply Fiber acquisition; Ziply now Canadian-owned long-haul + residential platform.</div>
+  <div class="quick-hit"><span class="cat-pill">Competitive</span>T-Mobile/EQT Lumos JV closed; targeting 3.5M homes by end of 2028 with $950M initial + $500M follow-on.</div>
+  <div class="quick-hit"><span class="cat-pill">Policy</span>NTIA shifted BEAD to technology-neutral in June 2025; LEO and FWA now compete directly for awards meeting 100/20 + 100ms latency.</div>
+  <div class="quick-hit"><span class="cat-pill">Market</span>Altafiber starts Grove City (17,600) and Marysville (15,000) Ohio builds in Q2 2026 at XGS-PON speeds up to 6 Gig.</div>
+  <div class="quick-hit"><span class="cat-pill">Breaking</span>Archtop Fiber launched 5 Gig and 8 Gig residential tiers on April 14 with bundled eero Wi-Fi — new benchmark for competitive speed tiers in the Northeast.</div>
+  <div class="quick-hit"><span class="cat-pill">Policy</span>Georgia final BEAD mix: 76.35% fiber, 12.38% cable, 11.27% LEO. Windstream took majority of state awards; AT&amp;T won $44.9M.</div>
+  <div class="quick-hit"><span class="cat-pill">Market</span>Fidium (formerly Consolidated) filed to retire Vermont TDM landline by May 5, 2026 — template for copper decom in other Northeast markets.</div>
+  <div class="quick-hit"><span class="cat-pill">Supply</span>Meta's $6B Corning deal and North Carolina cable facility expansion now underway; residential fiber demand competes directly with hyperscaler allocations through 2027.</div>
+  <div class="quick-hit"><span class="cat-pill">Technology</span>Brightspeed CEO publicly flagged labor and make-ready as bigger constraints than fiber supply in 2026 rural builds — a dissenting view worth testing internally.</div>
+  <div class="quick-hit"><span class="cat-pill">Competitive</span>AT&amp;T Q1 2025 reported equal fiber and FWA net adds (292K each) — the convergence/bundle play is real; standalone fiber models must account for FWA cross-subsidy.</div>
+</section>
+
+<!-- ============== SECTION 5: MY RECOMMENDATION ============== -->
+<section class="sec">
+  <h2>Section 5 — My Recommendation</h2>
+  <div class="rec-callout">
+    <strong>Lock an 18-month fiber allocation with a primary cable vendor this week.</strong> Corning's own GM is telling the market ribbon is 60+ weeks out and loose tube is backordered into Q3 2026, and the $6B Meta commitment plus China's germanium export curbs have removed the buffer that historically absorbed demand spikes. Meanwhile AT&amp;T, Verizon, and a PE-backed GFiber/Astound entity are each scaling to 1M+ passings per year, and BEAD subgrantees everywhere are about to submit purchase orders against the same constrained supply. Every week you wait, your delivery window slides further right, your BEAD milestones get harder, and your 2026 passings plan becomes paper. Get your OSP lead and CPO in the same room Monday, sign a rolling SKU-level commitment with Corning, Prysmian, or OFS by Friday, and tier your H2 2026 build zones so the most competitively urgent markets get fiber first regardless of internal project-management sequencing. This is the single action that protects next year's footprint; everything else on this list matters less if the cable isn't on the reel.
+  </div>
+</section>
+
+<!-- ============== SECTION 6: DISCARDED FINDINGS ============== -->
+<details class="discard">
+  <summary>🗂 Discarded Findings (below threshold) — click to expand</summary>
+
+  <div class="disc-card">
+    <h4>Fiber Broadband Association adds Latin America programming to Fiber Connect 2026</h4>
+    <div class="disc-meta"><span class="sb">8/22</span><span class="tag cat">Conference</span></div>
+    <p>Why it didn't make the cut: LATAM scope is outside current U.S. FTTH expansion focus; conference agenda, not a decision input.</p>
+  </div>
+
+  <div class="disc-card">
+    <h4>ARPU declines expected across cable in 2026</h4>
+    <div class="disc-meta"><span class="sb">11/22</span><span class="tag cat">Market Trends</span></div>
+    <p>Why it didn't make the cut: Directional and well-known — already priced into competitive pricing assumptions; folded into the Market Trends and Tech cards above rather than a standalone finding.</p>
+  </div>
+
+  <div class="disc-card">
+    <h4>Greenlight Networks adding 100K-passing NY expansion</h4>
+    <div class="disc-meta"><span class="sb">10/22</span><span class="tag cat">Competitive</span></div>
+    <p>Why it didn't make the cut: Geographically limited to Upstate NY; no footprint overlap with FTTH expansion priorities.</p>
+  </div>
+
+  <div class="disc-card">
+    <h4>Brightspeed Ohio lights up five new counties</h4>
+    <div class="disc-meta"><span class="sb">11/22</span><span class="tag cat">Breaking News</span></div>
+    <p>Why it didn't make the cut: Incremental market expansion, already subsumed into the Brightspeed execution-pace card.</p>
+  </div>
+
+  <div class="disc-card">
+    <h4>LSC announces long-haul fiber network</h4>
+    <div class="disc-meta"><span class="sb">9/22</span><span class="tag cat">Breaking News</span></div>
+    <p>Why it didn't make the cut: Niche long-haul development with no near-term impact on FTTH access decisions.</p>
+  </div>
+
+  <div class="disc-card">
+    <h4>Fidium CEO succession: Gaurav Juneja takes over January 2026</h4>
+    <div class="disc-meta"><span class="sb">10/22</span><span class="tag cat">Competitive</span></div>
+    <p>Why it didn't make the cut: Old news (Jan 2026); no strategic pivot signaled yet that changes competitive posture.</p>
+  </div>
+
+</details>
+
+<!-- ============== SECTION 7: SOURCES ============== -->
+<details class="sources">
+  <summary>📎 Sources — click to expand</summary>
+  <ul class="src-list">
+    <li><span class="src-cat">Policy</span><a href="https://www.ntia.gov/funding-programs/internet-all/broadband-equity-access-and-deployment-bead-program/progress-dashboard" target="_blank">NTIA BEAD Progress Dashboard</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://broadbandbreakfast.com/states-working-on-finalizing-bead-contracts-beginning-nepa-reviews/" target="_blank">States Working on Finalizing BEAD Contracts — Broadband Breakfast</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://www.dwt.com/blogs/broadband-advisor/2026/04/ntia-bead-rules-fcc-pole-attachment" target="_blank">NTIA's BEAD Rules Extend FCC Pole Attachment Requirements — Davis Wright Tremaine</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://www.gov.ca.gov/2026/04/02/governor-newsom-turns-on-largest-public-broadband-network-california-connects-first-rural-community-to-internet/" target="_blank">California Turns on Largest Public Broadband Network — Governor of California</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://broadbandusa.ntia.gov/news/latest-news/broadbandusa-monthly-newsletter-march-2026" target="_blank">BroadbandUSA Monthly Newsletter — March 2026</a></li>
+    <li><span class="src-cat">Supply</span><a href="https://www.fierce-network.com/broadband/corning-gm-says-fiber-lead-times-are-much-longer-month" target="_blank">Corning GM: Fiber Lead Times 'Much Longer' Than a Month — Fierce Network</a></li>
+    <li><span class="src-cat">Supply</span><a href="https://www.lightreading.com/fttx/-perfect-storm-in-fiber-supply-threatens-us-broadband-targets" target="_blank">'Perfect Storm' in Fiber Supply Threatens US Broadband Targets — Light Reading</a></li>
+    <li><span class="src-cat">Supply</span><a href="https://about.fb.com/news/2026/01/meta-6-billion-agreement-corning-support-us-manufacturing/" target="_blank">Meta Announces Up to $6B Agreement With Corning</a></li>
+    <li><span class="src-cat">Supply</span><a href="https://www.fierce-network.com/broadband/heres-how-big-fiber-shortage-really" target="_blank">Here's How Big the Fiber Shortage Really Is — Fierce Network</a></li>
+    <li><span class="src-cat">Competitive</span><a href="https://www.fierce-network.com/broadband/att-unveils-250b-investment-expand-5g-fiber-satellite-network-infrastructure" target="_blank">AT&amp;T Unveils $250B Investment — Fierce Network</a></li>
+    <li><span class="src-cat">Competitive</span><a href="https://www.datacenterdynamics.com/en/news/att-has-appetite-for-more-fiber-targets-40-million-locations-by-end-of-2026/" target="_blank">AT&amp;T Targets 40M Fiber Locations by End of 2026 — DCD</a></li>
+    <li><span class="src-cat">Competitive</span><a href="https://www.sdxcentral.com/analysis/verizon-att-fiber-feasts-flesh-out-footprint-fight/" target="_blank">Verizon, AT&amp;T Fiber Footprint Fight — SDxCentral</a></li>
+    <li><span class="src-cat">Competitive</span><a href="https://www.fierce-network.com/broadband/charter-ceo-flags-slowing-fiber-overbuilds-bumpy-bead-road" target="_blank">Charter CEO Flags Slowing Fiber Overbuilds — Fierce Network</a></li>
+    <li><span class="src-cat">Competitive</span><a href="https://www.verizon.com/about/news/verizon-updates-broadband-strategy-bring-more-choice-flexibility-and-value-millions" target="_blank">Verizon Updates Broadband Strategy</a></li>
+    <li><span class="src-cat">Market</span><a href="https://www.rcrwireless.com/20260417/uncategorized/ispa-broadband-saturated-analyst-angle" target="_blank">How ISPs Can Win in a Saturated US Broadband Market — RCR Wireless</a></li>
+    <li><span class="src-cat">Market</span><a href="https://www.cartesian.com/2025-year-end-review/" target="_blank">2025 Communications &amp; Media Year-End Review and 2026 Outlook — Cartesian</a></li>
+    <li><span class="src-cat">Breaking</span><a href="https://www.telecompetitor.com/lsc-and-ziply-announce-long-haul-fiber-networks/" target="_blank">Ziply Northern Link Route Announcement — Telecompetitor</a></li>
+    <li><span class="src-cat">Breaking</span><a href="https://www.lightwaveonline.com/home/article/55366442/building-broadband-alaska-communications-secures-124m-in-bead-funding-to-deploy-fiber-broadband-wireless-services-brightspeed-fiber-build-hits-75-milestone-in-south-carolina" target="_blank">Brightspeed Fiber Build Hits 75% in South Carolina — Lightwave</a></li>
+    <li><span class="src-cat">Breaking</span><a href="https://www.prnewswire.com/news-releases/fiberpowered-future-brightspeed-accelerates-fiber-network-build-in-arkansas-now-50-complete-302747575.html" target="_blank">Brightspeed Arkansas Fiber Build 50% Complete — PR Newswire</a></li>
+    <li><span class="src-cat">M&amp;A</span><a href="https://www.fierce-network.com/broadband/gfiber-merge-astound-after-alphabet-sells-majority-stake-private-equity" target="_blank">GFiber to Merge With Astound — Fierce Network</a></li>
+    <li><span class="src-cat">M&amp;A</span><a href="https://docs.fcc.gov/public/attachments/DOC-419093A1.pdf" target="_blank">FCC Approves Charter-Cox Combination — FCC</a></li>
+    <li><span class="src-cat">M&amp;A</span><a href="https://wirelessestimator.com/articles/2026/pilot-fiber-to-acquire-carved-out-enterprise-fiber-unit-from-digitalbridge-backed-extenet/" target="_blank">Pilot Fiber to Acquire ExteNet Enterprise Carve-Out — Wireless Estimator</a></li>
+    <li><span class="src-cat">M&amp;A</span><a href="https://www.t-mobile.com/news/business/t-mobile-eqt-close-lumos-fiber-jv" target="_blank">T-Mobile and EQT Close Lumos JV — T-Mobile Newsroom</a></li>
+    <li><span class="src-cat">Technology</span><a href="https://www.fierce-network.com/broadband/major-fiber-vendors-strategize-huge-demand-ai-2026" target="_blank">Fiber Vendors Strategize for AI Demand in 2026 — Fierce Network</a></li>
+    <li><span class="src-cat">Technology</span><a href="https://fiberbroadband.org/2026/04/15/fibers-uniqueness-inside-the-data-center/" target="_blank">Fiber's Uniqueness Inside the Data Center — Fiber Broadband Association</a></li>
+    <li><span class="src-cat">Technology</span><a href="https://convergedigest.com/nokia-launches-high-density-25g-pon-line-card/" target="_blank">Nokia Launches High-Density 25G PON Line Card — Converge Digest</a></li>
+  </ul>
+</details>
+
+</div>
+</body>
+</html>

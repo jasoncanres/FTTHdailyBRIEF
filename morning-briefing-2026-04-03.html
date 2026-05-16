@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — April 3, 2026 | Fiber/FTTH Executive Intelligence</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+    min-height: 100vh;
+    padding-bottom: 48px;
+  }
+
+  /* HEADER */
+  .header {
+    background: #0f172a;
+    padding: 28px 0 24px;
+    border-bottom: 3px solid #3b82f6;
+  }
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .header-title {
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .header-title span {
+    color: #3b82f6;
+  }
+  .header-sub {
+    color: #94a3b8;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .header-date {
+    color: #64748b;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-align: right;
+  }
+  .header-date strong {
+    display: block;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px 0;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 14px;
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e2e8f0;
+  }
+  .section-label:first-child {
+    margin-top: 0;
+  }
+
+  /* CARD */
+  .card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
+    padding: 24px 28px;
+    margin-bottom: 16px;
+  }
+
+  /* CARD HEADER ROW */
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .card-topic {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.3;
+    flex: 1;
+    min-width: 200px;
+  }
+  .badge-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+
+  /* URGENCY BADGES */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .badge-red { background: #ef4444; color: #ffffff; }
+  .badge-yellow { background: #f59e0b; color: #ffffff; }
+  .badge-green { background: #10b981; color: #ffffff; }
+  .badge-score {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  /* SCORE BAR */
+  .score-bar-wrap {
+    margin-bottom: 16px;
+  }
+  .score-bar-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #94a3b8;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .score-bar-track {
+    background: #e2e8f0;
+    border-radius: 6px;
+    height: 7px;
+    overflow: hidden;
+  }
+  .score-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #3b82f6, #6366f1);
+    transition: width 0.3s ease;
+  }
+
+  /* CARD BODY SECTIONS */
+  .card-section {
+    margin-bottom: 12px;
+  }
+  .card-section:last-child {
+    margin-bottom: 0;
+  }
+  .card-section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 4px;
+  }
+  .card-section p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #334155;
+  }
+  .card-section.action p {
+    font-size: 0.9rem;
+    color: #0f172a;
+    font-weight: 600;
+    border-left: 3px solid #3b82f6;
+    padding-left: 10px;
+    line-height: 1.5;
+  }
+  .card-section.matters p {
+    font-style: italic;
+    color: #475569;
+  }
+
+  /* QUICK HITS */
+  .quick-hits-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
+    padding: 20px 28px;
+    margin-bottom: 16px;
+  }
+  .quick-hit {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.875rem;
+    color: #334155;
+    line-height: 1.4;
+  }
+  .quick-hit:last-child { border-bottom: none; }
+  .quick-hit-score {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #3b82f6;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 4px;
+    padding: 1px 6px;
+    white-space: nowrap;
+  }
+  .quick-hit-text strong {
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  /* RECOMMENDATION */
+  .rec-card {
+    background: #eff6ff;
+    border: 1.5px solid #93c5fd;
+    border-radius: 12px;
+    padding: 22px 28px;
+    margin-bottom: 16px;
+  }
+  .rec-card .rec-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #3b82f6;
+    margin-bottom: 8px;
+  }
+  .rec-card p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #1e3a5f;
+    font-weight: 500;
+  }
+  .rec-card p strong {
+    color: #1d4ed8;
+  }
+
+  /* SOURCES */
+  .sources-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
+    padding: 20px 28px;
+  }
+  .sources-card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    columns: 2;
+    column-gap: 24px;
+  }
+  .sources-card li {
+    font-size: 0.78rem;
+    color: #64748b;
+    margin-bottom: 6px;
+    break-inside: avoid;
+  }
+  .sources-card a {
+    color: #3b82f6;
+    text-decoration: none;
+  }
+  .sources-card a:hover { text-decoration: underline; }
+
+  /* RANK INDICATOR */
+  .rank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    flex-shrink: 0;
+    margin-right: 6px;
+  }
+  .rank-1 { background: #1d4ed8; }
+  .rank-2 { background: #2563eb; }
+  .rank-3 { background: #3b82f6; }
+
+  @media (max-width: 600px) {
+    .header-inner { flex-direction: column; align-items: flex-start; }
+    .header-date { text-align: left; }
+    .sources-card ul { columns: 1; }
+    .card { padding: 18px 16px; }
+    .quick-hits-card { padding: 16px; }
+    .rec-card { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div>
+      <div class="header-title">Morning Briefing — <span>April 3, 2026</span></div>
+      <div class="header-sub">Fiber / FTTH Executive Intelligence</div>
+    </div>
+    <div class="header-date">
+      <strong>Jason Carnes</strong>
+      Telecom Executive · Bluffton, SC
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- TOP 3 OPPORTUNITIES -->
+  <div class="section-label">Top 3 Opportunities</div>
+
+  <!-- CARD 1: Fiber Supply Shortage -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-topic"><span class="rank rank-1">1</span>Fiber Supply Crunch: 138M km Shortfall, Prices Up 80%+</div>
+      <div class="badge-group">
+        <span class="badge badge-score">22 / 22</span>
+        <span class="badge badge-red">🔴 Act Today</span>
+      </div>
+    </div>
+    <div class="score-bar-wrap">
+      <div class="score-bar-label"><span>Opportunity Score</span><span>22 / 22</span></div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:100%"></div></div>
+    </div>
+    <div class="card-section">
+      <div class="card-section-label">What Happened</div>
+      <p>Global fiber optic cable is in a structural supply crisis driven by AI data center buildouts. The 2026 global shortfall is estimated at 138 million fiber-kilometers (16.7% of demand unmet). Single-mode fiber prices have risen 80%+ since late 2025, with some grades up 400–650%; lead times for smaller buyers are approaching 12 months. North American demand growth is projected at 22–25%, while supply can only expand 12–19% due to 18–24 month preform manufacturing cycles.</p>
+    </div>
+    <div class="card-section matters">
+      <div class="card-section-label">Why It Matters</div>
+      <p>Every FTTH build you have planned for 2026–2027 is competing for the same constrained cable inventory being hoarded by hyperscalers funding AI infrastructure — your procurement window is closing.</p>
+    </div>
+    <div class="card-section action">
+      <div class="card-section-label">Recommended Action</div>
+      <p>Lock in 2026–2027 cable contracts with Corning, CommScope, or a secondary supplier this week at fixed pricing. Negotiate volume commitments with a 12–18 month forward delivery window. If you don't have a dedicated procurement relationship with at least two vendors, you are already behind. Secondarily, audit your planned build topology — split-ratio optimization and reduced fiber counts can cut cable demand 15–25% without compromising capacity.</p>
+    </div>
+  </div>
+
+  <!-- CARD 2: BEAD Technology Neutral -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-topic"><span class="rank rank-2">2</span>BEAD Goes Tech-Neutral: Fiber Preference Eliminated, Cost Wins</div>
+      <div class="badge-group">
+        <span class="badge badge-score">21 / 22</span>
+        <span class="badge badge-red">🔴 Act Today</span>
+      </div>
+    </div>
+    <div class="score-bar-wrap">
+      <div class="score-bar-label"><span>Opportunity Score</span><span>21 / 22</span></div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:95.5%"></div></div>
+    </div>
+    <div class="card-section">
+      <div class="card-section-label">What Happened</div>
+      <p>NTIA's June 2025 BEAD restructuring eliminated the program's fiber-first mandate. Subgrantee selection now favors lowest-cost-per-location bids regardless of technology — fixed wireless and LEO satellite compete on equal footing with fiber for "Priority" status. $42.5B is actively flowing with first construction expected to break ground in 2026; NC alone is awarding $300M+ under the new rules. A U.S. Senator publicly questioned spending $4,000/home on fiber when satellite costs $600, signaling political headwinds may intensify.</p>
+    </div>
+    <div class="card-section matters">
+      <div class="card-section-label">Why It Matters</div>
+      <p>Your competitive moat in BEAD-funded rural markets just eroded — fixed wireless and satellite operators can now undercut your fiber builds on per-location cost in competitive application rounds.</p>
+    </div>
+    <div class="card-section action">
+      <div class="card-section-label">Recommended Action</div>
+      <p>Immediately rerun your BEAD target market cost models against the new lowest-cost-wins scoring criteria. Identify which of your planned service areas have cost-per-location above $2,500 — those face real competitive risk from FWA bids. For markets where fiber wins on cost, sharpen your application narrative to lead with TCO and 25-year infrastructure longevity, not speed tiers. For marginal markets, consider whether a hybrid fiber/FWA architecture preserves your application competitiveness. Get your state broadband office relationship primed now before the application windows open.</p>
+    </div>
+  </div>
+
+  <!-- CARD 3: Point Broadband + Clearwave Merger -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-topic"><span class="rank rank-3">3</span>Point Broadband + Clearwave Merger: New SE Fiber Giant, Aims to Double</div>
+      <div class="badge-group">
+        <span class="badge badge-score">21 / 22</span>
+        <span class="badge badge-yellow">🟡 This Week</span>
+      </div>
+    </div>
+    <div class="score-bar-wrap">
+      <div class="score-bar-label"><span>Opportunity Score</span><span>21 / 22</span></div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:95.5%"></div></div>
+    </div>
+    <div class="card-section">
+      <div class="card-section-label">What Happened</div>
+      <p>Point Broadband (GTCR/Berkshire Partners-backed, 10-state fiber footprint) and Clearwave Fiber (Savannah, GA; Cable One JV) signed a definitive merger agreement closing H1 2026. The combined entity becomes one of the largest independent fiber operators in the U.S. — 12 states, 500K+ homes and businesses passed. The new CEO David Armistead has stated an explicit goal to double in size near-term through organic builds and M&A. The Southeast is their primary expansion corridor.</p>
+    </div>
+    <div class="card-section matters">
+      <div class="card-section-label">Why It Matters</div>
+      <p>You now have a well-capitalized, PE-backed competitor operating a scaled fiber platform explicitly hunting the same Southeast rural and suburban markets you're targeting — and they have a mandate to grow aggressively.</p>
+    </div>
+    <div class="card-section action">
+      <div class="card-section-label">Recommended Action</div>
+      <p>Pull the combined entity's footprint map against your 2026–2027 build pipeline this week and flag every overlap market. For markets where you have no in-ground infrastructure yet, accelerate permitting and franchise agreements before Point/Clearwave's deployment teams get there first. If you have any markets where your cost position is weak or your build timeline is 18+ months out, evaluate whether to accelerate, partner, or cede. Also, assess whether the combined entity creates any near-term acquisition targets they will pick off — if so, move on them before the deal closes.</p>
+    </div>
+  </div>
+
+  <!-- QUICK HITS -->
+  <div class="section-label">Quick Hits</div>
+  <div class="quick-hits-card">
+
+    <div class="quick-hit">
+      <span class="quick-hit-score">18/22</span>
+      <span class="quick-hit-text"><strong>Verizon-Frontier Closed Q1 2026:</strong> Verizon now operates across 25 states with a committed pace of 1M+ fiber homes/year; compresses altnet opportunity windows in Frontier's legacy footprint, but opens vendor negotiating leverage as Verizon absorbs procurement capacity.</span>
+    </div>
+
+    <div class="quick-hit">
+      <span class="quick-hit-score">18/22</span>
+      <span class="quick-hit-text"><strong>AI Data Centers Need 36x More Fiber Per Rack:</strong> The U.S. must add 213M fiber miles by 2029 (doubling current stock). Hyperscale demand is the primary driver of the supply crunch — this is structural, not cyclical. Plan procurement accordingly.</span>
+    </div>
+
+    <div class="quick-hit">
+      <span class="quick-hit-score">17/22</span>
+      <span class="quick-hit-text"><strong>XGS-PON at Peak Global Deployment in 2026:</strong> Dell'Oro Group calls 2026 the "better beats bigger" year — operators are upgrading to 10G symmetrical PON rather than expanding raw passings. If you're still deploying GPON-only, you are building obsolescence into your network.</span>
+    </div>
+
+    <div class="quick-hit">
+      <span class="quick-hit-score">16/22</span>
+      <span class="quick-hit-text"><strong>North Carolina BEAD: $300M+ Awarded Under New Rules:</strong> NC is first major SE state to move from planning to active subgrant awards under the restructured tech-neutral BEAD framework. Watch NC award decisions for competitive intelligence on who's winning cost-per-location bids in rural markets.</span>
+    </div>
+
+    <div class="quick-hit">
+      <span class="quick-hit-score">16/22</span>
+      <span class="quick-hit-text"><strong>100% Bonus Depreciation Accelerating AT&amp;T/Verizon Builds:</strong> Tax policy change allowing immediate 100% expensing on fiber capex in 2026 is pulling major carrier build timelines forward — large carriers will deploy faster, drawing on the same constrained labor markets and supply chains you depend on.</span>
+    </div>
+
+  </div>
+
+  <!-- RECOMMENDATION -->
+  <div class="section-label">My Recommendation</div>
+  <div class="rec-card">
+    <div class="rec-label">⚡ Priority Call</div>
+    <p><strong>Your single highest-ROI move today is fiber supply chain.</strong> The cable shortage is the constraint that will determine whether your 2026–2027 builds happen on schedule or slip 12+ months — no amount of permitting, franchise work, or BEAD positioning matters if you can't get cable. Get on the phone with Corning and CommScope procurement today and lock forward pricing. Everything else on this list — the BEAD cost model audit, the competitive response to Point/Clearwave — is a this-week problem. The cable contract is a today problem.</p>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="section-label">Sources</div>
+  <div class="sources-card">
+    <ul>
+      <li><a href="https://www.lightreading.com/fttx/-perfect-storm-in-fiber-supply-threatens-us-broadband-targets" target="_blank">Light Reading — Fiber supply 'perfect storm'</a></li>
+      <li><a href="https://www.oyii.net/news/structural-price-rally-in-fiber-optic-cables-ai-powered-demand-supply-constraints-2026-forecast/" target="_blank">OYII — Structural fiber price rally 2026</a></li>
+      <li><a href="https://soctfiber.com/why-are-optical-fiber-prices-rising/" target="_blank">SoctFiber — Why fiber prices are rising 2026</a></li>
+      <li><a href="https://www.rebiogroup.com/insights/insight-global-fiber-optic-cables-shortage-intensifies-amid-surging-ai-demand-and-geopolitical-pre" target="_blank">Rebio Group — Global fiber shortage insight</a></li>
+      <li><a href="https://www.holightoptic.com/2026-single-mode-fiber-price-surge-operational-spool-demand-ai-expansion-and-the-new-supply-reality/" target="_blank">Holight Optic — 2026 Single-mode fiber price surge</a></li>
+      <li><a href="https://techblog.comsoc.org/2025/12/23/how-will-fiber-and-equipment-vendors-meet-the-increased-demand-for-fiber-in-2026-due-to-ai-data-center-buildouts/" target="_blank">IEEE ComSoc — Fiber vendors vs AI demand 2026</a></li>
+      <li><a href="https://insider.govtech.com/california/news/faster-now-or-future-proof-later-new-bead-guidance-ignites-fiber-fight" target="_blank">GovTech Insider — BEAD fiber fight</a></li>
+      <li><a href="https://www.ncsl.org/technology-and-communication/bead-rewired-what-the-changes-to-the-broadband-program-mean-for-states" target="_blank">NCSL — BEAD Rewired: What changes mean for states</a></li>
+      <li><a href="https://wirelessestimator.com/articles/2026/senator-kennedy-questions-bead-math-why-not-use-600-satellite-instead-of-4000-fiber-per-home/" target="_blank">Wireless Estimator — Senator Kennedy questions BEAD math</a></li>
+      <li><a href="https://www.wiley.law/alert-NTIA-Restructures-BEAD-Program-with-Major-Broadband-Funding-Changes" target="_blank">Wiley Law — NTIA BEAD restructuring alert</a></li>
+      <li><a href="https://www.prnewswire.com/news-releases/point-broadband-and-clearwave-fiber-to-combine-creating-a-scaled-independent-fiber-platform-302652842.html" target="_blank">PR Newswire — Point Broadband + Clearwave announcement</a></li>
+      <li><a href="https://www.savannahbusinessjournal.com/news/technology/jan-5-savannah-s-clearwave-fiber-combines-with-point-broadband-for-larger-independent-fiber-platform/article_dc11cbd1-819f-49e3-90e2-fa1949ebb2e6.html" target="_blank">Savannah Business Journal — Clearwave + Point Broadband</a></li>
+      <li><a href="https://www.lightreading.com/fttx/point-broadband-clearwave-fiber-to-combine" target="_blank">Light Reading — Point Broadband, Clearwave to combine</a></li>
+      <li><a href="https://www.fierce-network.com/broadband/major-fiber-vendors-strategize-huge-demand-ai-2026" target="_blank">Fierce Network — Fiber vendors strategize for AI demand</a></li>
+      <li><a href="https://www.delloro.com/2026-predictions-broadband-access-and-home-networking-market/" target="_blank">Dell'Oro Group — 2026 broadband predictions</a></li>
+      <li><a href="https://bbcmag.com/what-were-fibers-2025-gains-will-we-see-2026-acceleration/" target="_blank">Broadband Communities — Fiber 2025 gains, 2026 outlook</a></li>
+      <li><a href="https://www.lightreading.com/broadband/looking-ahead-m-a-watch-for-2026" target="_blank">Light Reading — M&amp;A watch 2026</a></li>
+      <li><a href="https://moniem-tech.com/2026/03/14/pon-evolution-in-fixed-broadband-from-gpon-to-xgs-pon-and-the-25g-50g-roadmap/" target="_blank">Moniem-Tech — PON evolution: GPON to XGS-PON (Mar 2026)</a></li>
+    </ul>
+  </div>
+
+</div><!-- /container -->
+</body>
+</html>

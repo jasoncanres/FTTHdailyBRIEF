@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — May 2, 2026 | Fiber/FTTH Executive Intelligence</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+    line-height: 1.55;
+    padding: 32px 16px 64px;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; }
+
+  /* Header */
+  header.briefing-head {
+    background: #0f172a;
+    color: #f8fafc;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.18);
+  }
+  header.briefing-head h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  header.briefing-head .sub {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+  header.briefing-head .meta {
+    font-size: 13px;
+    color: #cbd5e1;
+    margin-top: 14px;
+    border-top: 1px solid #1e293b;
+    padding-top: 12px;
+  }
+  header.briefing-head .meta strong { color: #f8fafc; }
+
+  /* Overall star rating */
+  .overall-rating {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #cbd5e1;
+  }
+  .overall-rating .stars { display: inline-flex; gap: 4px; }
+  .overall-rating .star {
+    cursor: pointer;
+    font-size: 22px;
+    color: #475569;
+    transition: color 0.15s ease, transform 0.1s ease;
+    user-select: none;
+  }
+  .overall-rating .star:hover { transform: scale(1.15); }
+  .overall-rating .star.active { color: #fbbf24; }
+  .overall-rating .rating-label { font-weight: 500; }
+  .overall-rating .rating-feedback { font-size: 12px; color: #94a3b8; margin-left: 8px; }
+
+  /* Section headers */
+  .section-head {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 36px 0 14px;
+    padding-left: 14px;
+    border-left: 5px solid #3b82f6;
+    color: #0f172a;
+  }
+  .section-head.mna { border-left-color: #8b5cf6; }
+  .section-head.tech { border-left-color: #06b6d4; }
+  .section-head.quick, .section-head.rec { border-left-color: #0f172a; }
+
+  /* Category divider inside Section 1 */
+  .cat-divider {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #475569;
+    margin: 22px 0 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px dashed #cbd5e1;
+  }
+
+  /* Cards */
+  .card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(15,23,42,0.06);
+    border: 1px solid #e2e8f0;
+  }
+  .card .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    flex: 1;
+  }
+  .card h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed #94a3b8;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .card h3 a:hover { color: #3b82f6; border-bottom-color: #3b82f6; }
+  .card h3 a::after {
+    content: " ↗";
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 400;
+  }
+  .badges {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+    align-items: center;
+  }
+  .score-badge {
+    background: #0f172a;
+    color: #f8fafc;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+  .urgency {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 9px;
+    border-radius: 6px;
+    color: #ffffff;
+    white-space: nowrap;
+  }
+  .u-red { background: #ef4444; }
+  .u-yellow { background: #f59e0b; }
+  .u-green { background: #10b981; }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #475569;
+    background: #f1f5f9;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-right: 6px;
+  }
+  .tag.status-now { background: #d1fae5; color: #065f46; }
+  .tag.status-early { background: #fef3c7; color: #92400e; }
+  .tag.status-horizon { background: #e0e7ff; color: #3730a3; }
+
+  /* Score bar */
+  .scorebar {
+    height: 4px;
+    background: #e2e8f0;
+    border-radius: 2px;
+    margin: 10px 0 14px;
+    overflow: hidden;
+  }
+  .scorebar .fill { height: 100%; background: #3b82f6; border-radius: 2px; }
+  .scorebar.mna .fill { background: #8b5cf6; }
+  .scorebar.tech .fill { background: #06b6d4; }
+
+  .lbl {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #64748b;
+    margin-top: 10px;
+    margin-bottom: 2px;
+  }
+  .body-text { font-size: 14px; color: #1e293b; }
+  .body-text + .lbl { margin-top: 10px; }
+  .action {
+    font-size: 14px;
+    color: #0f172a;
+    font-weight: 600;
+    background: #f8fafc;
+    border-left: 3px solid #3b82f6;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+  .action.mna { border-left-color: #8b5cf6; }
+  .action.tech { border-left-color: #06b6d4; }
+
+  /* Per-card feedback (thumbs) */
+  .card-feedback {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  .card-feedback .fb-label {
+    font-weight: 600;
+    color: #64748b;
+    margin-right: 4px;
+  }
+  .card-feedback button {
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: #64748b;
+  }
+  .card-feedback button:hover { background: #f1f5f9; transform: translateY(-1px); }
+  .card-feedback button.active.up {
+    background: #d1fae5;
+    border-color: #10b981;
+    color: #065f46;
+  }
+  .card-feedback button.active.down {
+    background: #fee2e2;
+    border-color: #ef4444;
+    color: #991b1b;
+  }
+  .card-feedback .fb-status {
+    margin-left: 6px;
+    font-size: 11px;
+    color: #94a3b8;
+    font-style: italic;
+  }
+
+  /* Quick hits */
+  .quick-hits {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 18px 22px;
+    box-shadow: 0 2px 8px rgba(15,23,42,0.06);
+    border: 1px solid #e2e8f0;
+  }
+  .quick-hits ul { list-style: none; }
+  .quick-hits li {
+    font-size: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .quick-hits li:last-child { border-bottom: none; }
+  .quick-hits li .qh-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: #3b82f6;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-right: 6px;
+  }
+  .quick-hits li a { color: #1e40af; text-decoration: none; border-bottom: 1px dashed #93c5fd; }
+  .quick-hits li a:hover { color: #1e3a8a; border-bottom-color: #1e3a8a; }
+
+  /* Recommendation callout */
+  .recommendation {
+    background: #eff6ff;
+    border-left: 5px solid #3b82f6;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-top: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f172a;
+    line-height: 1.55;
+  }
+  .recommendation strong { color: #1e40af; }
+
+  /* Discarded */
+  details.discarded, details.sources {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 14px 22px;
+    margin-top: 14px;
+    border: 1px solid #e2e8f0;
+  }
+  details.discarded summary, details.sources summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    color: #475569;
+    padding: 4px 0;
+  }
+  details.discarded .disc-card {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 10px;
+    opacity: 0.7;
+  }
+  details.discarded .disc-card .top-row { margin-bottom: 6px; }
+  details.discarded .disc-card h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    text-decoration: line-through;
+    flex: 1;
+  }
+  details.discarded .disc-card .score-badge {
+    background: #94a3b8;
+    color: #f8fafc;
+  }
+  details.discarded .disc-card .reason {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 4px;
+  }
+
+  details.sources ul { list-style: none; margin-top: 10px; }
+  details.sources li { padding: 5px 0; font-size: 13px; }
+  details.sources a { color: #3b82f6; text-decoration: none; }
+  details.sources a:hover { text-decoration: underline; }
+  details.sources .src-tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-right: 6px;
+  }
+
+  /* Footer note */
+  .role-note {
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: #92400e;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="briefing-head">
+  <h1>Morning Briefing — May 2, 2026</h1>
+  <div class="sub">Fiber/FTTH Executive Intelligence</div>
+  <div class="meta">
+    <strong>Total findings:</strong> 35 &nbsp;|&nbsp;
+    <strong>Scored above threshold:</strong> 31 &nbsp;|&nbsp;
+    <strong>Discarded:</strong> 4
+  </div>
+  <div class="overall-rating">
+    <span class="rating-label">Rate this briefing:</span>
+    <span class="stars" id="overallStars">
+      <span class="star" data-val="1">★</span>
+      <span class="star" data-val="2">★</span>
+      <span class="star" data-val="3">★</span>
+      <span class="star" data-val="4">★</span>
+      <span class="star" data-val="5">★</span>
+    </span>
+    <span class="rating-feedback" id="ratingFeedback"></span>
+  </div>
+</header>
+
+<div class="role-note">
+  <strong>Role-tuned:</strong> Supply chain / fiber materials de-prioritized per role focus on market expansion. Materials items now in Quick Hits only.
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 1: INTELLIGENCE FEED -->
+<!-- ============================================================ -->
+<h2 class="section-head">Section 1 — Intelligence Feed</h2>
+
+<!-- POLICY / REGULATORY -->
+<div class="cat-divider">Policy &amp; Regulatory</div>
+
+<div class="card" data-id="bead-operational">
+  <div class="top-row">
+    <h3><a href="https://whsm.com/news/2026/04/30/rural-focused-42-billion-broadband-equity-access-and-deployment-program-becomes-operational" target="_blank">BEAD Program officially operational — $42.45B unlocked, ~65% earmarked for fiber</a></h3>
+    <div class="badges">
+      <span class="urgency u-red">🔴 Act Today</span>
+      <span class="score-badge">22/22</span>
+    </div>
+  </div>
+  <span class="tag">Policy/Regulatory</span>
+  <div class="scorebar"><div class="fill" style="width:100%"></div></div>
+  <div class="lbl">What happened</div>
+  <div class="body-text">As of April 30, 2026, NTIA's "Benefit of the Bargain" restructure of BEAD has flipped from planning to deployment phase. State broadband offices are now releasing awards; construction starts H2 2026. The technology mix locks in fiber as the primary delivery vehicle — ~65% of locations to fiber, 20.6% LEO, 11.2% licensed FWA, 2.2% HFC, 0.9% unlicensed FWA.</div>
+  <div class="lbl">Why it matters</div>
+  <div class="body-text">This is the single biggest funded greenfield opportunity in U.S. broadband history and the LEO carve-out is now the primary competitive vector for unserved territory.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action">Pull the SC, GA, NC, AL, FL provisional award lists this week. Map every fiber-allocated CAI and unserved cluster within 25 miles of your existing or planned plant. File for any subgrant or partnership window still open in your state office before Q2 close — most state portals lock late-stage applications by mid-summer.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="fcc-satellite">
+  <div class="top-row">
+    <h3><a href="https://www.insideglobaltech.com/2026/04/14/fcc-poised-to-adopt-proposal-modernizing-spectrum-sharing-to-promote-satellite-broadband/" target="_blank">FCC adopts modernized satellite spectrum sharing — opens door for 8x NGSO concurrency</a></h3>
+    <div class="badges">
+      <span class="urgency u-yellow">🟡 This Week</span>
+      <span class="score-badge">18/22</span>
+    </div>
+  </div>
+  <span class="tag">Policy/Regulatory</span>
+  <div class="scorebar"><div class="fill" style="width:81%"></div></div>
+  <div class="lbl">What happened</div>
+  <div class="body-text">The FCC's April 30 open meeting adopted the Modernizing Spectrum Sharing for Satellite Broadband Order, replacing the legacy EPFD framework with performance-based protection criteria. Up to 8 NGSO satellites can now serve the same geo/frequency band concurrently — a structural capacity unlock for Starlink, Kuiper, and follow-ons.</div>
+  <div class="lbl">Why it matters</div>
+  <div class="body-text">LEO competitive density just stepped up materially in the rural and exurban footprints where greenfield FTTH economics are most fragile.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action">Re-run your unserved/underserved take-rate model with LEO at 25%+ household penetration in any market with sub-15 homes-per-mile. If a market needs LEO under 15% to clear hurdle IRR, kill it from the build plan now and redeploy capital to denser passings.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<!-- COMPETITIVE INTEL -->
+<div class="cat-divider">Competitive Intelligence</div>
+
+<div class="card" data-id="att-250b">
+  <div class="top-row">
+    <h3><a href="https://www.fierce-network.com/broadband/att-unveils-250b-investment-expand-5g-fiber-satellite-network-infrastructure" target="_blank">AT&amp;T: $250B 5-year capex, 40M fiber locations target by end-2026</a></h3>
+    <div class="badges">
+      <span class="urgency u-red">🔴 Act Today</span>
+      <span class="score-badge">20/22</span>
+    </div>
+  </div>
+  <span class="tag">Competitive Intel</span>
+  <div class="scorebar"><div class="fill" style="width:91%"></div></div>
+  <div class="lbl">What happened</div>
+  <div class="body-text">AT&amp;T committed $250B over five years to fiber, 5G, and satellite, raising its 2026 fiber location target to 40M (up from 32M end-2025) and signaling 60M by 2030. Its Lumen mass-markets fiber acquisition has closed; Gigapower JV with BlackRock is now layering in open-access passings in AZ, FL, and NV.</div>
+  <div class="lbl">Why it matters</div>
+  <div class="body-text">AT&amp;T is moving from incumbent-to-overbuilder posture. Any market that is "AT&amp;T-adjacent" and not already overbuilt will get on the target list inside 18 months.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action">Identify every metro and exurb in your pipeline within 50 miles of an AT&amp;T fiber pop. For any market still in pre-construction, accelerate to break ground before Q3 or shift the market to a partnership/sale candidate. Don't enter a market AT&amp;T announces 90 days behind you.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="brightspeed-sc">
+  <div class="top-row">
+    <h3><a href="https://fiberbroadband.org/2026/03/18/brightspeed-fiber-build-hits-75-milestone-in-south-carolina-reaching-47000-locations/" target="_blank">Brightspeed crosses 75% in South Carolina — 47K passings live, 66K target</a></h3>
+    <div class="badges">
+      <span class="urgency u-red">🔴 Act Today</span>
+      <span class="score-badge">19/22</span>
+    </div>
+  </div>
+  <span class="tag">Competitive Intel</span>
+  <div class="scorebar"><div class="fill" style="width:86%"></div></div>
+  <div class="lbl">What happened</div>
+  <div class="body-text">Brightspeed reported its SC fiber build is ~75% complete with active construction in Beaufort, Greenwood, Hampton, Jasper, Laurens, Orangeburg, and Saluda counties. State coverage tracks to ~66K passings at completion. Alabama is at 65% (165K passings).</div>
+  <div class="lbl">Why it matters</div>
+  <div class="body-text">Beaufort County build-out directly compresses your home-market expansion runway and changes the take-rate ceiling on any overlapping greenfield in the Lowcountry.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action">Order a Beaufort/Jasper fiber overlap audit this week — specifically Brightspeed plant within 1,000 ft of your planned routes. Where overlap is &gt;30%, reprice the market or pivot to MDU/business-only routes Brightspeed isn't targeting. Consider an approach to Brightspeed for wholesale/IRU to skip overbuild capex entirely.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="starlink-700">
+  <div class="top-row">
+    <h3><a href="https://5gstore.com/blog/2026/05/01/starlink-capacity-700-percent-fcc-rules/" target="_blank">Starlink gets 700% capacity headroom from new FCC EPFD rules</a></h3>
+    <div class="badges">
+      <span class="urgency u-yellow">🟡 This Week</span>
+      <span class="score-badge">16/22</span>
+    </div>
+  </div>
+  <span class="tag">Competitive Intel</span>
+  <div class="scorebar"><div class="fill" style="width:73%"></div></div>
+  <div class="lbl">What happened</div>
+  <div class="body-text">Reports indicate Starlink stands to gain ~700% effective capacity gain in U.S. service areas under the FCC's modernized satellite spectrum-sharing framework adopted at the April 30 open meeting.</div>
+  <div class="lbl">Why it matters</div>
+  <div class="body-text">A capacity-constrained Starlink that throttles tiers and degrades evening speeds is a different competitor than an uncapped one — the latter can credibly defend rural and exurban price points fiber operators were counting on.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action">Reset competitive pricing assumptions in your low-density tiers. Stop selling against Starlink on speed alone — anchor your differentiation on sub-10ms gaming latency, symmetrical upload, and 99.95% uptime, all of which are still structurally LEO-disadvantaged.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="iq-fiber">
+  <div class="top-row">
+    <h3><a href="https://www.fierce-network.com/newswire/iq-fiber-expands-its-service-area-all-fiber-internet-service-charleston-sc" target="_blank">IQ Fiber expanding NE Florida footprint + Charleston, SC live</a></h3>
+    <div class="badges">
+      <span class="urgency u-yellow">🟡 This Week</span>
+      <span class="score-badge">16/22</span>
+    </div>
+  </div>
+  <span class="tag">Competitive Intel</span>
+  <div class="scorebar"><div class="fill" style="width:73%"></div></div>
+  <div class="lbl">What happened</div>
+  <div class="body-text">IQ Fiber is rapidly expanding across Alachua, Clay, Duval, Nassau, and St. Johns counties in NE Florida, and launched all-fiber service in Charleston in October 2025. Their playbook: dense urban/suburban overbuilds with premium speed tiers and high-touch local marketing.</div>
+  <div class="lbl">Why it matters</div>
+  <div class="body-text">An IQ Fiber footprint in Charleston is a live altnet beachhead in your home state — they will move down the I-95 corridor toward Bluffton and Hilton Head if the Charleston economics validate.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action">Pull IQ's permit and pole-attachment filings in Berkeley, Charleston, and Dorchester counties this week. If filings are accelerating, assume a Lowcountry expansion announcement inside 12 months and pre-empt with a Bluffton/Beaufort residential launch by Q3.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="vz-tmo-jvs">
+  <div class="top-row">
+    <h3><a href="https://www.lightreading.com/broadband/t-mobile-s-new-jvs-fixate-on-fiber" target="_blank">Verizon ends 2026 at 32M fiber passings, T-Mobile JVs combined ~1.8M new passings</a></h3>
+    <div class="badges">
+      <span class="urgency u-green">🟢 Queue It</span>
+      <span class="score-badge">15/22</span>
+    </div>
+  </div>
+  <span class="tag">Competitive Intel</span>
+  <div class="scorebar"><div class="fill" style="width:68%"></div></div>
+  <div class="lbl">What happened</div>
+  <div class="body-text">Post-Frontier, Verizon is on pace for 32M fiber passings end-2026 with a 40–50M medium-term target. T-Mobile's JV stack — GoNetspeed, Greenlight, Lumos, Metronet, i3 Broadband — is layering ~1.8M+ combined new passings into the 2026 build envelope.</div>
+  <div class="lbl">Why it matters</div>
+  <div class="body-text">The Big 3 mobile operators are rapidly converging on fiber footprints that will support convergence bundles you can't match without a wireless partner.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action">Open a partnership conversation with one Tier-2 MNO or MVNO inside 60 days. Bundled mobile is no longer optional in any market with VZ/T-Mo overlap.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="brightspeed-al">
+  <div class="top-row">
+    <h3><a href="https://fiberbroadband.org/2026/04/28/brightspeed-advances-alabama-fiber-expansion-network-build-crosses-major-milestone/" target="_blank">Brightspeed Alabama: 65% complete, 165K passings live</a></h3>
+    <div class="badges">
+      <span class="urgency u-green">🟢 Queue It</span>
+      <span class="score-badge">14/22</span>
+    </div>
+  </div>
+  <span class="tag">Competitive Intel</span>
+  <div class="scorebar"><div class="fill" style="width:64%"></div></div>
+  <div class="lbl">What happened</div>
+  <div class="body-text">Brightspeed reported its Alabama fiber build at 65% complete with 165K passings live and 86K more planned. Same playbook as SC — rural ILEC plant being upgraded to fiber under PE ownership.</div>
+  <div class="lbl">Why it matters</div>
+  <div class="body-text">Confirms Brightspeed is executing a multi-state Southeast playbook on schedule — they are a credible Southeast incumbent now, not a transitioning one.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action">Treat Brightspeed as an established Southeast competitor in any 2026–2027 market study. Their PE owners may also become a strategic partnership/exit channel — open relationship dialogue.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="south-reach-uniti">
+  <div class="top-row">
+    <h3><a href="https://www.prnewswire.com/news-releases/south-reach-networks-announces-major-florida-fiber-network-expansion-302593916.html" target="_blank">South Reach Networks brings South Florida fiber online; Uniti adds 1,100 wholesale miles</a></h3>
+    <div class="badges">
+      <span class="urgency u-green">🟢 Queue It</span>
+      <span class="score-badge">14/22</span>
+    </div>
+  </div>
+  <span class="tag">Competitive Intel</span>
+  <div class="scorebar"><div class="fill" style="width:64%"></div></div>
+  <div class="lbl">What happened</div>
+  <div class="body-text">South Reach Networks' South Florida regional fiber project came in service in early 2026. Uniti Wholesale added 1,100 fiber miles in the South-Central U.S. to chase AI/data-center long-haul demand.</div>
+  <div class="lbl">Why it matters</div>
+  <div class="body-text">Backbone density in the Southeast is rising — middle-mile transport pricing should soften over the next 12 months for any operator with a wholesale lever to pull.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action">Re-bid your transport contracts before they auto-renew. Get quotes from Uniti, Zayo, and Lumen wholesale on every metro-to-data-center leg you currently buy.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<!-- MARKET TRENDS -->
+<div class="cat-divider">Market Trends</div>
+
+<div class="card" data-id="fba-fourth-pillar">
+  <div class="top-row">
+    <h3><a href="https://fiberbroadband.org/2026/04/30/fiber-broadband-association-report-positions-fiber-as-the-fourth-pillar-of-ai/" target="_blank">FBA report: fiber is the "Fourth Pillar" of AI infrastructure</a></h3>
+    <div class="badges">
+      <span class="urgency u-yellow">🟡 This Week</span>
+      <span class="score-badge">18/22</span>
+    </div>
+  </div>
+  <span class="tag">Market Trends</span>
+  <div class="scorebar"><div class="fill" style="width:81%"></div></div>
+  <div class="lbl">What happened</div>
+  <div class="body-text">The Fiber Broadband Association released "The Fourth Pillar of the AI Era" on May 1, formally positioning fiber alongside compute, power, and water as core hyperscale AI infrastructure. Household upload demand is forecast to grow 2–10x over the next 5–10 years.</div>
+  <div class="lbl">Why it matters</div>
+  <div class="body-text">This is the narrative your investors, lenders, and BEAD subgrant evaluators will be reading this month — it gives FTTH operators an upgraded valuation framing tied to AI capex.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action">Lift the FBA framing into your next investor update and BEAD subgrant cover letters. Reposition every market deck from "household broadband" to "AI-era fixed connectivity infrastructure." Do this before Fiber Connect (May 17–20) where the narrative crystallizes.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="fiber-connect-2026">
+  <div class="top-row">
+    <h3><a href="https://www.businesswire.com/news/home/20260324513924/en/Fiber-Connect-2026-to-Spotlight-How-Fiber-Powers-AI-Agriculture-Healthcare-and-the-Future-of-Connectivity" target="_blank">Fiber Connect 2026 — Orlando, May 17–20</a></h3>
+    <div class="badges">
+      <span class="urgency u-yellow">🟡 This Week</span>
+      <span class="score-badge">17/22</span>
+    </div>
+  </div>
+  <span class="tag">Market Trends</span>
+  <div class="scorebar"><div class="fill" style="width:77%"></div></div>
+  <div class="lbl">What happened</div>
+  <div class="body-text">FBA's Fiber Connect 2026 runs May 17–20 in Orlando. New programming includes the AI &amp; Emerging Technology Infrastructure Summit (May 20), a Broadband Policy Upload track, and operator deep-dives on AI-driven data centers, precision agriculture, telehealth, and tribal connectivity.</div>
+  <div class="lbl">Why it matters</div>
+  <div class="body-text">Single-best venue this year to lock partnership conversations with PE-backed operators looking for Southeast tuck-ins, BEAD-funded utilities looking for build partners, and MNO/wholesale partners.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action">Block the calendar now. Pre-book 8–10 meetings before May 12: 2 PE-backed ILEC operators (Brightspeed, altafiber), 2 state broadband office reps (SC + GA), 1 Gigapower/BlackRock contact, 1 Tier-2 MNO/MVNO partnership lead, 1 wholesale transport (Uniti or Zayo), 1 PE platform principal.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="ai-data-center-fiber">
+  <div class="top-row">
+    <h3><a href="https://www.fierce-network.com/broadband/major-fiber-vendors-strategize-huge-demand-ai-2026" target="_blank">AI racks need 16–36x more fiber than CPU racks — hyperscaler demand is structural</a></h3>
+    <div class="badges">
+      <span class="urgency u-green">🟢 Queue It</span>
+      <span class="score-badge">16/22</span>
+    </div>
+  </div>
+  <span class="tag">Market Trends</span>
+  <div class="scorebar"><div class="fill" style="width:73%"></div></div>
+  <div class="lbl">What happened</div>
+  <div class="body-text">AI data centers are running ~5x the fiber connectivity of conventional hyperscaler topologies; 72-GPU Blackwell-class racks consume ~16x the fiber of a traditional cloud switch rack, with some studies citing 36x for full GPU pod buildouts.</div>
+  <div class="lbl">Why it matters</div>
+  <div class="body-text">Hyperscaler demand will keep middle-mile and long-haul transport pricing elevated and scarce — relevant to your transport contracts and any data-center adjacent market opportunity.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action">Identify any data-center cluster within 60 miles of your existing or planned plant. A single hyperscaler campus can underwrite a backbone build that pays for the residential overlay.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: M&A WATCH -->
+<!-- ============================================================ -->
+<h2 class="section-head mna">Section 2 — M&amp;A Watch</h2>
+
+<div class="card" data-id="att-lumen">
+  <div class="top-row">
+    <h3><a href="https://about.att.com/story/2026/att-lumen-deal-close.html" target="_blank">AT&amp;T closes acquisition of Lumen's mass-markets fiber business</a></h3>
+    <div class="badges">
+      <span class="urgency u-red">🔴 Act Today</span>
+      <span class="score-badge">19/22</span>
+    </div>
+  </div>
+  <span class="tag">M&amp;A</span>
+  <div class="scorebar mna"><div class="fill" style="width:86%"></div></div>
+  <div class="lbl">What's happening</div>
+  <div class="body-text">AT&amp;T closed its acquisition of Lumen's mass-markets fiber-to-the-home business (the former Quantum Fiber consumer footprint), adding several million passings to AT&amp;T's footprint and accelerating its 40M end-of-2026 target. Deal value previously disclosed at ~$5.75B.</div>
+  <div class="lbl">Strategic read</div>
+  <div class="body-text">AT&amp;T is now the consolidator of choice in U.S. mass-market fiber. Lumen exits residential to focus on enterprise and AI long-haul — a clean signal that no major incumbent will play in both lanes anymore.</div>
+  <div class="lbl">Implication for Jason</div>
+  <div class="body-text">Any market with legacy CenturyLink/Lumen consumer plant is now AT&amp;T territory and will get fiber-overbuilt aggressively in 2026–2027.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action mna">Re-verify which of your target markets had Lumen consumer presence. Treat those as AT&amp;T 18-month overbuild zones. Either accelerate to first-mover or deprioritize.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="point-clearwave">
+  <div class="top-row">
+    <h3><a href="https://www.fierce-network.com/broadband/2026-ma-tracker" target="_blank">Point Broadband + Clearwave Fiber merge — 12 states, 500K+ passings</a></h3>
+    <div class="badges">
+      <span class="urgency u-red">🔴 Act Today</span>
+      <span class="score-badge">19/22</span>
+    </div>
+  </div>
+  <span class="tag">M&amp;A</span>
+  <div class="scorebar mna"><div class="fill" style="width:86%"></div></div>
+  <div class="lbl">What's happening</div>
+  <div class="body-text">Point Broadband and Clearwave Fiber (the Cable One/PE-backed JV) entered an agreement to combine, creating one of the largest independent fiber operators in the U.S. — 12 states, 500K+ homes and businesses. Deal terms undisclosed.</div>
+  <div class="lbl">Strategic read</div>
+  <div class="body-text">PE-backed altnets are consolidating into regional scale platforms. Point's Southeast footprint plus Clearwave's Midwest/Southeast presence creates a credible Tier-2 challenger directly in Jason's footprint.</div>
+  <div class="lbl">Implication for Jason</div>
+  <div class="body-text">A new Southeast competitor with 500K+ passings, PE capital, and integration friction during 2026 — a partnership/JV window may be open while they're focused internally.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action mna">Open a senior-level conversation with both Point and Clearwave leadership inside 30 days. Position around (a) market handoff in non-overlapping Lowcountry/Coastal SC zones, (b) wholesale IRU on existing plant, or (c) exit-channel optionality.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="dragonfly-myakka">
+  <div class="top-row">
+    <h3><a href="https://www.fierce-network.com/broadband/2026-ma-tracker" target="_blank">Dragonfly Internet acquires Myakka Communications (FL)</a></h3>
+    <div class="badges">
+      <span class="urgency u-yellow">🟡 This Week</span>
+      <span class="score-badge">18/22</span>
+    </div>
+  </div>
+  <span class="tag">M&amp;A</span>
+  <div class="scorebar mna"><div class="fill" style="width:81%"></div></div>
+  <div class="lbl">What's happening</div>
+  <div class="body-text">Georgia-based regional ISP Dragonfly Internet completed its acquisition of Myakka Communications, a fiber ISP in west Florida. Financed by Kinetic Ventures and ITC Broadband Holdings. Deal size undisclosed.</div>
+  <div class="lbl">Strategic read</div>
+  <div class="body-text">Regional Southeast roll-up activity is heating up at the sub-50K passings tier — exactly the size band where most of Jason's potential bolt-on or partnership targets sit. Dragonfly + Kinetic Ventures + ITC is an emerging Southeast PE platform to watch.</div>
+  <div class="lbl">Implication for Jason</div>
+  <div class="body-text">Either Dragonfly is a future acquisition channel for your assets or a future bidder against you for SE bolt-ons. Both worth tracking now, before they execute the next 3–5 deals.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action mna">Get an introduction to Kinetic Ventures and ITC Broadband Holdings principals via your investment banker. Understand their thesis, target size band, and geographic priorities before they close their next deal.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="gfiber-astound">
+  <div class="top-row">
+    <h3><a href="https://www.fierce-network.com/broadband/gfiber-merge-astound-after-alphabet-sells-majority-stake-private-equity" target="_blank">GFiber spins off from Alphabet, merges with Astound under Stonepeak</a></h3>
+    <div class="badges">
+      <span class="urgency u-yellow">🟡 This Week</span>
+      <span class="score-badge">18/22</span>
+    </div>
+  </div>
+  <span class="tag">M&amp;A</span>
+  <div class="scorebar mna"><div class="fill" style="width:81%"></div></div>
+  <div class="lbl">What's happening</div>
+  <div class="body-text">Alphabet selling majority stake in GFiber (Google Fiber) to Stonepeak, who will merge it with Astound Broadband. Combined platform: ~7.1M passings. Stonepeak originally acquired Astound for $8.1B in 2021. Close expected Q4 2026; Alphabet retains minority stake.</div>
+  <div class="lbl">Strategic read</div>
+  <div class="body-text">Stonepeak is building the largest non-incumbent fiber consolidator in the U.S. Validates the PE thesis that scaled altnet platforms are bankable at 7M+ passings.</div>
+  <div class="lbl">Implication for Jason</div>
+  <div class="body-text">Sets a valuation comp for any future exit. Also signals that the next round of PE consolidation will target sub-1M passings altnets to bolt onto these platforms — Jason's profile fits.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action mna">Refresh your platform valuation deck using the Stonepeak/GFiber/Astound comp. Even if exit isn't on a 24-month horizon, an updated view drives current decisions on capex pace and market selection.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="tmo-eqt-lumos">
+  <div class="top-row">
+    <h3><a href="https://www.lightreading.com/broadband/t-mobile-s-new-jvs-fixate-on-fiber" target="_blank">T-Mobile + EQT Infrastructure complete Lumos acquisition</a></h3>
+    <div class="badges">
+      <span class="urgency u-yellow">🟡 This Week</span>
+      <span class="score-badge">16/22</span>
+    </div>
+  </div>
+  <span class="tag">M&amp;A</span>
+  <div class="scorebar mna"><div class="fill" style="width:73%"></div></div>
+  <div class="lbl">What's happening</div>
+  <div class="body-text">T-Mobile closed the Lumos JV with EQT Infrastructure in April 2026, following the completion of its Metronet JV with KKR. T-Mobile is now positioned as a serious fiber acquirer in the Southeast — Lumos is heavily NC/VA/SC.</div>
+  <div class="lbl">Strategic read</div>
+  <div class="body-text">T-Mobile's strategy is clear: don't build, JV-acquire. Lumos gives them a Southeast residential fiber base to bundle with mobile.</div>
+  <div class="lbl">Implication for Jason</div>
+  <div class="body-text">A T-Mobile-funded Lumos in the Carolinas is now a real competitor in your home region with mobile bundle economics you can't match standalone.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action mna">Map Lumos plant adjacency to your active and planned routes in SC and NC. If overlap is rising, accelerate any MNO partnership (see Sec 1) inside 60 days.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="kkr-tmo-metronet">
+  <div class="top-row">
+    <h3><a href="https://www.lightreading.com/broadband/t-mobile-s-new-jvs-fixate-on-fiber" target="_blank">KKR/T-Mobile JV completes Metronet acquisition</a></h3>
+    <div class="badges">
+      <span class="urgency u-green">🟢 Queue It</span>
+      <span class="score-badge">16/22</span>
+    </div>
+  </div>
+  <span class="tag">M&amp;A</span>
+  <div class="scorebar mna"><div class="fill" style="width:73%"></div></div>
+  <div class="lbl">What's happening</div>
+  <div class="body-text">KKR completed its acquisition of Metronet via JV with T-Mobile, creating a scaled platform for fiber deployment in underserved markets. Metronet brings ~2M passings primarily across the Midwest and parts of the Southeast.</div>
+  <div class="lbl">Strategic read</div>
+  <div class="body-text">Same T-Mobile/PE pattern as Lumos. Metronet is now a national-scale altnet competing on convergence with Magenta-bundled fiber.</div>
+  <div class="lbl">Implication for Jason</div>
+  <div class="body-text">Reinforces the T-Mobile fiber threat. Limited direct overlap today, but Metronet's expansion path will reach the Southeast within 24 months.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action mna">Track Metronet permit and franchise filings monthly in any GA/SC/NC tier-2 metro on your radar.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="bce-ziply-pilot">
+  <div class="top-row">
+    <h3><a href="https://www.lightwaveonline.com/home/article/55307317/building-broadband-bce-completes-acquisition-of-ziply-fiber-accelerating-its-fiber-growth-strategy-brightspeed-lights-up-fiber-broadband-in-five-new-rural-ohio-counties" target="_blank">BCE closes $3.65B Ziply Fiber acquisition; Pilot Fiber buys ExteNet enterprise unit</a></h3>
+    <div class="badges">
+      <span class="urgency u-green">🟢 Queue It</span>
+      <span class="score-badge">14/22</span>
+    </div>
+  </div>
+  <span class="tag">M&amp;A</span>
+  <div class="scorebar mna"><div class="fill" style="width:64%"></div></div>
+  <div class="lbl">What's happening</div>
+  <div class="body-text">BCE (Bell Canada) completed its $3.65B Ziply Fiber acquisition (Pacific NW residential fiber). Pilot Fiber agreed to acquire DigitalBridge-backed ExteNet's carved-out enterprise fiber unit; deal size undisclosed.</div>
+  <div class="lbl">Strategic read</div>
+  <div class="body-text">Foreign capital (BCE) and enterprise-focused carve-outs (Pilot/ExteNet) signal that the M&amp;A market is broadening beyond pure residential rollups.</div>
+  <div class="lbl">Implication for Jason</div>
+  <div class="body-text">Limited direct read for Lowcountry, but valuations are firming across all fiber sub-segments — useful comp data.</div>
+  <div class="lbl">Recommended action</div>
+  <div class="action mna">No action this week. Track for valuation comp updates.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: TECH & GROWTH STRATEGY -->
+<!-- ============================================================ -->
+<h2 class="section-head tech">Section 3 — Technology &amp; Growth Strategy</h2>
+
+<div class="card" data-id="ai-fiber-design">
+  <div class="top-row">
+    <h3><a href="https://symphony.rakuten.com/blog/ai-in-fiber-deployment-10-breakthrough-applications-transforming-the-industry" target="_blank">AI-driven fiber network design cuts plan time from 45–60 days to 25 days</a></h3>
+    <div class="badges">
+      <span class="urgency u-red">🔴 Act Today</span>
+      <span class="score-badge">19/22</span>
+    </div>
+  </div>
+  <span class="tag">Tech &amp; Strategy</span> <span class="tag status-now">Available Now</span>
+  <div class="scorebar tech"><div class="fill" style="width:86%"></div></div>
+  <div class="lbl">What's emerging</div>
+  <div class="body-text">Automated Fiber Network Design (AFND) tooling — pathfinding algorithms layered with geospatial AI — is cutting fiber design cycles by ~50%. Vendors include Render Networks, IQGeo, VETRO, and Rakuten Symphony. Integration with permit and pole-attachment workflows is the 2026 unlock.</div>
+  <div class="lbl">Why it matters for growth</div>
+  <div class="body-text">Three weeks of compressed pre-construction time per market = directly faster homes-passed-per-quarter and lower G&amp;A drag — the single highest-leverage capital-efficiency play available right now.</div>
+  <div class="lbl">How to apply it</div>
+  <div class="action tech">Pilot one AFND vendor on your next 5K-passings market — Render or VETRO. 90-day pilot, measured against control market on identical scope. If pilot delivers ≥30% time compression, standardize across the build pipeline before Q4 budget cycle.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="mdu-bundled">
+  <div class="top-row">
+    <h3><a href="https://wiki.quantumwi.fi/mdu-wi-fi-solutions/" target="_blank">MDU bundled connectivity = $25–75/mo rent premium + 8–15% lower turnover</a></h3>
+    <div class="badges">
+      <span class="urgency u-red">🔴 Act Today</span>
+      <span class="score-badge">19/22</span>
+    </div>
+  </div>
+  <span class="tag">Tech &amp; Strategy</span> <span class="tag status-now">Available Now</span>
+  <div class="scorebar tech"><div class="fill" style="width:86%"></div></div>
+  <div class="lbl">What's emerging</div>
+  <div class="body-text">Bulk-managed connectivity bundled as an MDU amenity is delivering $25–75/mo rent premiums for property owners and 8–15% lower resident turnover when paired with managed Wi-Fi and smart-building (access control, leak/HVAC sensors). Properties treating connectivity like HVAC — non-negotiable infrastructure — see the strongest premium capture.</div>
+  <div class="lbl">Why it matters for growth</div>
+  <div class="body-text">MDU is the highest-margin, fastest-payback FTTH segment available. The right bulk-billing structure with property owners turns 200-unit buildings into 18-month payback projects.</div>
+  <div class="lbl">How to apply it</div>
+  <div class="action tech">Build an MDU bulk-billing product line by end of Q3. Start with a target list of 20 Class A/B properties in Bluffton, Hilton Head, Beaufort, and Savannah. Lead with a managed Wi-Fi + smart-building amenity wrap — not raw bandwidth pricing. The property owner is the customer, not the resident.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="xgs-pon">
+  <div class="top-row">
+    <h3><a href="https://moniem-tech.com/2026/03/14/pon-evolution-in-fixed-broadband-from-gpon-to-xgs-pon-and-the-25g-50g-roadmap/" target="_blank">XGS-PON is the 2026 default; 25G PON is a premium overlay; 50G PON pushed to 2028</a></h3>
+    <div class="badges">
+      <span class="urgency u-red">🔴 Act Today</span>
+      <span class="score-badge">19/22</span>
+    </div>
+  </div>
+  <span class="tag">Tech &amp; Strategy</span> <span class="tag status-now">Available Now</span>
+  <div class="scorebar tech"><div class="fill" style="width:86%"></div></div>
+  <div class="lbl">What's emerging</div>
+  <div class="body-text">XGS-PON (10G symmetric) is now the dominant new-build choice through 2030. 25GS-PON is gaining momentum but as a targeted overlay — premium residential, business, and select wholesale. 50G-PON adoption forecasts have slid from 2026 to 2028.</div>
+  <div class="lbl">Why it matters for growth</div>
+  <div class="body-text">Standardizing on XGS-PON now with 25G-capable optics in the OLT chassis preserves 10–15 years of upgrade headroom without paying the 25G premium today.</div>
+  <div class="lbl">How to apply it</div>
+  <div class="action tech">Lock all new builds to XGS-PON as default. Specify 25G-PON-capable OLT chassis on every greenfield purchase order so you can overlay 25G in business/MDU sub-rings without forklift upgrades. Skip 50G-PON entirely until 2027 RFI cycle.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="open-access">
+  <div class="top-row">
+    <h3><a href="https://www.cobank.com/corporate/news/2023/open-access-fiber-networks-poised-to-shake-up-us-broadband-market" target="_blank">Open-access fiber model gaining ground — Gigapower expanding in AZ, FL, NV</a></h3>
+    <div class="badges">
+      <span class="urgency u-yellow">🟡 This Week</span>
+      <span class="score-badge">17/22</span>
+    </div>
+  </div>
+  <span class="tag">Tech &amp; Strategy</span> <span class="tag status-early">Early Deployment</span>
+  <div class="scorebar tech"><div class="fill" style="width:77%"></div></div>
+  <div class="lbl">What's emerging</div>
+  <div class="body-text">AT&amp;T/BlackRock's Gigapower JV is targeting 1.5M passings on an open-access wholesale model — multiple ISPs riding shared fiber. Florida is on the active state list. Openreach (UK) is scaling Nokia-powered open-access from 17M to 25M premises. CoBank is signaling open-access is the model most likely to disrupt U.S. broadband economics over the next 5 years.</div>
+  <div class="lbl">Why it matters for growth</div>
+  <div class="body-text">Open-access lets a capital-efficient operator either (a) be the wholesale layer and monetize multiple retail ISPs or (b) ride someone else's plant in markets where build economics don't pencil.</div>
+  <div class="lbl">How to apply it</div>
+  <div class="action tech">Add wholesale revenue as a designed-in layer to any new-build market with mid-density that doesn't clear 35% take rate on retail-only. Pilot a wholesale tariff with one MVNO or business ISP partner on an existing market. Track Gigapower's Florida footprint as a near-term partnership target.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<div class="card" data-id="agentic-ai-ops">
+  <div class="top-row">
+    <h3><a href="https://www.telecomstechnews.com/news/2026-network-outlook-how-ai-is-changing-fibre-automation-and-risk/" target="_blank">Agentic AI in network operations becomes a 2026 differentiator</a></h3>
+    <div class="badges">
+      <span class="urgency u-yellow">🟡 This Week</span>
+      <span class="score-badge">16/22</span>
+    </div>
+  </div>
+  <span class="tag">Tech &amp; Strategy</span> <span class="tag status-early">Early Deployment</span>
+  <div class="scorebar tech"><div class="fill" style="width:73%"></div></div>
+  <div class="lbl">What's emerging</div>
+  <div class="body-text">Telco-specific AI models (digital twins, agentic AI for service assurance and customer engagement) are moving from PoC to production in 2026. Leaders are using them for proactive outage prediction, automated truck-roll avoidance, and customer-facing tier-1 deflection.</div>
+  <div class="lbl">Why it matters for growth</div>
+  <div class="body-text">For a sub-100K-passings operator, the OpEx leverage from AI-deflected truck rolls and tier-1 calls is 200–400 bps of EBITDA margin — bigger than any pricing or churn lever you can pull this year.</div>
+  <div class="lbl">How to apply it</div>
+  <div class="action tech">Pilot one AI tier-1 customer agent (Sandvine, Calix Service Cloud, or similar) on a 5K-customer subset by end of Q3. Measure deflection rate and CSAT delta. If deflection ≥25%, scale platform-wide before 2027 budget.</div>
+  <div class="card-feedback">
+    <span class="fb-label">Useful?</span>
+    <button class="fb-btn up" data-vote="up">👍</button>
+    <button class="fb-btn down" data-vote="down">👎</button>
+    <span class="fb-status"></span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: QUICK HITS -->
+<!-- ============================================================ -->
+<h2 class="section-head quick">Section 4 — Quick Hits</h2>
+<div class="quick-hits">
+  <ul>
+    <li><span class="qh-tag">Supply / Materials</span> Fiber cable forward-sold through 2026; bare fiber up 50%+ YoY in China. <a href="https://www.globaldatacenterhub.com/p/fiber-is-the-new-bottleneck-why-ai" target="_blank">Source</a>. <strong>Implication:</strong> Hand to procurement — not a strategic concern at your level.</li>
+    <li><span class="qh-tag">Supply / Materials</span> Corning, CommScope adding capacity; Nokia pledged $4B U.S. R&amp;D and manufacturing. <a href="https://techblog.comsoc.org/2025/12/23/how-will-fiber-and-equipment-vendors-meet-the-increased-demand-for-fiber-in-2026-due-to-ai-data-center-buildouts/" target="_blank">Source</a>. <strong>Implication:</strong> Domestic vendor capacity firms up 2027–2028; backdrop only.</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: MY RECOMMENDATION -->
+<!-- ============================================================ -->
+<h2 class="section-head rec">Section 5 — My Recommendation</h2>
+<div class="recommendation">
+  <strong>Pre-empt IQ Fiber's I-95 corridor move with a Bluffton/Beaufort MDU-bulk launch by Q3, anchored on managed Wi-Fi + smart-building amenities — not raw bandwidth.</strong> That single move locks the Lowcountry MDU window before Charleston's altnet economics validate, captures the highest-margin FTTH segment available, and creates the partnership credibility you need to walk into Fiber Connect (May 17–20) with leverage.
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: DISCARDED -->
+<!-- ============================================================ -->
+<details class="discarded">
+  <summary>🗂 Discarded Findings (below threshold) — click to expand</summary>
+
+  <div class="disc-card">
+    <div class="top-row">
+      <h4>NTIA approves first 9 BEAD plans</h4>
+      <div class="badges"><span class="score-badge">11/22</span></div>
+    </div>
+    <span class="tag">Policy/Regulatory</span>
+    <div class="reason">Superseded by the broader "BEAD Operational" finding (22/22) above; standalone subset isn't actionable on its own.</div>
+  </div>
+
+  <div class="disc-card">
+    <div class="top-row">
+      <h4>2025 record FTTH year — ~100M passings, 60%+ of U.S. primary households (72h+)</h4>
+      <div class="badges"><span class="score-badge">10/22</span></div>
+    </div>
+    <span class="tag">Market Trends</span>
+    <div class="reason">Useful market context but stale and not action-driving — primarily a backward-looking data point.</div>
+  </div>
+
+  <div class="disc-card">
+    <div class="top-row">
+      <h4>Brightspeed Arkansas build hits 50% — 101K passings live</h4>
+      <div class="badges"><span class="score-badge">10/22</span></div>
+    </div>
+    <span class="tag">Competitive Intel</span>
+    <div class="reason">Out of footprint (AR), no decision impact for SC-based operations.</div>
+  </div>
+
+  <div class="disc-card">
+    <div class="top-row">
+      <h4>50G-PON adoption forecast slides from 2026 to 2028</h4>
+      <div class="badges"><span class="score-badge">9/22</span></div>
+    </div>
+    <span class="tag">Tech &amp; Strategy</span>
+    <div class="reason">Already implicit in the XGS-PON dominance story; no near-term action.</div>
+  </div>
+
+</details>
+
+<!-- ============================================================ -->
+<!-- SECTION 7: SOURCES -->
+<!-- ============================================================ -->
+<details class="sources">
+  <summary>📎 Full Source List — click to expand</summary>
+  <ul>
+    <li><span class="src-tag">Policy</span> <a href="https://whsm.com/news/2026/04/30/rural-focused-42-billion-broadband-equity-access-and-deployment-program-becomes-operational" target="_blank">Rural-Focused $42B BEAD Program Becomes Operational — April 30, 2026</a></li>
+    <li><span class="src-tag">Policy</span> <a href="https://www.route-fifty.com/digital-government/2026/04/rural-focused-42b-broadband-equity-access-and-deployment-program-becomes-operational/413227/" target="_blank">Route Fifty — BEAD becomes operational</a></li>
+    <li><span class="src-tag">Policy</span> <a href="https://broadbandbreakfast.com/ntia-approves-9-bead-plans-promises-early-2026-guidance-on-non-deployment-funds/" target="_blank">NTIA Approves 9 BEAD Plans</a></li>
+    <li><span class="src-tag">Policy</span> <a href="https://fiberbroadband.org/2026/04/02/bead-funding-moves-forward/" target="_blank">FBA — BEAD Funding Moves Forward</a></li>
+    <li><span class="src-tag">Policy</span> <a href="https://www.insideglobaltech.com/2026/04/14/fcc-poised-to-adopt-proposal-modernizing-spectrum-sharing-to-promote-satellite-broadband/" target="_blank">Inside Global Tech — FCC Modernizing Satellite Spectrum Sharing</a></li>
+    <li><span class="src-tag">Policy</span> <a href="https://www.akingump.com/en/insights/blogs/interconnected-tmt/fcc-announces-tentative-agenda-for-april-2026-meeting" target="_blank">Akin — FCC April 2026 Meeting Agenda</a></li>
+    <li><span class="src-tag">Policy</span> <a href="https://5gstore.com/blog/2026/05/01/starlink-capacity-700-percent-fcc-rules/" target="_blank">5GStore — Starlink Capacity Gets 700% Boost</a></li>
+    <li><span class="src-tag">Competitive</span> <a href="https://about.att.com/story/2026/att-lumen-deal-close.html" target="_blank">AT&amp;T Completes Acquisition of Lumen's Mass Markets Fiber</a></li>
+    <li><span class="src-tag">Competitive</span> <a href="https://www.fierce-network.com/broadband/att-unveils-250b-investment-expand-5g-fiber-satellite-network-infrastructure" target="_blank">Fierce — AT&amp;T $250B Investment</a></li>
+    <li><span class="src-tag">Competitive</span> <a href="https://www.datacenterdynamics.com/en/news/att-has-appetite-for-more-fiber-targets-40-million-locations-by-end-of-2026/" target="_blank">DCD — AT&amp;T 40M Fiber Locations by End of 2026</a></li>
+    <li><span class="src-tag">Competitive</span> <a href="https://www.lightreading.com/fttx/at-t-t-mobile-and-verizon-outline-their-fwa-fiber-expansion-plans" target="_blank">Light Reading — Big 3 FWA/Fiber Expansion Plans</a></li>
+    <li><span class="src-tag">Competitive</span> <a href="https://www.lightreading.com/broadband/t-mobile-s-new-jvs-fixate-on-fiber" target="_blank">Light Reading — T-Mobile JVs Fixate on Fiber</a></li>
+    <li><span class="src-tag">Competitive</span> <a href="https://fiberbroadband.org/2026/03/18/brightspeed-fiber-build-hits-75-milestone-in-south-carolina-reaching-47000-locations/" target="_blank">Brightspeed Fiber Build Hits 75% in South Carolina</a></li>
+    <li><span class="src-tag">Competitive</span> <a href="https://fiberbroadband.org/2026/04/28/brightspeed-advances-alabama-fiber-expansion-network-build-crosses-major-milestone/" target="_blank">Brightspeed Alabama Build Crosses 65% Milestone</a></li>
+    <li><span class="src-tag">Competitive</span> <a href="https://www.fierce-network.com/newswire/iq-fiber-expands-its-service-area-all-fiber-internet-service-charleston-sc" target="_blank">Fierce — IQ Fiber Expands Service to Charleston, SC</a></li>
+    <li><span class="src-tag">Competitive</span> <a href="https://newswire.telecomramblings.com/2025/10/iq-fiber-launches-charleston-south-carolina/" target="_blank">Telecom Ramblings — IQ Fiber Launches Charleston Service (Oct 2025)</a></li>
+    <li><span class="src-tag">Competitive</span> <a href="https://www.postandcourier.com/business/charleston-high-speed-internet-iq-fiber/article_39278566-f62b-11ef-8c90-7388881dafca.html" target="_blank">Post and Courier — IQ Fiber $40M Charleston Investment</a></li>
+    <li><span class="src-tag">Competitive</span> <a href="https://www.prnewswire.com/news-releases/south-reach-networks-announces-major-florida-fiber-network-expansion-302593916.html" target="_blank">South Reach Networks — Florida Expansion</a></li>
+    <li><span class="src-tag">Competitive</span> <a href="https://investor.uniti.com/news-releases/news-release-details/uniti-wholesale-adds-1100-miles-its-south-central-us-fiber/" target="_blank">Uniti Wholesale Adds 1,100 Miles in South-Central U.S.</a></li>
+    <li><span class="src-tag">Market</span> <a href="https://fiberbroadband.org/2026/04/30/fiber-broadband-association-report-positions-fiber-as-the-fourth-pillar-of-ai/" target="_blank">FBA Report — Fiber as the "Fourth Pillar" of AI</a></li>
+    <li><span class="src-tag">Market</span> <a href="https://www.hpcwire.com/aiwire/2026/05/01/fiber-broadband-association-report-positions-fiber-as-the-fourth-pillar-of-ai/" target="_blank">HPCWire/AIwire — Fiber as Fourth Pillar of AI</a></li>
+    <li><span class="src-tag">Market</span> <a href="https://www.businesswire.com/news/home/20260324513924/en/Fiber-Connect-2026-to-Spotlight-How-Fiber-Powers-AI-Agriculture-Healthcare-and-the-Future-of-Connectivity" target="_blank">Fiber Connect 2026 — Orlando, May 17–20</a></li>
+    <li><span class="src-tag">Market</span> <a href="https://www.fierce-network.com/broadband/major-fiber-vendors-strategize-huge-demand-ai-2026" target="_blank">Fierce — Fiber Vendors Strategize for AI Demand</a></li>
+    <li><span class="src-tag">M&amp;A</span> <a href="https://www.fierce-network.com/broadband/2026-ma-tracker" target="_blank">Fierce Network — 2026 M&amp;A Tracker</a></li>
+    <li><span class="src-tag">M&amp;A</span> <a href="https://www.fierce-network.com/broadband/gfiber-merge-astound-after-alphabet-sells-majority-stake-private-equity" target="_blank">GFiber to Merge with Astound — Stonepeak Majority</a></li>
+    <li><span class="src-tag">M&amp;A</span> <a href="https://wirelessestimator.com/articles/2026/pilot-fiber-to-acquire-carved-out-enterprise-fiber-unit-from-digitalbridge-backed-extenet/" target="_blank">Pilot Fiber to Acquire ExteNet Enterprise Unit</a></li>
+    <li><span class="src-tag">M&amp;A</span> <a href="https://www.lightwaveonline.com/home/article/55307317/building-broadband-bce-completes-acquisition-of-ziply-fiber-accelerating-its-fiber-growth-strategy-brightspeed-lights-up-fiber-broadband-in-five-new-rural-ohio-counties" target="_blank">Lightwave — BCE Completes Ziply Fiber Acquisition</a></li>
+    <li><span class="src-tag">M&amp;A</span> <a href="https://www.fierce-network.com/broadband/400-fiber-providers-are-ripe-picking-broadband-consolidation" target="_blank">Fierce — 400 Fiber Providers Ripe for Acquisition</a></li>
+    <li><span class="src-tag">Tech</span> <a href="https://moniem-tech.com/2026/03/14/pon-evolution-in-fixed-broadband-from-gpon-to-xgs-pon-and-the-25g-50g-roadmap/" target="_blank">Moniem-Tech — PON Evolution: GPON → XGS-PON → 25G/50G</a></li>
+    <li><span class="src-tag">Tech</span> <a href="https://www.delloro.com/25gs-pon-continuing-to-gather-market-momentum/" target="_blank">Dell'Oro — 25GS-PON Market Momentum</a></li>
+    <li><span class="src-tag">Tech</span> <a href="https://symphony.rakuten.com/blog/ai-in-fiber-deployment-10-breakthrough-applications-transforming-the-industry" target="_blank">Rakuten Symphony — AI in Fiber Deployment</a></li>
+    <li><span class="src-tag">Tech</span> <a href="https://www.telecomstechnews.com/news/2026-network-outlook-how-ai-is-changing-fibre-automation-and-risk/" target="_blank">2026 Network Outlook — AI in Fibre, Automation, Risk</a></li>
+    <li><span class="src-tag">Tech</span> <a href="https://www.intelligentcio.com/north-america/2026/04/16/the-operational-upgrade-powering-ai-era-fibre-rollouts/" target="_blank">Intelligent CIO — Operational Upgrade for AI-Era Fibre Rollouts</a></li>
+    <li><span class="src-tag">Tech</span> <a href="https://www.cobank.com/corporate/news/2023/open-access-fiber-networks-poised-to-shake-up-us-broadband-market" target="_blank">CoBank — Open Access Fiber Networks Poised to Shake Up U.S. Broadband</a></li>
+    <li><span class="src-tag">Tech</span> <a href="https://wiki.quantumwi.fi/mdu-wi-fi-solutions/" target="_blank">QuantumWiFi — MDU Wi-Fi Solutions in 2026</a></li>
+    <li><span class="src-tag">Tech</span> <a href="https://united.net/blog/4-keys-to-offering-fiber-internet-for-multi-dwelling-units-2" target="_blank">United Communications — 4 Keys to MDU Fiber</a></li>
+    <li><span class="src-tag">Supply</span> <a href="https://www.globaldatacenterhub.com/p/fiber-is-the-new-bottleneck-why-ai" target="_blank">Global DC Hub — Fiber Is the New Bottleneck</a></li>
+    <li><span class="src-tag">Supply</span> <a href="https://techblog.comsoc.org/2025/12/23/how-will-fiber-and-equipment-vendors-meet-the-increased-demand-for-fiber-in-2026-due-to-ai-data-center-buildouts/" target="_blank">IEEE ComSoc — Fiber Vendors Meeting AI Demand 2026</a></li>
+  </ul>
+</details>
+
+<script>
+(function() {
+  const STORAGE_KEY = 'ftth-briefing-2026-05-02';
+  const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+  // Overall star rating
+  const stars = document.querySelectorAll('#overallStars .star');
+  const fb = document.getElementById('ratingFeedback');
+  function renderStars(val) {
+    stars.forEach(s => {
+      s.classList.toggle('active', parseInt(s.dataset.val) <= val);
+    });
+    if (val > 0) fb.textContent = 'Saved — thanks for the signal.';
+  }
+  if (state.overall) renderStars(state.overall);
+  stars.forEach(s => {
+    s.addEventListener('click', () => {
+      const v = parseInt(s.dataset.val);
+      state.overall = v;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      renderStars(v);
+    });
+  });
+
+  // Per-card thumbs
+  document.querySelectorAll('.card[data-id]').forEach(card => {
+    const id = card.dataset.id;
+    const upBtn = card.querySelector('.fb-btn.up');
+    const downBtn = card.querySelector('.fb-btn.down');
+    const status = card.querySelector('.fb-status');
+    const saved = state.cards && state.cards[id];
+    if (saved === 'up') { upBtn.classList.add('active'); status.textContent = 'Marked useful'; }
+    if (saved === 'down') { downBtn.classList.add('active'); status.textContent = 'Marked not useful'; }
+    function set(vote) {
+      state.cards = state.cards || {};
+      if (state.cards[id] === vote) {
+        delete state.cards[id];
+        upBtn.classList.remove('active');
+        downBtn.classList.remove('active');
+        status.textContent = '';
+      } else {
+        state.cards[id] = vote;
+        upBtn.classList.toggle('active', vote === 'up');
+        downBtn.classList.toggle('active', vote === 'down');
+        status.textContent = vote === 'up' ? 'Marked useful' : 'Marked not useful';
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+    upBtn.addEventListener('click', () => set('up'));
+    downBtn.addEventListener('click', () => set('down'));
+  });
+})();
+</script>
+
+</div>
+</body>
+</html>

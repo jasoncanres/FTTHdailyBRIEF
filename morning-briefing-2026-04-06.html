@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — April 6, 2026 | Fiber/FTTH Executive Intelligence</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f1f5f9;color:#1e293b;font-size:15px;line-height:1.6}
+.header{background:#0f172a;color:#fff;padding:28px 0 22px;border-bottom:4px solid #3b82f6}
+.header-inner{max-width:860px;margin:0 auto;padding:0 24px}
+.header-eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#64748b;margin-bottom:6px}
+.header h1{font-size:24px;font-weight:800;color:#f8fafc;margin-bottom:4px;letter-spacing:-.01em}
+.header-sub{font-size:13px;color:#94a3b8}
+.header-stats{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.stat-pill{background:#1e293b;border:1px solid #334155;border-radius:6px;padding:5px 12px;font-size:12px;color:#94a3b8}
+.stat-pill strong{color:#e2e8f0}
+.container{max-width:860px;margin:0 auto;padding:28px 24px 60px}
+
+/* SECTION HEADERS */
+.section-hdr{display:flex;align-items:center;gap:10px;margin:36px 0 16px}
+.section-hdr h2{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.section-hdr::before{content:'';display:block;width:4px;height:26px;border-radius:2px;flex-shrink:0}
+.s-intel .section-hdr::before{background:#3b82f6}
+.s-intel .section-hdr h2{color:#1d4ed8}
+.s-ma .section-hdr::before{background:#8b5cf6}
+.s-ma .section-hdr h2{color:#6d28d9}
+.s-tech .section-hdr::before{background:#06b6d4}
+.s-tech .section-hdr h2{color:#0e7490}
+.s-quick .section-hdr::before{background:#64748b}
+.s-quick .section-hdr h2{color:#475569}
+.s-rec .section-hdr::before{background:#f59e0b}
+.s-rec .section-hdr h2{color:#92400e}
+
+/* CATEGORY DIVIDERS */
+.cat-divider{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#64748b;border-top:1px solid #e2e8f0;padding-top:14px;margin:20px 0 12px}
+.cat-divider:first-child{border-top:none;padding-top:0;margin-top:0}
+
+/* CARDS */
+.card{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.08),0 4px 14px rgba(0,0,0,.05);padding:20px 22px;margin-bottom:12px}
+.card-hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.card-title-col{flex:1;min-width:0}
+.card-title{font-size:15px;font-weight:700;color:#0f172a;line-height:1.3;margin-bottom:6px}
+.card-meta{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.badge{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.b-cat{background:#f1f5f9;color:#475569;border:1px solid #e2e8f0}
+.b-red{background:#ef4444;color:#fff}
+.b-amber{background:#f59e0b;color:#fff}
+.b-green{background:#10b981;color:#fff}
+.b-flag{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+.b-deploy-now{background:#dcfce7;color:#15803d}
+.b-deploy-early{background:#fef9c3;color:#854d0e}
+.b-deploy-horizon{background:#ede9fe;color:#5b21b6}
+.score-col{text-align:right;flex-shrink:0;min-width:72px}
+.score-num{font-size:20px;font-weight:800;color:#0f172a;line-height:1}
+.score-den{font-size:11px;color:#94a3b8;font-weight:500}
+.score-bar-bg{width:72px;height:5px;background:#e2e8f0;border-radius:3px;margin-top:5px;overflow:hidden}
+.score-bar{height:100%;border-radius:3px}
+.bar-blue{background:#3b82f6}
+.bar-purple{background:#8b5cf6}
+.bar-cyan{background:#06b6d4}
+.bar-gray{background:#94a3b8}
+.f-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8;margin-bottom:3px;margin-top:12px}
+.f-label:first-of-type{margin-top:0}
+.f-text{font-size:14px;color:#334155;line-height:1.55}
+.f-action{background:#f8fafc;border-left:3px solid #3b82f6;border-radius:0 6px 6px 0;padding:9px 13px;font-size:14px;color:#1e3a5f;font-weight:500;margin-top:10px}
+.f-action-purple{border-left-color:#8b5cf6;color:#3b0764}
+.f-action-cyan{border-left-color:#06b6d4;color:#0e4a5c}
+.flag-72{font-size:11px;font-weight:600;color:#f59e0b;margin-left:3px}
+
+/* RECOMMENDATION */
+.rec-box{background:#eff6ff;border:2px solid #3b82f6;border-radius:12px;padding:18px 22px;font-size:15px;color:#1e40af;font-weight:500;line-height:1.65}
+.rec-box strong{color:#1e3a8a}
+
+/* QUICK HITS */
+.qh-card{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:16px 22px}
+.qh-item{display:flex;gap:8px;align-items:baseline;padding:9px 0;border-bottom:1px solid #f1f5f9;font-size:14px;color:#334155}
+.qh-item:first-child{padding-top:0}
+.qh-item:last-child{border-bottom:none;padding-bottom:0}
+.qh-score{flex-shrink:0;background:#f8fafc;color:#64748b;font-size:11px;font-weight:700;padding:2px 7px;border-radius:4px;border:1px solid #e2e8f0}
+.qh-cat{flex-shrink:0}
+
+/* DETAILS / DISCARD / SOURCES */
+details{margin-top:6px}
+details summary{cursor:pointer;font-size:13px;font-weight:600;color:#64748b;padding:9px 13px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;list-style:none;display:flex;align-items:center;gap:8px;user-select:none}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'▼';font-size:10px;margin-left:auto}
+details[open] summary::after{transform:rotate(180deg)}
+details[open] summary{border-radius:8px 8px 0 0}
+.discard-inner,.sources-inner{background:#fff;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 8px 8px;padding:14px 16px}
+.dc-card{opacity:.55;padding:10px 0;border-bottom:1px solid #f1f5f9}
+.dc-card:last-child{border-bottom:none;padding-bottom:0}
+.dc-card:first-child{padding-top:0}
+.dc-title{font-size:14px;font-weight:600;color:#64748b;text-decoration:line-through;margin-bottom:4px}
+.dc-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.b-discard{background:#e2e8f0;color:#94a3b8}
+.dc-reason{font-size:13px;color:#94a3b8;margin-top:4px}
+.src-item{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px solid #f8fafc;font-size:13px}
+.src-item:last-child{border-bottom:none}
+.src-item a{color:#2563eb;text-decoration:none}
+.src-item a:hover{text-decoration:underline}
+
+/* FOOTER */
+.page-footer{text-align:center;font-size:12px;color:#94a3b8;margin-top:36px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-eyebrow">Fiber / FTTH Executive Intelligence</div>
+    <h1>Morning Briefing &mdash; April 6, 2026</h1>
+    <div class="header-sub">Prepared for Jason Carnes &nbsp;&middot;&nbsp; Bluffton, SC &nbsp;&middot;&nbsp; Fiber/FTTH Market Expansion</div>
+    <div class="header-stats">
+      <div class="stat-pill">Total findings: <strong>25</strong></div>
+      <div class="stat-pill">Scored &ge;12 (active): <strong>24</strong></div>
+      <div class="stat-pill">Top cards &ge;16: <strong>13</strong></div>
+      <div class="stat-pill">Quick hits (12&ndash;13): <strong>2</strong></div>
+      <div class="stat-pill">Discarded &lt;12: <strong>1</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ══════════════ SECTION 1: INTELLIGENCE FEED ══════════════ -->
+<div class="s-intel">
+  <div class="section-hdr"><h2>Section 1 &mdash; Intelligence Feed</h2></div>
+
+  <!-- ── BREAKING NEWS ── -->
+  <div class="cat-divider">&#128240; Breaking News</div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">Fiber Connect 2026 Broadband Policy Upload Announced &mdash; May 19, Orlando</div>
+        <div class="card-meta"><span class="badge b-cat">[Breaking News]</span><span class="badge b-green">&#128994; Queue It</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">15</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-blue" style="width:68%"></div></div></div>
+    </div>
+    <div class="f-label">What Happened</div>
+    <div class="f-text">The Fiber Broadband Association's &ldquo;Broadband Policy Upload&rdquo; session is confirmed for Fiber Connect 2026, May 17&ndash;20 at Gaylord Palms Resort, Orlando. The May 19 session targets AI, telehealth, agriculture, and data center policy challenges tied to fiber infrastructure. This is the world&rsquo;s largest fiber broadband event with 5,000+ industry attendees. Registration is now open.</div>
+    <div class="f-label">Why It Matters</div>
+    <div class="f-text">Policy shaping BEAD, federal broadband mandates, and rural access funding will surface publicly here before it becomes binding guidance &mdash; this is the room where state broadband office leads and federal policy makers will be accessible face-to-face.</div>
+    <div class="f-action">Register now and specifically target the C-Suite Forum and Broadband Policy Upload tracks. Come with your BEAD engagement strategy finalized so you can use the conference to open doors at state broadband offices, not figure out what to say to them.</div>
+  </div>
+
+  <!-- ── POLICY / REGULATORY ── -->
+  <div class="cat-divider">&#127963; Policy / Regulatory</div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">Trump Administration Moves to Redirect $21B in BEAD Non-Deployment Funds &mdash; April 3, 2026</div>
+        <div class="card-meta"><span class="badge b-cat">[Policy/Regulatory]</span><span class="badge b-red">&#128308; Act Today</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">22</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-blue" style="width:100%"></div></div></div>
+    </div>
+    <div class="f-label">What Happened</div>
+    <div class="f-text">As of April 3, the Trump administration is actively maneuvering to redirect or rescind $21 billion in BEAD &ldquo;non-deployment&rdquo; funds &mdash; money earmarked for cybersecurity, telehealth, permitting support, and AI readiness. A Republican-sponsored bill introduced in January would claw back the full allocation. Commerce Secretary Lutnick said deployment funds won&rsquo;t be rescinded, but states are in political and legal limbo with no NTIA guidance on non-deployment fund use. States with signed award amendments are executing on deployment, but the supporting infrastructure budget is paralyzed.</div>
+    <div class="f-label">Why It Matters</div>
+    <div class="f-text">If $21B in supporting funds evaporate, state broadband office operational capacity collapses &mdash; slowing subgrant awards that FTTH operators depend on to greenlight builds tied to federal funding.</div>
+    <div class="f-action">Call your South Carolina and Georgia broadband office contacts today. Confirm which states have signed award amendments and are accessing deployment funds. Revise any build timelines that assume non-deployment fund support. Flag this risk explicitly in your 2026 capex plan.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">BEAD Deployment Funding Now Flowing &mdash; States With Signed Amendments Executing Q2 2026</div>
+        <div class="card-meta"><span class="badge b-cat">[Policy/Regulatory]</span><span class="badge b-red">&#128308; Act Today</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">21</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-blue" style="width:95%"></div></div></div>
+    </div>
+    <div class="f-label">What Happened</div>
+    <div class="f-text">As of April 2, 2026, BEAD deployment funding is actively moving forward per the Fiber Broadband Association. States that have executed award amendments can now draw down BEAD funds. Construction is projected to start in earnest H2 2026, with approximately 65% of BEAD-funded locations designated for fiber. The window to be selected as a subgrantee is open right now and closing fast.</div>
+    <div class="f-label">Why It Matters</div>
+    <div class="f-text">Operators who are positioned with shovel-ready applications, supply commitments, and state relationships today will capture the BEAD-funded territory that will define their footprint for the next decade.</div>
+    <div class="f-action">Confirm active engagement with SC and GA broadband offices as a named subgrantee candidate. If not yet engaged, identify a BEAD-aligned JV partner within 30 days. Pair your fiber supply contracts (see Supply Chain) directly into your BEAD application as execution proof &mdash; most operators cannot demonstrate this, and it is a differentiator.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">North Carolina Unlocks $300M+ in BEAD Grants for 93,000+ Locations</div>
+        <div class="card-meta"><span class="badge b-cat">[Policy/Regulatory]</span><span class="badge b-amber">&#128993; This Week</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">15</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-blue" style="width:68%"></div></div></div>
+    </div>
+    <div class="f-label">What Happened</div>
+    <div class="f-text">NC&rsquo;s BEAD approval authorizes over $300 million in grants covering 93,000+ homes, businesses, and anchor institutions. Construction awards are moving to operators now. NC is one of the first Southeast states at this execution stage, setting a regional precedent for adjacent state timelines.</div>
+    <div class="f-label">Why It Matters</div>
+    <div class="f-text">NC activation signals that SC and GA awards are 60&ndash;90 days behind &mdash; and operators finishing NC builds will immediately redirect crews and capital south, directly into your target geography.</div>
+    <div class="f-action">Pull NC BEAD award recipients the moment they&rsquo;re published. These are the operators arriving in SC/GA next. Map their logical expansion corridors and preemptively engage community anchor institutions in those markets before they do.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">BEAD Restructured for Tech Neutrality &mdash; LEO Satellites and Fixed Wireless Now Eligible <span class="flag-72">(72h+)</span></div>
+        <div class="card-meta"><span class="badge b-cat">[Policy/Regulatory]</span><span class="badge b-green">&#128994; Queue It</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">15</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-blue" style="width:68%"></div></div></div>
+    </div>
+    <div class="f-label">What Happened</div>
+    <div class="f-text">In June 2025, NTIA issued a BEAD Restructuring Policy Notice establishing technology neutrality &mdash; expanding grant eligibility to include LEO satellite (Starlink) and licensed fixed wireless, which can now compete directly against fiber for BEAD funding in any market. (72h+)</div>
+    <div class="f-label">Why It Matters</div>
+    <div class="f-text">FTTH operators have lost preferential BEAD status &mdash; they now compete on a level playing field with providers who have materially faster deployment timelines and lower upfront costs in sparse rural areas.</div>
+    <div class="f-action">Revise your BEAD bid strategy immediately. Defend fiber&rsquo;s case on long-run economics and service permanence in markets above your density threshold. In sub-threshold rural markets, seriously model whether fiber can win &mdash; if it can&rsquo;t, cede them and concentrate capital where fiber is the clear winner.</div>
+  </div>
+
+  <!-- ── SUPPLY CHAIN ── -->
+  <div class="cat-divider">&#9968; Supply Chain</div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">Fiber Optic Cable Prices Up 400&ndash;650% &mdash; G.657A2 Shortage Crisis, Same-Day-Only Quotes</div>
+        <div class="card-meta"><span class="badge b-cat">[Supply Chain]</span><span class="badge b-red">&#128308; Act Today</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">22</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-blue" style="width:100%"></div></div></div>
+    </div>
+    <div class="f-label">What Happened</div>
+    <div class="f-text">Since late 2025, single-mode fiber prices have exploded. G.652D (mainstream) has surged 400&ndash;650% from late-2025 lows. G.657A1 is now ~$22/km (from $12&ndash;14/km mid-2025, up ~80%). G.657A2 is at ~$35/km (from $18&ndash;22/km, up ~90%). By March 9, 2026, multiple suppliers shifted to same-day-only quotations &mdash; meaning prices change within hours based on upstream preform availability. The G.657A2 market is classified as a supply crisis by multiple analysts. New preform capacity requires 18&ndash;24 months to commercialize, meaning no structural relief before late 2027.</div>
+    <div class="f-label">Why It Matters</div>
+    <div class="f-text">Every uncontracted fiber mile in your build pipeline is running on an invalid cost model &mdash; and price exposure is now intraday, not quarterly.</div>
+    <div class="f-action">Contact your cable suppliers today and demand 12-month forward-priced contracts. Accept a premium for price certainty &mdash; spot exposure at this volatility level is a balance sheet threat. If you don&rsquo;t have direct Corning and CommScope account relationships, establish them this week. Update every per-passing cost model before any new proposal goes internal.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">&ldquo;Perfect Storm&rdquo; in Fiber Supply &mdash; AI Data Centers + Military Drone Demand Consuming Preform Inventory</div>
+        <div class="card-meta"><span class="badge b-cat">[Supply Chain]</span><span class="badge b-red">&#128308; Act Today</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">19</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-blue" style="width:86%"></div></div></div>
+    </div>
+    <div class="f-label">What Happened</div>
+    <div class="f-text">Fiber supply is being consumed by two concurrent mega-demand drivers: (1) AI data center infrastructure &mdash; global data center fiber demand up 75.9% YoY in 2025, with hyperscalers (Meta, AWS, Google) under pre-committed supply agreements with Corning; and (2) military fiber-guided drone programs consuming G.657A2 at industrial scale. Critically, ~80% of germanium (a core fiber input) has historically been sourced from China, adding geopolitical supply risk on top of volume constraints.</div>
+    <div class="f-label">Why It Matters</div>
+    <div class="f-text">You are competing for cable supply not just with other ISPs but against hyperscalers and defense contractors &mdash; both have essentially unlimited procurement budgets and strategic priority with vendors.</div>
+    <div class="f-action">Qualify at least two additional cable suppliers (Fujikura, Prysmian, Sumitomo) as approved vendors this quarter. Do not run a single-source supply strategy in this environment. Set aside explicit inventory buffer budget in your next capital plan for pre-purchased cable ahead of the H2 2026 BEAD construction surge.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">Corning and CommScope Expanding Capacity &mdash; But Relief Is 18&ndash;24 Months Away</div>
+        <div class="card-meta"><span class="badge b-cat">[Supply Chain]</span><span class="badge b-amber">&#128993; This Week</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">16</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-blue" style="width:73%"></div></div></div>
+    </div>
+    <div class="f-label">What Happened</div>
+    <div class="f-text">Corning and CommScope have committed capital to expanding preform and cable manufacturing capacity. Corning also signed a new $6B supply agreement with Meta for AI data center fiber, which effectively pre-allocates a significant share of new capacity to hyperscale customers. Standard preform expansion cycles run 18&ndash;24 months, making late-2027 the earliest for meaningful commercial availability.</div>
+    <div class="f-label">Why It Matters</div>
+    <div class="f-text">Corning&rsquo;s priority allocation is shifting structurally toward hyperscale buyers &mdash; FTTH operators without named account status and volume commitments are being deprioritized in the queue.</div>
+    <div class="f-action">Call your Corning and CommScope account reps this week. Ask explicitly where you rank in their 2026 allocation priority stack. If you are not a named account with a committed purchase agreement, negotiate that designation immediately &mdash; before BEAD construction demand hits in H2 2026 and the queue locks.</div>
+  </div>
+
+  <!-- ── COMPETITIVE INTEL ── -->
+  <div class="cat-divider">&#127919; Competitive Intelligence</div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">Brightspeed Hits 75% Fiber Build in South Carolina &mdash; Active Construction in Beaufort &amp; Jasper Counties</div>
+        <div class="card-meta"><span class="badge b-cat">[Competitive Intel]</span><span class="badge b-red">&#128308; Act Today</span><span class="badge b-flag">&#9888; Bluffton Adjacent</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">20</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-blue" style="width:91%"></div></div></div>
+    </div>
+    <div class="f-label">What Happened</div>
+    <div class="f-text">As of March 18, 2026, Brightspeed has surpassed 75% completion of its South Carolina fiber build, reaching 47,000+ live locations. Active construction crews are confirmed in Beaufort, Greenwood, Hampton, Jasper, Laurens, Orangeburg, and Saluda counties. The statewide target is ~66,000 locations. Beaufort County contains Bluffton and Hilton Head; Jasper County shares a border with Bluffton. Brightspeed&rsquo;s construction perimeter is directly adjacent to Jason&rsquo;s home market as of this report.</div>
+    <div class="f-label">Why It Matters</div>
+    <div class="f-text">Brightspeed&rsquo;s crews are within one county of Bluffton&rsquo;s addressable market &mdash; once they cross, first-mover advantage on unserved MDUs, greenfield subdivisions, and underserved corridors is gone permanently.</div>
+    <div class="f-action">Pull Brightspeed construction permit data for Beaufort and Jasper counties today. Map their active build perimeter against your target MDUs and new-development HOAs. Initiate pre-sales conversations with every high-density opportunity in your footprint this week &mdash; not next month. Do not wait to see where Brightspeed stops.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">Brightspeed Launches in Hinesville &amp; Richmond Hill, GA &mdash; 31,000 Locations Targeted in Liberty/Bryan Counties</div>
+        <div class="card-meta"><span class="badge b-cat">[Competitive Intel]</span><span class="badge b-amber">&#128993; This Week</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">18</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-blue" style="width:82%"></div></div></div>
+    </div>
+    <div class="f-label">What Happened</div>
+    <div class="f-text">Brightspeed has expanded into Liberty and Bryan counties, GA &mdash; including Hinesville and Richmond Hill &mdash; with nearly 20,000 locations live and a build target of 31,000. Ground teams are actively conducting door-to-door community outreach. This is the same coastal corridor playbook Brightspeed is running in SC: identify underserved growth markets and deploy fast.</div>
+    <div class="f-label">Why It Matters</div>
+    <div class="f-text">Brightspeed is running a systematic Southeast coastal corridor expansion strategy that puts them in every market between Charleston and Jacksonville on a 12&ndash;18 month timeline.</div>
+    <div class="f-action">Map all markets within 50 miles of Hinesville/Richmond Hill where you have or plan footprint. Brief your commercial team on Brightspeed&rsquo;s current pricing and tier structure now so they can compete head-to-head at every sales interaction in that corridor.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">Comcast Extends to 1,700+ Locations in SE Georgia (Brantley County)</div>
+        <div class="card-meta"><span class="badge b-cat">[Competitive Intel]</span><span class="badge b-amber">&#128993; This Week</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">14</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-blue" style="width:64%"></div></div></div>
+    </div>
+    <div class="f-label">What Happened</div>
+    <div class="f-text">Comcast has expanded service to Atkinson, Nahunta, and Waynesville in Brantley County, GA &mdash; 1,700+ homes and businesses. This is part of Comcast&rsquo;s rural Southeast push, likely backed by state grant or BEAD subgrant funding, deploying HFC with some fiber overlay.</div>
+    <div class="f-label">Why It Matters</div>
+    <div class="f-text">Cable operators are using HFC upgrades to claim BEAD-eligible territory before fiber-native operators can compete &mdash; locking out fiber from grant-funded markets that look accessible but are already spoken for.</div>
+    <div class="f-action">Verify whether Comcast has applied for or received BEAD subgrants in counties adjacent to your target footprint. File competing interest with the GA broadband office for any markets not yet awarded to close off their claim.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">Conexon Connect Completes Georgia Network &mdash; 187,000+ Rural Homes and Businesses</div>
+        <div class="card-meta"><span class="badge b-cat">[Competitive Intel]</span><span class="badge b-amber">&#128993; This Week</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">14</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-blue" style="width:64%"></div></div></div>
+    </div>
+    <div class="f-label">What Happened</div>
+    <div class="f-text">Conexon Connect &mdash; a rural FTTH specialist operating through electric cooperative partnerships &mdash; completed its latest Georgia network expansion, bringing its total Georgia reach to 187,000+ homes and businesses. Conexon is one of the most aggressive rural fiber deployers in the Southeast, with right-of-way advantages through utility partnerships that most operators cannot match.</div>
+    <div class="f-label">Why It Matters</div>
+    <div class="f-text">Cooperative fiber operators arrive quickly, have structural permitting advantages, and are often invisible until construction starts &mdash; markets that look greenfield may already be committed.</div>
+    <div class="f-action">Overlay Conexon&rsquo;s Georgia service area against your rural pipeline targets immediately. Any overlap means first-mover is gone &mdash; reprioritize those markets out of your BEAD strategy and redeploy capital to markets they haven&rsquo;t reached.</div>
+  </div>
+
+  <!-- ── MARKET TRENDS ── -->
+  <div class="cat-divider">&#128200; Market Trends</div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">AI Data Center Fiber Demand Up 75.9% YoY &mdash; Structural Competition for Cable Supply Through 2027</div>
+        <div class="card-meta"><span class="badge b-cat">[Market Trends]</span><span class="badge b-amber">&#128993; This Week</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">16</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-blue" style="width:73%"></div></div></div>
+    </div>
+    <div class="f-label">What Happened</div>
+    <div class="f-text">Global data center fiber demand jumped 75.9% YoY in 2025, driven by AI infrastructure buildouts from Meta, AWS, Microsoft, and Google. This demand is structural, not cyclical &mdash; AI compute requirements will continue scaling fiber consumption through at least 2030. Corning&rsquo;s $6B Meta deal is a direct signal that tier-1 production capacity is being pre-allocated to hyperscalers ahead of access network operators.</div>
+    <div class="f-label">Why It Matters</div>
+    <div class="f-text">FTTH operators are now structurally third in the cable procurement pecking order behind defense/military and hyperscalers &mdash; price and availability headwinds are permanent features of this market, not cyclical disruptions.</div>
+    <div class="f-action">Formalize procurement as a strategic function with executive ownership &mdash; this is not an ops problem anymore. Build a 12-month cable inventory buffer strategy into your 2026 capital plan as a line item, not an afterthought.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">Dell&rsquo;Oro: 25G PON on &ldquo;Slower Ramp&rdquo; &mdash; XGS-PON Dominates Mass Market Through 2030</div>
+        <div class="card-meta"><span class="badge b-cat">[Market Trends]</span><span class="badge b-green">&#128994; Queue It</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">14</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-blue" style="width:64%"></div></div></div>
+    </div>
+    <div class="f-label">What Happened</div>
+    <div class="f-text">Dell&rsquo;Oro Group&rsquo;s latest access network research confirms XGS-PON (10G symmetric) dominates mass-market FTTH deployments through at least 2030. 25G PON is on a &ldquo;slower ramp&rdquo; &mdash; used as a selective overlay for premium residential tiers, enterprise, and wholesale, not as a default network architecture. 50G PON has limited commercial deployment expected before 2028.</div>
+    <div class="f-label">Why It Matters</div>
+    <div class="f-text">Greenfield FTTH operators standardizing on XGS-PON today have a validated upgrade path with no stranded assets &mdash; this confirms the architecture choice for any build underwritten over a 5&ndash;10 year ROI period.</div>
+    <div class="f-action">Confirm your standard build spec is XGS-PON, not GPON. Audit any legacy GPON OLT deployments and add XGS-PON upgrade plans to your 2026 capital roadmap. Do not spec 25G PON as default architecture &mdash; it&rsquo;s a premium overlay play for specific use cases only.</div>
+  </div>
+
+</div><!-- /s-intel -->
+
+
+<!-- ══════════════ SECTION 2: M&A WATCH ══════════════ -->
+<div class="s-ma">
+  <div class="section-hdr"><h2>Section 2 &mdash; M&amp;A Watch</h2></div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">Verizon Closes $20B Frontier Acquisition &mdash; January 20, 2026 &mdash; 30M Fiber Passings, 31 States <span class="flag-72">(72h+)</span></div>
+        <div class="card-meta"><span class="badge b-cat">[M&amp;A]</span><span class="badge b-green">&#128994; Queue It</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">18</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-purple" style="width:82%"></div></div></div>
+    </div>
+    <div class="f-label">What&rsquo;s Happening</div>
+    <div class="f-text">Verizon closed its $20B acquisition of Frontier Communications on January 20, 2026, after receiving California regulatory clearance on January 15. Frontier merged into a Verizon subsidiary and was delisted from Nasdaq on January 16. The combined entity holds nearly 30 million fiber passings across 31 states and D.C. Each Frontier share converted at $38.50 cash. Deal size: $20 billion.</div>
+    <div class="f-label">Strategic Read</div>
+    <div class="f-text">Verizon is executing a convergence play (fiber + 5G bundled) at a scale that forecloses independent competition in any market where Frontier had presence. The integration phase will consume Verizon&rsquo;s operational attention through 2027, creating a window where their Southeast customer experience lags the brand promise.</div>
+    <div class="f-label">Implication for Jason</div>
+    <div class="f-text">In any market where Frontier operated, Verizon is now the competitor &mdash; with a national balance sheet and wireless bundle economics a pure-play FTTH operator cannot replicate on price alone.</div>
+    <div class="f-action f-action-purple">Audit your target market list for former Frontier service areas. In those markets, your differentiation must shift to service quality, local reliability, and community relationships &mdash; compete on what Verizon&rsquo;s integration chaos can&rsquo;t deliver at scale through 2027.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">AT&amp;T Closes $5.75B Lumen Mass Markets Acquisition &mdash; February 2026 &mdash; 4M+ Fiber Locations in 11 States <span class="flag-72">(72h+)</span></div>
+        <div class="card-meta"><span class="badge b-cat">[M&amp;A]</span><span class="badge b-green">&#128994; Queue It</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">18</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-purple" style="width:82%"></div></div></div>
+    </div>
+    <div class="f-label">What&rsquo;s Happening</div>
+    <div class="f-text">AT&amp;T closed its all-cash $5.75B acquisition of Lumen&rsquo;s Mass Markets consumer fiber business in early February 2026. AT&amp;T gained 1M+ subscribers and 4M+ fiber-enabled locations across Denver, Seattle, Salt Lake City, and surrounding states (WA, OR, ID, UT, CO, NE, IA). Transitional service agreements with Lumen run ~2 years. AT&amp;T is targeting 4M fiber deployments in 2026 and scaling to 5M annually through 2030. Deal size: $5.75 billion ($1,437 per passing implied).</div>
+    <div class="f-label">Strategic Read</div>
+    <div class="f-text">AT&amp;T has signaled it will buy established fiber footprint rather than build greenfield where possible, then layer 5G convergence on top. The acquisition appetite is not satisfied.</div>
+    <div class="f-label">Implication for Jason</div>
+    <div class="f-text">AT&amp;T&rsquo;s implied valuation of ~$1,437/passing is your M&amp;A comp set &mdash; independent regional fiber assets at scale have strategic buyer interest, and the Southeast is a logical next geography given AT&amp;T&rsquo;s existing wireline footprint.</div>
+    <div class="f-action f-action-purple">Use the $1,437/passing benchmark in your asset value modeling now, regardless of whether exit is on your near-term roadmap. If building toward an exit, understand who the likely acquirers are (AT&amp;T, Verizon, PE) and what scale thresholds make you a relevant target. If building to operate, note that AT&amp;T is watching the Southeast.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">GFiber + Stonepeak&rsquo;s Astound Combine &mdash; March 11, 2026 &mdash; 7.1M Locations, Majority PE-Owned Independent Provider <span class="flag-72">(72h+)</span></div>
+        <div class="card-meta"><span class="badge b-cat">[M&amp;A]</span><span class="badge b-amber">&#128993; This Week</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">16</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-purple" style="width:73%"></div></div></div>
+    </div>
+    <div class="f-label">What&rsquo;s Happening</div>
+    <div class="f-text">On March 11, 2026, Alphabet and Stonepeak announced an agreement to combine GFiber with Stonepeak&rsquo;s Astound Broadband, creating a national independent fiber provider with ~7.1 million locations across 20+ states. Stonepeak takes majority ownership; Alphabet retains a significant minority stake. GFiber&rsquo;s leadership team runs the combined entity. Expected to close Q4 2026. Deal size: undisclosed.</div>
+    <div class="f-label">Strategic Read</div>
+    <div class="f-text">Alphabet is exiting direct infrastructure ownership while retaining exposure &mdash; signaling that even Big Tech views fiber as an infrastructure asset class, not a core business. Stonepeak (a major infrastructure PE firm) will fund aggressive expansion with patient capital and Alphabet&rsquo;s brand attached to the product.</div>
+    <div class="f-label">Implication for Jason</div>
+    <div class="f-text">A Stonepeak-backed national altnet with Google&rsquo;s brand equity is both a future competitor in any mid-market metro or suburban corridor you target &mdash; and a potential acquirer at scale.</div>
+    <div class="f-action f-action-purple">Track GFiber/Astound&rsquo;s announced expansion markets post-close. If they signal entry into Southeast metros (Charlotte, Savannah, Jacksonville corridor), you have a narrow window to pre-sign MDU and HOA commitments before Stonepeak capital arrives in your market.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">Charter + Cox $34.5B Merger Underway &mdash; Cox&rsquo;s Southeast Footprint in Play <span class="flag-72">(72h+)</span></div>
+        <div class="card-meta"><span class="badge b-cat">[M&amp;A]</span><span class="badge b-green">&#128994; Queue It</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">14</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-purple" style="width:64%"></div></div></div>
+    </div>
+    <div class="f-label">What&rsquo;s Happening</div>
+    <div class="f-text">Charter Communications&rsquo; pending merger with Cox Communications is valued at $34.5 billion. Cox holds significant Southeast footprint including Georgia, South Carolina, Virginia, and Florida. The transaction is under regulatory review. Deal size: $34.5 billion.</div>
+    <div class="f-label">Strategic Read</div>
+    <div class="f-text">A Charter-Cox combined entity has the scale to accelerate fiber overbuild in markets Cox previously left underinvested &mdash; Spectrum-level capital backing will change the competitive intensity in Cox&rsquo;s historically defended Southeast cable markets.</div>
+    <div class="f-label">Implication for Jason</div>
+    <div class="f-text">Cox&rsquo;s Savannah and Charleston service areas neighboring Bluffton may become more aggressively defended post-merger, with national-scale capital that Cox alone didn&rsquo;t have.</div>
+    <div class="f-action f-action-purple">Monitor this deal&rsquo;s regulatory close timeline. If approved, reassess competitive posture in any market adjacent to Cox&rsquo;s current SE footprint &mdash; the merged entity will close FTTH gaps Cox previously ignored.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">PE-Backed Rural Fiber Proliferating &mdash; Blue Owl, ARA Partners, Brookfield All Active <span class="flag-72">(72h+)</span></div>
+        <div class="card-meta"><span class="badge b-cat">[M&amp;A]</span><span class="badge b-green">&#128994; Queue It</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">14</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-purple" style="width:64%"></div></div></div>
+    </div>
+    <div class="f-label">What&rsquo;s Happening</div>
+    <div class="f-text">The 2025&ndash;2026 PE fiber wave is intensifying: Blue Owl Capital took majority interest in Gigabit Fiber; ARA Partners acquired majority control of Centric Fiber; Brookfield Infrastructure Partners owns Intrepid Fiber. Infrastructure-grade PE funds are deploying patient capital into greenfield rural FTTH builds at a pace that undercapitalized regional operators cannot match. Deal sizes: undisclosed for most.</div>
+    <div class="f-label">Strategic Read</div>
+    <div class="f-text">PE-backed operators are not competing on returns &mdash; they&rsquo;re competing on market capture. They absorb longer payback periods and can undercut on price or out-build any market they target.</div>
+    <div class="f-label">Implication for Jason</div>
+    <div class="f-text">The PE wave is either a partnership/co-invest opportunity or an existential competitive threat &mdash; the answer depends on which markets overlap and whether you have a defensible moat in them.</div>
+    <div class="f-action f-action-purple">Map which PE-backed operators have announced Southeast presence. For each overlap market, make a binary decision this quarter: partner/JV to access their capital, or double down on speed and differentiation. Do not compete passively against Brookfield or Blue Owl capital &mdash; that is a losing position.</div>
+  </div>
+
+</div><!-- /s-ma -->
+
+
+<!-- ══════════════ SECTION 3: TECHNOLOGY & STRATEGY ══════════════ -->
+<div class="s-tech">
+  <div class="section-hdr"><h2>Section 3 &mdash; Technology &amp; Growth Strategy</h2></div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">XGS-PON at Peak Global Adoption &mdash; Validated as the Mass-Market Standard Through 2030 <span class="badge b-deploy-now" style="margin-left:4px;font-size:11px">Available Now</span></div>
+        <div class="card-meta"><span class="badge b-cat">[Technology]</span><span class="badge b-amber">&#128993; This Week</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">19</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-cyan" style="width:86%"></div></div></div>
+    </div>
+    <div class="f-label">What&rsquo;s Emerging</div>
+    <div class="f-text">2026 is peak adoption year for XGS-PON globally, with North American operators &mdash; including the largest Tier 1s &mdash; standardizing on 10G symmetric PON as the upgrade path from GPON. XGS-PON enables multi-gig residential tiers, strong upstream capacity for hybrid work and AI applications, and mobile backhaul convergence on a single infrastructure layer. Cost per port has declined significantly as vendor volumes scale. Dell&rsquo;Oro confirms it dominates mass-market access network deployments through at least 2030.</div>
+    <div class="f-label">Why It Matters for Growth</div>
+    <div class="f-text">Building on XGS-PON today positions you to offer the competitive multi-gig tiers that will define residential broadband by 2027&ndash;2028, without any mid-cycle architecture rip-and-replace.</div>
+    <div class="f-action f-action-cyan">Deploy XGS-PON as your default build standard on all new construction. Immediately audit any GPON-only deployments and create an upgrade schedule. Do not spec anything below 10G symmetric for any build that will run for 5+ years &mdash; the ROI case is clear and the technology is fully proven at scale.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">AI-Driven OLT Management &mdash; Predictive Maintenance, Auto-Provisioning, Reduced Truck Rolls <span class="badge b-deploy-early" style="margin-left:4px;font-size:11px">Early Deployment</span></div>
+        <div class="card-meta"><span class="badge b-cat">[Technology]</span><span class="badge b-amber">&#128993; This Week</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">19</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-cyan" style="width:86%"></div></div></div>
+    </div>
+    <div class="f-label">What&rsquo;s Emerging</div>
+    <div class="f-text">Cloud-native OLT management platforms with AI analytics are entering early commercial deployment, offering real-time network health visibility, predictive fault identification before customer impact, and automated provisioning that reduces truck rolls. Vendors including Nokia are building AI-driven analytics into their broadband access platforms. The operational model shifts from reactive to proactive maintenance, with measurable reductions in OPEX for operators who adopt early.</div>
+    <div class="f-label">Why It Matters for Growth</div>
+    <div class="f-text">OPEX reduction from AI-driven network management is a direct margin improvement and a competitive service quality differentiator that incumbent cable operators are not yet executing at the access layer.</div>
+    <div class="f-action f-action-cyan">Pilot one AI-native OLT management platform (Nokia, Calix, or equivalent) on a non-critical network segment in Q2 or Q3 2026. Define specific truck-roll reduction and MTTR targets before the pilot. If it hits threshold, fast-track deployment across your full footprint in 2027 capital planning.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-title-col">
+        <div class="card-title">25G PON as Cable MSO Competitive Differentiator for Premium Residential Tiers <span class="badge b-deploy-early" style="margin-left:4px;font-size:11px">Early Deployment</span></div>
+        <div class="card-meta"><span class="badge b-cat">[Technology]</span><span class="badge b-green">&#128994; Queue It</span></div>
+      </div>
+      <div class="score-col"><div class="score-num">14</div><div class="score-den">/22</div><div class="score-bar-bg"><div class="score-bar bar-cyan" style="width:64%"></div></div></div>
+    </div>
+    <div class="f-label">What&rsquo;s Emerging</div>
+    <div class="f-text">Cable MSOs (Charter, Comcast) are evaluating 25G PON as a performance overlay for premium residential, MDU, and selective enterprise use cases where XGS-PON capacity is insufficient. 25G PON is defined by an industry MSA and offers a low-risk step above XGS-PON without committing to 50G infrastructure. Currently in controlled early deployments; not yet a mass-market default for any operator.</div>
+    <div class="f-label">Why It Matters for Growth</div>
+    <div class="f-text">If cable MSOs begin offering 25G-tier service in premium MDU and new-development communities in your market, XGS-PON operators face a capacity headline disadvantage in high-value subscriber segments.</div>
+    <div class="f-action f-action-cyan">Add 25G PON to your 2027 product roadmap as a premium tier option for MDU and high-density new development. Do not deploy it as default architecture &mdash; pilot it in 1&ndash;2 high-value MDU contexts to validate subscriber willingness to pay before scaling. Watch MSO announcements in your market as the trigger for acceleration.</div>
+  </div>
+
+</div><!-- /s-tech -->
+
+
+<!-- ══════════════ SECTION 4: QUICK HITS ══════════════ -->
+<div class="s-quick">
+  <div class="section-hdr"><h2>Section 4 &mdash; Quick Hits</h2></div>
+  <div class="qh-card">
+    <div class="qh-item">
+      <span class="qh-score">13/22</span>
+      <span class="qh-cat"><span class="badge b-cat">[Market Trends]</span></span>
+      <span><strong>FTTH now passes 60%+ of US households; global deployments up 12% YoY.</strong> Fiber is on track to be the dominant US delivery platform by 2028. The market is growing fast &mdash; but so is every competitor building into it. Take rate and execution speed matter more than being first to announce.</span>
+    </div>
+    <div class="qh-item">
+      <span class="qh-score">12/22</span>
+      <span class="qh-cat"><span class="badge b-cat">[Competitive Intel]</span></span>
+      <span><strong>IQ Fiber actively serving Southeast and Mid-Atlantic as a 100% fiber ISP.</strong> Less publicized than Brightspeed but operating the same growth corridor. Identify their market presence map and flag any overlap with your target geographies before their expansion gets ahead of your awareness.</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════ SECTION 5: RECOMMENDATION ══════════════ -->
+<div class="s-rec">
+  <div class="section-hdr"><h2>Section 5 &mdash; My Recommendation</h2></div>
+  <div class="rec-box">
+    <strong>Lock fiber cable contracts today, then use that supply certainty to win a BEAD subgrant in the next 60 days.</strong> The supply crisis and the funding window are converging right now: states are awarding BEAD subgrants to operators who can prove execution readiness, and the single most credible proof is a signed cable supply commitment. Brightspeed is actively building in Beaufort and Jasper counties &mdash; adjacent to your home market &mdash; which means the urgency is not abstract. Make the supplier calls first, commit volume, then take that contract directly to your SC and GA broadband office contacts as your differentiator. Every day this doesn&rsquo;t happen, Brightspeed gets one day closer to your market and one BEAD award cycle closer to foreclosing your footprint options.
+  </div>
+</div>
+
+
+<!-- ══════════════ SECTION 6: DISCARDED FINDINGS ══════════════ -->
+<div style="margin-top:32px">
+  <details class="discard-section">
+    <summary>&#128193; Discarded Findings (below threshold) &mdash; click to expand</summary>
+    <div class="discard-inner">
+      <div class="dc-card">
+        <div class="dc-title">CableLabs XGS-PON Interoperability Working Group Launch</div>
+        <div class="dc-meta">
+          <span class="badge b-discard">11/22</span>
+          <span class="badge b-cat">[Technology]</span>
+        </div>
+        <div class="dc-reason">Scored below threshold: low buzz, no near-term actionability, and low competitive advantage. Vendor-neutrality standardization is important long-term but does not affect any near-term build or procurement decision. Queue for annual architecture review, not daily intelligence.</div>
+      </div>
+    </div>
+  </details>
+</div>
+
+
+<!-- ══════════════ SECTION 7: SOURCES ══════════════ -->
+<div style="margin-top:12px">
+  <details class="sources-section">
+    <summary>&#128206; Sources &mdash; click to expand</summary>
+    <div class="sources-inner">
+      <div class="src-item"><span class="badge b-cat">[Breaking News]</span><a href="https://www.businesswire.com/news/home/20260402290987/en/Broadband-Policy-Upload-at-Fiber-Connect-2026-Explores-Key-Policy-Considerations-of-Industries-Dependent-on-Fiber-Infrastructure" target="_blank">Broadband Policy Upload at Fiber Connect 2026 (BusinessWire, Apr 2, 2026)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Policy/Reg]</span><a href="https://fiberbroadband.org/2026/04/02/bead-funding-moves-forward/" target="_blank">BEAD Funding Moves Forward (Fiber Broadband Association, Apr 2, 2026)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Policy/Reg]</span><a href="https://www.techdirt.com/2026/04/03/the-trump-administration-is-trying-to-steal-21-billion-earmarked-for-better-broadband/" target="_blank">Trump Administration Targets $21B in BEAD Funds (Techdirt, Apr 3, 2026)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Policy/Reg]</span><a href="https://broadbandbreakfast.com/experts-say-21-million-remaining-bead-funds-at-risk-of-going-unused/" target="_blank">Experts Say $21B Remaining BEAD Funds at Risk (Broadband Breakfast)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Policy/Reg]</span><a href="https://rollcall.com/2026/03/12/broadband-program-uncertainty-has-lawmakers-states-on-watch/" target="_blank">Broadband Program Uncertainty Has Lawmakers, States on Watch (Roll Call)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Policy/Reg]</span><a href="https://islandfreepress.org/outer-banks-news/feds-approve-plan-to-expand-high-speed-internet-to-underserved-parts-of-outer-banks-counties/" target="_blank">NC BEAD Approval — Outer Banks/Rural Expansion (Island Free Press)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Policy/Reg]</span><a href="https://alec.org/article/broadband-update-a-benefit-of-the-bargain-for-the-bead-program/" target="_blank">BEAD Tech Neutrality — Benefit of the Bargain (ALEC)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Supply Chain]</span><a href="https://yfconnectivity.com/latest-fiber-optic-cable-price/" target="_blank">Fiber Optic Cable Price Surge in 2026: Latest Market Data (YF Connectivity)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Supply Chain]</span><a href="https://www.gl-fibercable.com/newsdetail/2026-fiber-optic-market-crisis:-g657a2-supply-shortage-and-soaring-prices-reshape-global-procurement-strategies.html" target="_blank">2026 Fiber Optic Market Crisis: G657A2 Supply Shortage (GL Fiber)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Supply Chain]</span><a href="https://www.lightreading.com/fttx/-perfect-storm-in-fiber-supply-threatens-us-broadband-targets" target="_blank">&lsquo;Perfect Storm&rsquo; in Fiber Supply Threatens US Broadband Targets (Light Reading)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Supply Chain]</span><a href="https://www.oyii.net/news/structural-price-rally-in-fiber-optic-cables-ai-powered-demand-supply-constraints-2026-forecast/" target="_blank">Structural Price Rally in Fiber Optic Cables: AI Demand &amp; Supply Constraints (Oyii)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Supply Chain]</span><a href="https://www.fierce-network.com/broadband/major-fiber-vendors-strategize-huge-demand-ai-2026" target="_blank">Major Fiber Vendors Strategize for Huge AI Demand in 2026 (Fierce Network)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Supply Chain]</span><a href="https://www.fierce-network.com/broadband/what-you-need-know-about-cornings-new-6b-meta-deal" target="_blank">What You Need to Know About Corning&rsquo;s New $6B Meta Deal (Fierce Network)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Competitive Intel]</span><a href="https://fiberbroadband.org/2026/03/18/brightspeed-fiber-build-hits-75-milestone-in-south-carolina-reaching-47000-locations/" target="_blank">Brightspeed Fiber Build Hits 75% Milestone in South Carolina (FBA, Mar 18, 2026)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Competitive Intel]</span><a href="https://www.prnewswire.com/news-releases/brightspeed-fiber-build-hits-75-milestone-in-south-carolina-reaching-47000-locations-302717494.html" target="_blank">Brightspeed SC 75% Build Milestone &mdash; 47,000+ Locations (PR Newswire)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Competitive Intel]</span><a href="https://www.prnewswire.com/news-releases/brightspeed-fiber-expands-in-georgia-hinesville-and-richmond-hill-residents-can-now-connect-to-countrys-fastest-internet-service-302728807.html" target="_blank">Brightspeed Fiber Expands in Georgia: Hinesville and Richmond Hill (PR Newswire)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Competitive Intel]</span><a href="https://www.lightwaveonline.com/home/article/55368370/building-broadband-brightspeed-surpasses-60-fiber-build-in-virginia-comcast-serves-up-broadband-for-three-southeast-georgia-communities" target="_blank">Comcast Expands to SE Georgia Communities (Lightwave Online)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Competitive Intel]</span><a href="https://www.lightreading.com/broadband/the-buildout-conexon-connect-launches-new-georgia-network" target="_blank">Conexon Connect Completes New Georgia Network (Light Reading)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Market Trends]</span><a href="https://techblog.comsoc.org/2025/12/23/how-will-fiber-and-equipment-vendors-meet-the-increased-demand-for-fiber-in-2026-due-to-ai-data-center-buildouts/" target="_blank">How Fiber Vendors Will Meet AI Data Center Demand in 2026 (IEEE ComSoc)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Market Trends]</span><a href="https://www.lightreading.com/fttx/50-gig-pon-on-slower-ramp-as-xgs-pon-dominates-dell-oro" target="_blank">50-Gig PON on &lsquo;Slower Ramp&rsquo; as XGS-PON Dominates &mdash; Dell&rsquo;Oro (Light Reading)</a></div>
+      <div class="src-item"><span class="badge b-cat">[M&amp;A]</span><a href="https://www.roi-nj.com/2026/01/27/tech/verizon-completes-20b-acquisition-of-frontier-communications/" target="_blank">Verizon Completes $20B Acquisition of Frontier Communications (ROI-NJ)</a></div>
+      <div class="src-item"><span class="badge b-cat">[M&amp;A]</span><a href="https://www.telecomreviewamericas.com/articles/telecom-operators/verizon-closes-frontier-deal-sets-stage-for-fiber-5g-dominance/" target="_blank">Verizon Closes Frontier Deal, Sets Stage for Fiber-5G Dominance (Telecom Review Americas)</a></div>
+      <div class="src-item"><span class="badge b-cat">[M&amp;A]</span><a href="https://broadbandbreakfast.com/at-t-completes-acquisition-of-lumens-consumer-fiber-business-in-5-75b-deal/" target="_blank">AT&amp;T Completes $5.75B Lumen Acquisition (Broadband Breakfast)</a></div>
+      <div class="src-item"><span class="badge b-cat">[M&amp;A]</span><a href="https://about.att.com/story/2026/att-lumen-deal-close.html" target="_blank">AT&amp;T Completes Acquisition of Lumen&rsquo;s Mass Markets Fiber Business (AT&amp;T Newsroom)</a></div>
+      <div class="src-item"><span class="badge b-cat">[M&amp;A]</span><a href="https://www.cnbc.com/2026/03/11/google-sells-partial-stake-in-fiber-business-becomes-minority-owner-in-venture-.html" target="_blank">Google Sells Partial Stake in Fiber Business (CNBC, Mar 11, 2026)</a></div>
+      <div class="src-item"><span class="badge b-cat">[M&amp;A]</span><a href="https://stonepeak.com/news/gfiber-and-stonepeaks-astound-to-combine-creating-a-leading-independent-broadband-provider" target="_blank">GFiber and Stonepeak&rsquo;s Astound to Combine (Stonepeak, Mar 11, 2026)</a></div>
+      <div class="src-item"><span class="badge b-cat">[M&amp;A]</span><a href="https://www.lightreading.com/broadband/looking-ahead-m-a-watch-for-2026" target="_blank">Looking Ahead: M&amp;A Watch for 2026 (Light Reading)</a></div>
+      <div class="src-item"><span class="badge b-cat">[M&amp;A]</span><a href="https://www.telecompetitor.com/broadband-ma-2025-dominated-by-private-equity-buys-big-guys-made-strategic-deals/" target="_blank">Broadband M&amp;A 2025: PE Dominated; Big Guys Made Strategic Deals (Telecompetitor)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Technology]</span><a href="https://moniem-tech.com/2026/03/14/pon-evolution-in-fixed-broadband-from-gpon-to-xgs-pon-and-the-25g-50g-roadmap/" target="_blank">PON Evolution: GPON to XGS-PON and the 25G/50G Roadmap (Moniem-Tech, Mar 14, 2026)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Technology]</span><a href="https://ontolt.com/2025/10/26/olt-2026-upgrades-what-isps-need-to-future-proof-networks/" target="_blank">OLT 2026 Upgrades: What ISPs Need to Future-Proof Networks (OntOLT)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Technology]</span><a href="https://www.fierce-network.com/sponsored/why-cable-msos-should-include-25gs-pon-their-ftth-strategy" target="_blank">Why Cable MSOs Should Include 25G-PON in Their FTTH Strategy (Fierce Network)</a></div>
+      <div class="src-item"><span class="badge b-cat">[Technology]</span><a href="https://www.cablelabs.com/blog/common-provisioning-and-management-of-pon" target="_blank">Common Provisioning and Management of PON &mdash; New Working Group (CableLabs)</a></div>
+    </div>
+  </details>
+</div>
+
+<div class="page-footer">
+  Generated automatically for Jason Carnes &nbsp;&middot;&nbsp; Fiber/FTTH Executive Intelligence &nbsp;&middot;&nbsp; April 6, 2026<br>
+  25 findings scored across 7 intelligence categories
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
