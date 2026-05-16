@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FTTH Daily Brief</title>
+<style>
+  :root {
+    --purple: #33006F;
+    --purple-dark: #2F0270;
+    --lime: #93D300;
+    --bg: #fafafa;
+    --text: #1a1a1a;
+    --muted: #666;
+    --border: #e5e5e5;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  header {
+    background: var(--purple);
+    color: white;
+    padding: 24px 32px;
+    border-bottom: 4px solid var(--lime);
+  }
+  header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  header .sub {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 32px;
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 768px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+  .sidebar {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+    height: fit-content;
+    position: sticky;
+    top: 24px;
+  }
+  .sidebar h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--purple-dark);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--lime);
+  }
+  .archive-list {
+    list-style: none;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  .archive-list li {
+    margin-bottom: 2px;
+  }
+  .archive-list a {
+    display: block;
+    padding: 8px 10px;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background 0.15s;
+  }
+  .archive-list a:hover {
+    background: #f0e9f7;
+    color: var(--purple);
+  }
+  .archive-list a.active {
+    background: var(--purple);
+    color: white;
+    font-weight: 600;
+  }
+  .main {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .main-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .main-header h2 {
+    font-size: 16px;
+    color: var(--purple-dark);
+  }
+  .main-header .actions a {
+    font-size: 13px;
+    color: var(--purple);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--purple);
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+  .main-header .actions a:hover {
+    background: var(--purple);
+    color: white;
+  }
+  iframe {
+    width: 100%;
+    height: calc(100vh - 220px);
+    min-height: 600px;
+    border: none;
+  }
+  .loading, .empty {
+    padding: 60px 32px;
+    text-align: center;
+    color: var(--muted);
+  }
+  .empty h3 { color: var(--text); margin-bottom: 8px; }
+  .error {
+    padding: 20px;
+    background: #fff3f3;
+    border-left: 4px solid #c00;
+    color: #800;
+    margin: 16px;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>FTTH Daily Brief</h1>
+  <div class="sub">External market intelligence • Updated daily</div>
+</header>
+
+<div class="container">
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>Archive</h2>
+      <ul id="archive" class="archive-list">
+        <li class="loading">Loading…</li>
+      </ul>
+    </aside>
+
+    <main class="main">
+      <div class="main-header">
+        <h2 id="current-title">Loading latest brief…</h2>
+        <div class="actions">
+          <a id="open-link" href="#" target="_blank">Open in new tab ↗</a>
+        </div>
+      </div>
+      <div id="viewer">
+        <div class="loading">Loading…</div>
+      </div>
+    </main>
+
+  </div>
+</div>
+
+<script>
+  // GitHub repo config
+  const OWNER = 'jasoncanres';
+  const REPO = 'FTTHdailyBRIEF';
+  const BRANCH = 'main';
+  const PATTERN = /^morning-briefing-(\d{4}-\d{2}-\d{2})\.html$/;
+
+  async function loadBriefs() {
+    const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/?ref=${BRANCH}`;
+    try {
+      const res = await fetch(apiUrl);
+      if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
+      const files = await res.json();
+
+      const briefs = files
+        .filter(f => PATTERN.test(f.name))
+        .map(f => ({
+          name: f.name,
+          date: f.name.match(PATTERN)[1],
+          url: f.name
+        }))
+        .sort((a, b) => b.date.localeCompare(a.date));
+
+      if (briefs.length === 0) {
+        document.getElementById('archive').innerHTML =
+          '<li class="empty"><h3>No briefs yet</h3><p>Push a morning-briefing-YYYY-MM-DD.html file to the repo.</p></li>';
+        document.getElementById('viewer').innerHTML =
+          '<div class="empty"><h3>No briefs yet</h3><p>Once you push a daily briefing HTML file, it will appear here automatically.</p></div>';
+        document.getElementById('current-title').textContent = 'No briefs available';
+        return;
+      }
+
+      // Populate archive list
+      const archive = document.getElementById('archive');
+      archive.innerHTML = '';
+      briefs.forEach((b, i) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#' + b.date;
+        a.textContent = formatDate(b.date);
+        a.dataset.url = b.url;
+        a.dataset.date = b.date;
+        if (i === 0) a.classList.add('active');
+        a.onclick = (e) => {
+          e.preventDefault();
+          loadBrief(b);
+          document.querySelectorAll('.archive-list a').forEach(x => x.classList.remove('active'));
+          a.classList.add('active');
+          history.replaceState(null, '', '#' + b.date);
+        };
+        li.appendChild(a);
+        archive.appendChild(li);
+      });
+
+      // Load brief from URL hash, or default to latest
+      const hashDate = window.location.hash.replace('#', '');
+      const target = briefs.find(b => b.date === hashDate) || briefs[0];
+      loadBrief(target);
+      if (hashDate) {
+        const link = document.querySelector(`.archive-list a[data-date="${hashDate}"]`);
+        if (link) {
+          document.querySelectorAll('.archive-list a').forEach(x => x.classList.remove('active'));
+          link.classList.add('active');
+        }
+      }
+
+    } catch (err) {
+      document.getElementById('viewer').innerHTML =
+        `<div class="error">Could not load briefs: ${err.message}<br><br>Check that the repo is public and Pages is enabled.</div>`;
+      console.error(err);
+    }
+  }
+
+  function loadBrief(brief) {
+    document.getElementById('current-title').textContent = formatDate(brief.date);
+    document.getElementById('open-link').href = brief.url;
+    document.getElementById('viewer').innerHTML =
+      `<iframe src="${brief.url}" title="Daily Brief"></iframe>`;
+  }
+
+  function formatDate(iso) {
+    const [y, m, d] = iso.split('-');
+    const date = new Date(Date.UTC(+y, +m - 1, +d));
+    return date.toLocaleDateString('en-US', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'
+    });
+  }
+
+  loadBriefs();
+</script>
+
+</body>
+</html>
