@@ -156,12 +156,8 @@
     background: #fff;
   }
 
-  .archive {
-    margin-top: 8px;
-  }
-  .month-block {
-    margin-bottom: 36px;
-  }
+  .archive { margin-top: 8px; }
+  .month-block { margin-bottom: 36px; }
   .month-head {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
@@ -172,10 +168,7 @@
     padding-bottom: 8px;
     border-bottom: 1px dashed var(--border);
   }
-  .month-head .count {
-    color: var(--text-faint);
-    margin-left: 8px;
-  }
+  .month-head .count { color: var(--text-faint); margin-left: 8px; }
   .file-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -203,10 +196,7 @@
   .file-link .date { color: var(--text); }
   .file-link .day { color: var(--text-faint); font-size: 10px; }
   .file-link.is-latest { border-color: var(--accent); border-left-width: 3px; }
-  .file-link.is-latest .date::before {
-    content: '★ ';
-    color: var(--accent);
-  }
+  .file-link.is-latest .date::before { content: '* '; color: var(--accent); }
 
   .status {
     text-align: center;
@@ -252,7 +242,7 @@
       <h1>FTTH <span class="accent">Daily Brief</span></h1>
     </div>
     <div class="meta">
-      <div class="live" id="liveStatus">Loading manifest…</div>
+      <div class="live" id="liveStatus">Loading manifest...</div>
       <div id="repoMeta">jasoncanres/FTTHdailyBRIEF</div>
     </div>
   </header>
@@ -262,11 +252,11 @@
     <div class="latest-header">
       <div class="latest-title">
         <span class="tag">LIVE</span>
-        <span id="latestName">—</span>
+        <span id="latestName">-</span>
       </div>
       <div class="latest-actions">
-        <a id="latestOpen" href="#" target="_blank" rel="noopener">Open ↗</a>
-        <a id="latestRaw" href="#" target="_blank" rel="noopener">Raw</a>
+        <a id="latestOpen" href="#" target="_blank" rel="noopener">Open</a>
+        <a id="latestRaw" href="#" target="_blank" rel="noopener">Source</a>
       </div>
     </div>
     <iframe id="latestFrame" class="latest-frame" title="Latest FTTH Brief"></iframe>
@@ -274,12 +264,12 @@
 
   <div class="section-label">Archive</div>
   <div id="archive" class="archive">
-    <div class="status">Fetching briefings from repo…</div>
+    <div class="status">Fetching briefings from repo...</div>
   </div>
 
   <footer>
-    AUTO-UPDATING VIA GITHUB API · NO MANUAL EDITS REQUIRED · 
-    <a href="https://github.com/jasoncanres/FTTHdailyBRIEF" target="_blank" rel="noopener">VIEW REPO ↗</a>
+    AUTO-UPDATING VIA GITHUB API - NO MANUAL EDITS REQUIRED -
+    <a href="https://github.com/jasoncanres/FTTHdailyBRIEF" target="_blank" rel="noopener">VIEW REPO</a>
   </footer>
 </div>
 
@@ -287,6 +277,7 @@
   const REPO_OWNER = 'jasoncanres';
   const REPO_NAME = 'FTTHdailyBRIEF';
   const BRANCH = 'main';
+  const PAGES_BASE = `https://${REPO_OWNER}.github.io/${REPO_NAME}/`;
   const FILE_PATTERN = /^(ftth-)?morning-briefing-(\d{4})-(\d{2})-(\d{2})\.html$/i;
 
   const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -311,8 +302,8 @@
           const date = new Date(Date.UTC(year, month - 1, day));
           return {
             name: f.name,
-            url: f.html_url,
-            raw: f.download_url,
+            pagesUrl: PAGES_BASE + f.name,
+            githubUrl: f.html_url,
             date: date,
             year: year,
             month: month,
@@ -327,7 +318,6 @@
         return;
       }
 
-      // Latest brief in iframe
       const latest = briefings[0];
       const latestSection = document.getElementById('latestSection');
       const latestFrame = document.getElementById('latestFrame');
@@ -336,14 +326,13 @@
       const latestRaw = document.getElementById('latestRaw');
 
       latestSection.style.display = 'block';
-      latestFrame.src = latest.raw;
-      latestName.textContent = formatLongDate(latest.date) + ' — ' + latest.name;
-      latestOpen.href = latest.url;
-      latestRaw.href = latest.raw;
+      latestFrame.src = latest.pagesUrl;
+      latestName.textContent = formatLongDate(latest.date) + ' - ' + latest.name;
+      latestOpen.href = latest.pagesUrl;
+      latestRaw.href = latest.githubUrl;
 
-      liveEl.textContent = `${briefings.length} briefs · latest ${formatShortDate(latest.date)}`;
+      liveEl.textContent = `${briefings.length} briefs - latest ${formatShortDate(latest.date)}`;
 
-      // Group by month
       const byMonth = {};
       briefings.forEach(b => {
         const key = `${b.year}-${String(b.month).padStart(2,'0')}`;
@@ -354,10 +343,10 @@
       const monthKeys = Object.keys(byMonth).sort().reverse();
       archiveEl.innerHTML = monthKeys.map(key => {
         const m = byMonth[key];
-        const items = m.items.map((b, i) => {
+        const items = m.items.map((b) => {
           const isLatest = (b === latest);
           return `
-            <a class="file-link ${isLatest ? 'is-latest' : ''}" href="${b.url}" target="_blank" rel="noopener">
+            <a class="file-link ${isLatest ? 'is-latest' : ''}" href="${b.pagesUrl}" target="_blank" rel="noopener">
               <span class="date">${formatShortDate(b.date)}</span>
               <span class="day">${DAY_NAMES[b.date.getUTCDay()]}</span>
             </a>
