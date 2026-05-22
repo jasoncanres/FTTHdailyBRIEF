@@ -4,272 +4,388 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FTTH Daily Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
+    --bg: #0e1116;
+    --bg-elev: #161b22;
+    --bg-elev-2: #1c232c;
+    --border: #2a3340;
+    --text: #e6edf3;
+    --text-dim: #8b949e;
+    --text-faint: #5b6675;
+    --accent: #93D300;
+    --accent-dim: #5a8200;
     --purple: #33006F;
-    --purple-dark: #2F0270;
-    --lime: #93D300;
-    --bg: #fafafa;
-    --text: #1a1a1a;
-    --muted: #666;
-    --border: #e5e5e5;
+    --purple-light: #6b3fb4;
+    --warn: #f0883e;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: 'Newsreader', Georgia, serif; }
   body {
-    font-family: Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.5;
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(51, 0, 111, 0.25), transparent 60%),
+      var(--bg);
   }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px 24px 80px; }
+
   header {
-    background: var(--purple);
-    color: white;
-    padding: 24px 32px;
-    border-bottom: 4px solid var(--lime);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 18px;
+    margin-bottom: 32px;
   }
-  header h1 {
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-  }
-  header .sub {
-    font-size: 13px;
-    opacity: 0.85;
-    margin-top: 4px;
-  }
-  .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 24px 32px;
-  }
-  .layout {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 24px;
-  }
-  @media (max-width: 768px) {
-    .layout { grid-template-columns: 1fr; }
-  }
-  .sidebar {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 16px;
-    height: fit-content;
-    position: sticky;
-    top: 24px;
-  }
-  .sidebar h2 {
-    font-size: 13px;
+  .brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--text-dim);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--purple-dark);
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--lime);
+    margin-bottom: 6px;
   }
-  .archive-list {
-    list-style: none;
-    max-height: 70vh;
-    overflow-y: auto;
-  }
-  .archive-list li {
-    margin-bottom: 2px;
-  }
-  .archive-list a {
-    display: block;
-    padding: 8px 10px;
-    color: var(--text);
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 14px;
-    transition: background 0.15s;
-  }
-  .archive-list a:hover {
-    background: #f0e9f7;
-    color: var(--purple);
-  }
-  .archive-list a.active {
-    background: var(--purple);
-    color: white;
+  h1 {
+    font-family: 'Newsreader', serif;
     font-weight: 600;
+    font-size: 38px;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
   }
-  .main {
-    background: white;
+  h1 .accent {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+    text-align: right;
+    line-height: 1.7;
+  }
+  .meta .live::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-right: 6px;
+    vertical-align: middle;
+    box-shadow: 0 0 8px var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .latest-card {
+    background: var(--bg-elev);
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 4px;
     overflow: hidden;
+    margin-bottom: 48px;
   }
-  .main-header {
-    padding: 16px 20px;
+  .latest-header {
+    padding: 18px 22px;
     border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
+    background: linear-gradient(180deg, var(--bg-elev-2), var(--bg-elev));
   }
-  .main-header h2 {
-    font-size: 16px;
-    color: var(--purple-dark);
-  }
-  .main-header .actions a {
+  .latest-title {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
-    color: var(--purple);
+    font-weight: 500;
+    color: var(--text);
+  }
+  .latest-title .tag {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 2px 6px;
+    border-radius: 2px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .latest-actions {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+  }
+  .latest-actions a {
+    color: var(--text-dim);
     text-decoration: none;
-    padding: 6px 12px;
-    border: 1px solid var(--purple);
-    border-radius: 4px;
+    border: 1px solid var(--border);
+    padding: 5px 10px;
+    border-radius: 2px;
+    margin-left: 6px;
+    transition: all 0.15s;
+  }
+  .latest-actions a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .latest-frame {
+    width: 100%;
+    height: 75vh;
+    border: 0;
+    background: #fff;
+  }
+
+  .archive {
+    margin-top: 8px;
+  }
+  .month-block {
+    margin-bottom: 36px;
+  }
+  .month-head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .month-head .count {
+    color: var(--text-faint);
     margin-left: 8px;
   }
-  .main-header .actions a:hover {
-    background: var(--purple);
-    color: white;
+  .file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
   }
-  iframe {
-    width: 100%;
-    height: calc(100vh - 220px);
-    min-height: 600px;
-    border: none;
+  .file-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 14px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    transition: all 0.15s ease;
   }
-  .loading, .empty {
-    padding: 60px 32px;
+  .file-link:hover {
+    background: var(--bg-elev-2);
+    border-color: var(--accent);
+    transform: translateX(2px);
+  }
+  .file-link .date { color: var(--text); }
+  .file-link .day { color: var(--text-faint); font-size: 10px; }
+  .file-link.is-latest { border-color: var(--accent); border-left-width: 3px; }
+  .file-link.is-latest .date::before {
+    content: '★ ';
+    color: var(--accent);
+  }
+
+  .status {
     text-align: center;
-    color: var(--muted);
+    padding: 40px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
   }
-  .empty h3 { color: var(--text); margin-bottom: 8px; }
-  .error {
-    padding: 20px;
-    background: #fff3f3;
-    border-left: 4px solid #c00;
-    color: #800;
-    margin: 16px;
+  .status.error {
+    color: var(--warn);
+    border: 1px dashed var(--warn);
     border-radius: 4px;
+    background: rgba(240, 136, 62, 0.05);
+  }
+
+  footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 28px; }
+    header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .meta { text-align: left; }
+    .latest-frame { height: 60vh; }
   }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<header>
-  <h1>FTTH Daily Brief</h1>
-  <div class="sub">External market intelligence • Updated daily</div>
-</header>
+  <header>
+    <div>
+      <div class="brand">Jason Carnes // GigaPower</div>
+      <h1>FTTH <span class="accent">Daily Brief</span></h1>
+    </div>
+    <div class="meta">
+      <div class="live" id="liveStatus">Loading manifest…</div>
+      <div id="repoMeta">jasoncanres/FTTHdailyBRIEF</div>
+    </div>
+  </header>
 
-<div class="container">
-  <div class="layout">
-
-    <aside class="sidebar">
-      <h2>Archive</h2>
-      <ul id="archive" class="archive-list">
-        <li class="loading">Loading…</li>
-      </ul>
-    </aside>
-
-    <main class="main">
-      <div class="main-header">
-        <h2 id="current-title">Loading latest brief…</h2>
-        <div class="actions">
-          <a id="open-link" href="#" target="_blank">Open in new tab ↗</a>
-        </div>
+  <div class="section-label">Today's Brief</div>
+  <div id="latestSection" class="latest-card" style="display:none;">
+    <div class="latest-header">
+      <div class="latest-title">
+        <span class="tag">LIVE</span>
+        <span id="latestName">—</span>
       </div>
-      <div id="viewer">
-        <div class="loading">Loading…</div>
+      <div class="latest-actions">
+        <a id="latestOpen" href="#" target="_blank" rel="noopener">Open ↗</a>
+        <a id="latestRaw" href="#" target="_blank" rel="noopener">Raw</a>
       </div>
-    </main>
-
+    </div>
+    <iframe id="latestFrame" class="latest-frame" title="Latest FTTH Brief"></iframe>
   </div>
+
+  <div class="section-label">Archive</div>
+  <div id="archive" class="archive">
+    <div class="status">Fetching briefings from repo…</div>
+  </div>
+
+  <footer>
+    AUTO-UPDATING VIA GITHUB API · NO MANUAL EDITS REQUIRED · 
+    <a href="https://github.com/jasoncanres/FTTHdailyBRIEF" target="_blank" rel="noopener">VIEW REPO ↗</a>
+  </footer>
 </div>
 
 <script>
-  // GitHub repo config
-  const OWNER = 'jasoncanres';
-  const REPO = 'FTTHdailyBRIEF';
+  const REPO_OWNER = 'jasoncanres';
+  const REPO_NAME = 'FTTHdailyBRIEF';
   const BRANCH = 'main';
-  const PATTERN = /^morning-briefing-(\d{4}-\d{2}-\d{2})\.html$/;
+  const FILE_PATTERN = /^(ftth-)?morning-briefing-(\d{4})-(\d{2})-(\d{2})\.html$/i;
 
-  async function loadBriefs() {
-    const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/?ref=${BRANCH}`;
+  const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+  async function loadBriefings() {
+    const archiveEl = document.getElementById('archive');
+    const liveEl = document.getElementById('liveStatus');
     try {
-      const res = await fetch(apiUrl);
-      if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
-      const files = await res.json();
+      const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/?ref=${BRANCH}`;
+      const resp = await fetch(apiUrl, { headers: { 'Accept': 'application/vnd.github+json' } });
+      if (!resp.ok) throw new Error(`GitHub API returned ${resp.status}`);
+      const files = await resp.json();
 
-      const briefs = files
-        .filter(f => PATTERN.test(f.name))
-        .map(f => ({
-          name: f.name,
-          date: f.name.match(PATTERN)[1],
-          url: f.name
-        }))
-        .sort((a, b) => b.date.localeCompare(a.date));
+      const briefings = files
+        .filter(f => f.type === 'file' && FILE_PATTERN.test(f.name))
+        .map(f => {
+          const m = f.name.match(FILE_PATTERN);
+          const year = parseInt(m[2], 10);
+          const month = parseInt(m[3], 10);
+          const day = parseInt(m[4], 10);
+          const date = new Date(Date.UTC(year, month - 1, day));
+          return {
+            name: f.name,
+            url: f.html_url,
+            raw: f.download_url,
+            date: date,
+            year: year,
+            month: month,
+            day: day
+          };
+        })
+        .sort((a, b) => b.date - a.date);
 
-      if (briefs.length === 0) {
-        document.getElementById('archive').innerHTML =
-          '<li class="empty"><h3>No briefs yet</h3><p>Push a morning-briefing-YYYY-MM-DD.html file to the repo.</p></li>';
-        document.getElementById('viewer').innerHTML =
-          '<div class="empty"><h3>No briefs yet</h3><p>Once you push a daily briefing HTML file, it will appear here automatically.</p></div>';
-        document.getElementById('current-title').textContent = 'No briefs available';
+      if (briefings.length === 0) {
+        archiveEl.innerHTML = '<div class="status">No briefings found in repo yet.</div>';
+        liveEl.textContent = 'No briefings yet';
         return;
       }
 
-      // Populate archive list
-      const archive = document.getElementById('archive');
-      archive.innerHTML = '';
-      briefs.forEach((b, i) => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = '#' + b.date;
-        a.textContent = formatDate(b.date);
-        a.dataset.url = b.url;
-        a.dataset.date = b.date;
-        if (i === 0) a.classList.add('active');
-        a.onclick = (e) => {
-          e.preventDefault();
-          loadBrief(b);
-          document.querySelectorAll('.archive-list a').forEach(x => x.classList.remove('active'));
-          a.classList.add('active');
-          history.replaceState(null, '', '#' + b.date);
-        };
-        li.appendChild(a);
-        archive.appendChild(li);
+      // Latest brief in iframe
+      const latest = briefings[0];
+      const latestSection = document.getElementById('latestSection');
+      const latestFrame = document.getElementById('latestFrame');
+      const latestName = document.getElementById('latestName');
+      const latestOpen = document.getElementById('latestOpen');
+      const latestRaw = document.getElementById('latestRaw');
+
+      latestSection.style.display = 'block';
+      latestFrame.src = latest.raw;
+      latestName.textContent = formatLongDate(latest.date) + ' — ' + latest.name;
+      latestOpen.href = latest.url;
+      latestRaw.href = latest.raw;
+
+      liveEl.textContent = `${briefings.length} briefs · latest ${formatShortDate(latest.date)}`;
+
+      // Group by month
+      const byMonth = {};
+      briefings.forEach(b => {
+        const key = `${b.year}-${String(b.month).padStart(2,'0')}`;
+        if (!byMonth[key]) byMonth[key] = { year: b.year, month: b.month, items: [] };
+        byMonth[key].items.push(b);
       });
 
-      // Load brief from URL hash, or default to latest
-      const hashDate = window.location.hash.replace('#', '');
-      const target = briefs.find(b => b.date === hashDate) || briefs[0];
-      loadBrief(target);
-      if (hashDate) {
-        const link = document.querySelector(`.archive-list a[data-date="${hashDate}"]`);
-        if (link) {
-          document.querySelectorAll('.archive-list a').forEach(x => x.classList.remove('active'));
-          link.classList.add('active');
-        }
-      }
+      const monthKeys = Object.keys(byMonth).sort().reverse();
+      archiveEl.innerHTML = monthKeys.map(key => {
+        const m = byMonth[key];
+        const items = m.items.map((b, i) => {
+          const isLatest = (b === latest);
+          return `
+            <a class="file-link ${isLatest ? 'is-latest' : ''}" href="${b.url}" target="_blank" rel="noopener">
+              <span class="date">${formatShortDate(b.date)}</span>
+              <span class="day">${DAY_NAMES[b.date.getUTCDay()]}</span>
+            </a>
+          `;
+        }).join('');
+        return `
+          <div class="month-block">
+            <div class="month-head">${MONTH_NAMES[m.month-1]} ${m.year}<span class="count">${m.items.length} brief${m.items.length>1?'s':''}</span></div>
+            <div class="file-grid">${items}</div>
+          </div>
+        `;
+      }).join('');
 
     } catch (err) {
-      document.getElementById('viewer').innerHTML =
-        `<div class="error">Could not load briefs: ${err.message}<br><br>Check that the repo is public and Pages is enabled.</div>`;
+      archiveEl.innerHTML = `<div class="status error">Failed to load briefings: ${err.message}<br><br>If this persists, check that the repo is public and the GitHub API isn't rate-limiting your IP.</div>`;
+      liveEl.textContent = 'Error loading';
       console.error(err);
     }
   }
 
-  function loadBrief(brief) {
-    document.getElementById('current-title').textContent = formatDate(brief.date);
-    document.getElementById('open-link').href = brief.url;
-    document.getElementById('viewer').innerHTML =
-      `<iframe src="${brief.url}" title="Daily Brief"></iframe>`;
+  function formatShortDate(d) {
+    return `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`;
+  }
+  function formatLongDate(d) {
+    return `${DAY_NAMES[d.getUTCDay()]}, ${MONTH_NAMES[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
   }
 
-  function formatDate(iso) {
-    const [y, m, d] = iso.split('-');
-    const date = new Date(Date.UTC(+y, +m - 1, +d));
-    return date.toLocaleDateString('en-US', {
-      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'
-    });
-  }
-
-  loadBriefs();
+  loadBriefings();
 </script>
-
 </body>
 </html>
