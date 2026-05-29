@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Morning Briefing — May 29, 2026 | Fiber/FTTH Executive Intelligence</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+    line-height: 1.5;
+    padding: 32px 16px 64px;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  header.hero {
+    background: #0f172a;
+    color: #fff;
+    border-radius: 14px;
+    padding: 32px 32px 28px;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.18);
+  }
+  header.hero .kicker {
+    color: #3b82f6;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  header.hero h1 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  header.hero .subtitle {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  header.hero .meta {
+    display: flex;
+    gap: 18px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  header.hero .meta span {
+    background: rgba(59,130,246,0.14);
+    color: #cbd5e1;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  section.sec {
+    background: #fff;
+    border-radius: 14px;
+    margin-top: 22px;
+    padding: 26px 28px;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.06);
+  }
+  section.sec h2 {
+    font-size: 20px;
+    font-weight: 700;
+    padding-left: 12px;
+    border-left: 4px solid #3b82f6;
+    margin-bottom: 18px;
+    letter-spacing: -0.005em;
+  }
+  section.mna h2 { border-left-color: #8b5cf6; }
+  section.tech h2 { border-left-color: #06b6d4; }
+  .cat-divider {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #64748b;
+    margin: 20px 0 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .cat-divider:first-of-type { margin-top: 0; }
+  .card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    background: #fff;
+    transition: box-shadow 0.15s;
+  }
+  .card:hover { box-shadow: 0 4px 12px rgba(15,23,42,0.08); }
+  .card .head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .card h3 {
+    font-size: 15.5px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #0f172a;
+    flex: 1;
+  }
+  .score-badge {
+    background: #0f172a;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .mna .score-badge { background: #8b5cf6; }
+  .tech .score-badge { background: #06b6d4; }
+  .tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .tag.cat { background: #e0e7ff; color: #3730a3; }
+  .tag.status { background: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; }
+  .urg-red { background: #ef4444; color: #fff; }
+  .urg-yel { background: #f59e0b; color: #fff; }
+  .urg-grn { background: #10b981; color: #fff; }
+  .score-bar {
+    height: 5px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 4px 0 12px;
+  }
+  .score-bar .fill {
+    height: 100%;
+    background: #3b82f6;
+    border-radius: 999px;
+  }
+  .mna .score-bar .fill { background: #8b5cf6; }
+  .tech .score-bar .fill { background: #06b6d4; }
+  .card p { font-size: 13.5px; margin-bottom: 7px; color: #334155; }
+  .card p strong { color: #0f172a; font-weight: 700; }
+  .card p.action {
+    background: #f8fafc;
+    border-left: 3px solid #3b82f6;
+    padding: 8px 12px;
+    margin-top: 8px;
+    border-radius: 0 6px 6px 0;
+    font-size: 13.5px;
+  }
+  .mna .card p.action { border-left-color: #8b5cf6; }
+  .tech .card p.action { border-left-color: #06b6d4; }
+  .quick-hit {
+    font-size: 13.5px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+  }
+  .quick-hit:last-child { border-bottom: none; }
+  .quick-hit .cat-pill {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #3730a3;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-right: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .rec-callout {
+    background: #dbeafe;
+    border-left: 5px solid #2563eb;
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #0f172a;
+  }
+  .rec-callout strong { color: #1d4ed8; font-weight: 700; }
+  details.discard, details.sources {
+    background: #fff;
+    border-radius: 14px;
+    margin-top: 22px;
+    padding: 18px 24px;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.06);
+  }
+  details.discard summary, details.sources summary {
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 6px 0;
+    color: #475569;
+    outline: none;
+  }
+  details.discard summary:hover, details.sources summary:hover { color: #0f172a; }
+  details[open] summary { margin-bottom: 14px; }
+  .disc-card {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    opacity: 0.72;
+  }
+  .disc-card h4 {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #64748b;
+    text-decoration: line-through;
+    text-decoration-color: #94a3b8;
+    margin-bottom: 4px;
+  }
+  .disc-card .disc-meta { display: flex; gap: 8px; margin-bottom: 6px; }
+  .disc-card .sb { background: #94a3b8; color: #fff; padding: 2px 8px; border-radius: 999px; font-size: 10.5px; font-weight: 700; }
+  .disc-card .tag.cat { background: #e2e8f0; color: #64748b; }
+  .disc-card p { font-size: 12.5px; color: #64748b; margin-top: 4px; }
+  ul.src-list { list-style: none; padding: 0; }
+  ul.src-list li { font-size: 13px; padding: 6px 0; border-bottom: 1px solid #f1f5f9; }
+  ul.src-list li:last-child { border-bottom: none; }
+  ul.src-list a { color: #2563eb; text-decoration: none; }
+  ul.src-list a:hover { text-decoration: underline; }
+  ul.src-list .src-cat {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #3730a3;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    margin-right: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ============== HERO ============== -->
+<header class="hero">
+  <div class="kicker">Fiber / FTTH Executive Intelligence</div>
+  <h1>Morning Briefing — May 29, 2026</h1>
+  <div class="subtitle">Scanning the fiber, FTTH, and broadband telecom landscape for the past 48 hours. Filtered through the Gigapower wholesale lens — AT&amp;T/BlackRock JV parent and anchor tenant, not competitor.</div>
+  <div class="meta">
+    <span>32 sources scanned</span>
+    <span>16 findings scored</span>
+    <span>Threshold: 12/22</span>
+  </div>
+</header>
+
+<!-- ============== SECTION 1: INTELLIGENCE FEED ============== -->
+<section class="sec">
+  <h2>Section 1 — Intelligence Feed</h2>
+
+  <div class="cat-divider">Policy / Regulatory</div>
+
+  <div class="card">
+    <div class="head">
+      <h3>FCC pole attachment rules took effect May 8 — 90-day large-order surveys, 30-day contractor approval, 120-day make-ready</h3>
+      <span class="score-badge">20/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:91%"></div></div>
+    <div class="tags"><span class="tag cat">Policy / Regulatory</span><span class="tag urg-red">🔴 Act Today</span></div>
+    <p><strong>What happened:</strong> The FCC's Fifth Report and Order pole attachment rules became effective May 8, 2026. For "Large Orders" (the lesser of 3,000 poles or 5% of a utility's poles in a state), utilities now have 90 days to survey, 29 days to issue make-ready estimates, and 120 days to complete communications-space make-ready after payment. Contractor approval is compressed to a 30-day clock. Utilities are already telling FCC staff that contractor backlogs and rising costs threaten these timelines.</p>
+    <p><strong>Why it matters:</strong> Gigapower's NE PA cluster (Wilkes-Barre/Scranton) is aerial-heavy ILEC/electric joint-use territory where make-ready timing is the binding constraint on build schedule.</p>
+    <p class="action"><strong>Action:</strong> Direct Permitting + Engineering to file Large-Order pole attachment applications in Luzerne/Lackawanna this week to start the 90/120-day statutory clocks before incumbent BEAD builds saturate make-ready queues.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>NTIA approvals hit 54 states; PA's $1.16B BEAD pool is fiber-dominated with Comcast + Verizon taking ~half</h3>
+      <span class="score-badge">20/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:91%"></div></div>
+    <div class="tags"><span class="tag cat">Policy / Regulatory</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> As of May 18, 54 states/territories have NTIA Final Proposal approval, 52 have signed award agreements. Pennsylvania's $1.1618B allocation leans heavily to fiber-to-the-premises, with Comcast and Verizon together accounting for nearly half of the state's awards. Nevada's $417M pool is also moving to award.</p>
+    <p><strong>Why it matters:</strong> Subsidized incumbent fiber in PA compresses the addressable wholesale-demand pool in Gigapower's intelligence-stage NE PA markets — overbuild economics shift where BEAD fiber lands.</p>
+    <p class="action"><strong>Action:</strong> Task Wholesale BD to pull the PA Broadband Office award map by census block this week and red-line Wilkes-Barre/Scranton service areas already claimed by Comcast/Verizon BEAD fiber before committing Section-3 permitting spend.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Federal Register publishes "Removing Barriers to Wireline Broadband Deployment" order (May 7)</h3>
+      <span class="score-badge">17/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:77%"></div></div>
+    <div class="tags"><span class="tag cat">Policy / Regulatory</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> The FCC's order accelerating wireline broadband deployment by removing infrastructure barriers was published in the Federal Register May 7, 2026, formalizing streamlined access provisions that pair with the new pole attachment timelines.</p>
+    <p><strong>Why it matters:</strong> Federal preemption pressure on local ROW friction strengthens Gigapower's posture in municipalities slow to issue linear-infrastructure permits.</p>
+    <p class="action"><strong>Action:</strong> Have Government Affairs brief the order's preemption hooks and cite them in pending ROW-use-agreement negotiations across AZ/NV permitting markets.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>NTIA still withholding guidance on $21B BEAD "savings"; permitting/workforce uses dominate public comment</h3>
+      <span class="score-badge">16/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:73%"></div></div>
+    <div class="tags"><span class="tag cat">Policy / Regulatory</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> States are projected ~$21B under budget on BEAD. NTIA delayed its non-deployment-funds guidance after public comment; recurring asks include streamlining state/local permitting and funding permitting-related workforce training, plus NG911 and a reserve for unserved-location defaults.</p>
+    <p><strong>Why it matters:</strong> If states deploy savings into permitting throughput, Gigapower's build velocity in NV/AZ/PA improves at no cost to the JV.</p>
+    <p class="action"><strong>Action:</strong> Have Government Affairs file or join comments in NV and PA advocating savings allocation to municipal permitting capacity and 811/as-built modernization.</p>
+  </div>
+
+  <div class="cat-divider">Supply Chain</div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Tariffs on imported preforms, coatings and jackets pushing fiber-cable costs up and stretching deployment schedules</h3>
+      <span class="score-badge">15/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:68%"></div></div>
+    <div class="tags"><span class="tag cat">Supply Chain</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> Tariffs are raising the cost of imported glass preforms, specialty coatings, cable jackets and manufacturing equipment, elevating production costs and slowing rollouts in North America. Corning holds ~30% of global cable share; Prysmian is now the largest manufacturer post-General Cable, both with domestic footprints insulating them relative to import-dependent peers.</p>
+    <p><strong>Why it matters:</strong> Cable cost-per-foot and lead-time variance feed directly into Gigapower's per-passing capex and the wholesale lease economics offered to tenant ISPs.</p>
+    <p class="action"><strong>Action:</strong> Have Engineering/Procurement re-confirm 2026–27 cable allocations under domestic-content supply terms with Corning/Prysmian and lock pricing before tariff pass-through resets.</p>
+  </div>
+
+  <div class="cat-divider">Competitive Intelligence</div>
+
+  <div class="card">
+    <div class="head">
+      <h3>T-Mobile adds GoNetspeed + Greenlight JVs — combined platform passing 1.3M households by end-2026, 12–15M by 2030</h3>
+      <span class="score-badge">18/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:82%"></div></div>
+    <div class="tags"><span class="tag cat">Competitive Intelligence</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> T-Mobile announced two new strategic fiber JVs (GoNetspeed and Greenlight), building on its KKR/Metronet and EQT/Lumos vehicles. The combined platform is expected to pass 1.3M+ households by end-2026, en route to a 12–15M target by 2030.</p>
+    <p><strong>Why it matters:</strong> T-Mobile is assembling a fiber-plus-wireless converged retail stack that competes for the same tenant-ISP demand and metro footprints Gigapower targets out-of-AT&amp;T-footprint.</p>
+    <p class="action"><strong>Action:</strong> Task Competitive Intelligence to map GoNetspeed/Greenlight build footprints against Gigapower's AL/FL intelligence markets this week and flag overlap to Wholesale BD.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Verizon completed $20B Frontier acquisition — fiber reach to ~30M homes/businesses across 31 states</h3>
+      <span class="score-badge">17/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:77%"></div></div>
+    <div class="tags"><span class="tag cat">Competitive Intelligence</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> Verizon closed its $20B Frontier acquisition January 20, 2026, combining Frontier's 2.2M fiber subscribers across 25 states with Verizon's ~7.4M Fios connections, reaching nearly 30M homes/businesses in 31 states plus DC. Verizon plans to leverage Frontier fiber for 5G backhaul.</p>
+    <p><strong>Why it matters:</strong> A consolidated Verizon/Frontier fiber giant raises the competitive bar in FL where Frontier is a meaningful incumbent and where Gigapower is in intelligence stage.</p>
+    <p class="action"><strong>Action:</strong> Have Competitive Intelligence overlay legacy Frontier FL footprint against Gigapower's out-of-AT&amp;T-footprint FL target zones before any market-entry go/no-go.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>JV/Parent watch: AT&amp;T posts record 584K Q1 broadband adds, 37M+ fiber locations, accelerating to 1M+ added annually</h3>
+      <span class="score-badge">16/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:73%"></div></div>
+    <div class="tags"><span class="tag cat">Competitive Intelligence</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> AT&amp;T (Gigapower's JV parent and anchor tenant) reported a record 584K fiber + fixed-wireless adds in Q1 2026, fiber reach over 37M locations, 60M+ target by decade-end, and 42% convergence. Advanced home internet revenue rose 27.3% to $2.8B.</p>
+    <p><strong>Why it matters:</strong> AT&amp;T's accelerating in-footprint program signals continued capital appetite and a healthy anchor-tenant demand curve underpinning Gigapower's wholesale lease base.</p>
+    <p class="action"><strong>Action:</strong> Have the JV/Parent liaison confirm AT&amp;T Fiber's tenant-demand commitments per active Gigapower market track the parent's stated 1M+/year acceleration.</p>
+  </div>
+
+  <div class="cat-divider">Market Trends</div>
+
+  <div class="card">
+    <div class="head">
+      <h3>~100M homes passed with fiber by end-2025; 91% of deployment spend now private capital</h3>
+      <span class="score-badge">16/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:73%"></div></div>
+    <div class="tags"><span class="tag cat">Market Trends</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> Nearly 100M homes (≈85M unique) were passed with fiber by end-2025, and 2026 is on track for another deployment record. Over 91% of deployment spend is now private-sector capex, and 73% of operators report likely M&amp;A intent over the next year.</p>
+    <p><strong>Why it matters:</strong> The shift to private capital and record passings validates the infrastructure-fund thesis behind the BlackRock side of the JV and confirms overbuild competition intensity in target metros.</p>
+    <p class="action"><strong>Action:</strong> Reference the 91% private-capex figure in the next JV capital-allocation review to defend Gigapower's incremental greenfield pacing against overbuild saturation risk.</p>
+  </div>
+
+  <div class="cat-divider">Breaking News</div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Next-gen PON splits the vendor field: Nokia pushes 25G PON, Adtran/Calix hold for 50G PON</h3>
+      <span class="score-badge">14/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:64%"></div></div>
+    <div class="tags"><span class="tag cat">Breaking News</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> Most US/EU operators are deploying 10G XGS-PON, but the next-gen path is contested: Nokia is shipping 25G PON modems and OLT upgrades, while Adtran and Calix position 25G as an expensive detour toward 50G PON. CableLabs has four more PON interop events scheduled in 2026.</p>
+    <p><strong>Why it matters:</strong> Gigapower's open-access model must support whichever PON generation its multi-ISP tenant base demands; OLT/ONT roadmap choice affects platform neutrality and upgrade capex.</p>
+    <p class="action"><strong>Action:</strong> Have Engineering confirm the active OLT platform's 25G/50G PON upgrade path is non-disruptive to existing tenant ISPs before the next equipment refresh order.</p>
+  </div>
+</section>
+
+<!-- ============== SECTION 2: M&A WATCH ============== -->
+<section class="sec mna">
+  <h2>Section 2 — M&amp;A Watch</h2>
+
+  <div class="card">
+    <div class="head">
+      <h3>Zayo closes Crown Castle Fiber Solutions purchase — adds ~90,000 route miles</h3>
+      <span class="score-badge">15/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:68%"></div></div>
+    <div class="tags"><span class="tag cat">M&amp;A</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> Zayo closed its multi-billion-dollar acquisition of Crown Castle's Fiber Solutions division on May 1, 2026, adding roughly 90,000 route miles to its long-haul/metro network and reinforcing the wholesale/transport consolidation trend.</p>
+    <p><strong>Why it matters:</strong> A larger Zayo strengthens the middle-mile/transport options available to Gigapower's tenant ISPs and to data-center backhaul demand near target metros.</p>
+    <p class="action"><strong>Action:</strong> Have Wholesale BD assess whether expanded Zayo transport near Las Vegas/Phoenix metros creates cross-connect or backhaul partnership leverage for Gigapower tenants.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Industry signals "massive" FTTH consolidation in 2026 — 73% of operators flag M&amp;A intent</h3>
+      <span class="score-badge">13/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:59%"></div></div>
+    <div class="tags"><span class="tag cat">M&amp;A</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> Trade analysis projects heavy FTTH consolidation through 2026, with 73% of operators reporting likely or very likely deal activity over the next year and infrastructure funds (KKR, EQT, Stonepeak, DigitalBridge) actively buying fiber platforms.</p>
+    <p><strong>Why it matters:</strong> Sub-scale Tier 2/3 overbuilders in AL/FL intelligence markets are likely roll-up targets — ownership could change mid-evaluation and reshape the wholesale-demand picture.</p>
+    <p class="action"><strong>Action:</strong> Have Wholesale BD maintain a live target-ownership watchlist for AL/FL overbuilders and re-confirm counterparties before any tenant-demand LOI.</p>
+  </div>
+</section>
+
+<!-- ============== SECTION 3: TECHNOLOGY & GROWTH STRATEGY ============== -->
+<section class="sec tech">
+  <h2>Section 3 — Technology &amp; Growth Strategy</h2>
+
+  <div class="card">
+    <div class="head">
+      <h3>FBA publishes cable-to-FTTH transition paper as MSOs face fiber-overbuild pressure</h3>
+      <span class="score-badge">13/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:59%"></div></div>
+    <div class="tags"><span class="tag cat">Technology &amp; Growth</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> The Fiber Broadband Association published a paper (May 18) on transitioning cable HFC networks to fiber-to-the-home, codifying the migration playbook as cable MSOs weigh FTTH overbuild defense versus DOCSIS upgrades.</p>
+    <p><strong>Why it matters:</strong> If MSOs in Gigapower markets accelerate their own FTTH, the open-access wholesale pitch to non-incumbent ISPs becomes the sharper differentiator versus single-operator builds.</p>
+    <p class="action"><strong>Action:</strong> Have Wholesale BD sharpen the multi-ISP, neutral-host messaging in Section-5 outreach scripts to position open access against any MSO single-operator FTTH conversion.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3>Open-access wholesale validated as growth model — Gigapower expands commercial-ISP roster to Boldyn, DIG, PRIME FiBER, Ubiquity</h3>
+      <span class="score-badge">15/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:68%"></div></div>
+    <div class="tags"><span class="tag cat">Technology &amp; Growth</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> Gigapower's expansion beyond the initial 1.5M-location target included four commercial open-access ISP agreements — Boldyn Networks, Digital Infrastructure Group, PRIME FiBER and Ubiquity — broadening the tenant base beyond AT&amp;T as anchor, alongside a six-state footprint and a new Head of Strategy hire.</p>
+    <p><strong>Why it matters:</strong> A deeper tenant-ISP roster directly raises per-passing wholesale revenue and de-risks single-anchor dependence — the core economic lever of the model.</p>
+    <p class="action"><strong>Action:</strong> Direct Wholesale BD to confirm which of Boldyn/DIG/PRIME FiBER/Ubiquity are live or committed in each active market and write Section-4 D2C compliance briefs for those specific tenants.</p>
+  </div>
+</section>
+
+<!-- ============== SECTION 4: QUICK HITS ============== -->
+<section class="sec">
+  <h2>Section 4 — Quick Hits</h2>
+  <ul class="quick-list" style="list-style:none;padding:0;">
+    <li class="quick-hit"><span class="cat-pill">Parent/JV</span>Gigapower named Donna Rattley Washington Head of Strategy to lead partner engagement and new growth opportunities.</li>
+    <li class="quick-hit"><span class="cat-pill">Policy</span>Electric utilities tell FCC staff contractor backlogs and rising costs still threaten the new pole-attachment timelines despite May 8 effectiveness.</li>
+    <li class="quick-hit"><span class="cat-pill">Policy</span>Trade groups push back on proposed Massachusetts pole-attachment timeline — a precedent signal for state-level ROW friction.</li>
+    <li class="quick-hit"><span class="cat-pill">Policy</span>NTIA + Nebraska announced the first BEAD-connected household — program is now in live-deployment phase nationally.</li>
+    <li class="quick-hit"><span class="cat-pill">Market</span>Fiber Connect 2026 opens in Orlando — 5,000+ attendees, 300 exhibitors, 270 speakers — largest FBA event ever.</li>
+    <li class="quick-hit"><span class="cat-pill">Market</span>BroadbandUSA May newsletter frames 2026 as "the year of America's broadband buildout."</li>
+  </ul>
+</section>
+
+<!-- ============== SECTION 5: MY RECOMMENDATION ============== -->
+<section class="sec">
+  <h2>Section 5 — My Recommendation</h2>
+  <div class="rec-callout">
+    <strong>File Large-Order pole attachment applications in Luzerne and Lackawanna counties this week.</strong> Two clocks are now running against the NE PA cluster simultaneously, and both favor moving first. The FCC's pole attachment rules went effective May 8 with hard statutory timelines — 90 days to survey, 120 days to complete communications-space make-ready — but those clocks only protect attachers who are in the queue, and utilities are already warning the FCC that contractor backlogs will swamp capacity. At the same time, PA's $1.16B BEAD pool is fiber-dominated with Comcast and Verizon taking nearly half, which means subsidized incumbent builds are about to flood the exact same make-ready queues Gigapower needs in Wilkes-Barre and Scranton. Whoever submits completed Large-Order applications first locks the statutory timeline and the contractor capacity behind it; whoever waits inherits the backlog. This is a permitting-velocity land grab, not a market-entry question — direct Permitting and Engineering to file now, and have Government Affairs cite the May 7 wireline-barrier-removal order as preemption backstop if any joint-use utility stalls.
+  </div>
+</section>
+
+<!-- ============== SECTION 6: DISCARDED FINDINGS ============== -->
+<details class="discard">
+  <summary>🗂 Discarded Findings (below threshold) — click to expand</summary>
+  <div class="disc-card">
+    <h4>Opensignal fixed broadband study — AT&amp;T, Comcast, Charter top rankings (May 28)</h4>
+    <div class="disc-meta"><span class="sb">8/22</span><span class="tag cat">Market Trends</span></div>
+    <p>Why it didn't make the cut: Retail performance ranking with no bearing on wholesale build, permitting, or capital decisions.</p>
+  </div>
+  <div class="disc-card">
+    <h4>Lightcurve launches 8-Gig service in central Washington (May 28)</h4>
+    <div class="disc-meta"><span class="sb">8/22</span><span class="tag cat">Breaking News</span></div>
+    <p>Why it didn't make the cut: Out-of-footprint regional ISP product launch — no overlap with Gigapower markets or strategy.</p>
+  </div>
+  <div class="disc-card">
+    <h4>FBA announces Fiber Connect 2026 award winners / 25th Anniversary Gala (May 20)</h4>
+    <div class="disc-meta"><span class="sb">8/22</span><span class="tag cat">Breaking News</span></div>
+    <p>Why it didn't make the cut: Industry ceremony with no decision, budget, or competitive implication.</p>
+  </div>
+</details>
+
+<!-- ============== SECTION 7: SOURCES ============== -->
+<details class="sources">
+  <summary>📎 Sources — click to expand</summary>
+  <ul class="src-list">
+    <li><span class="src-cat">Policy</span><a href="https://broadbandbreakfast.com/fcc-pole-attachment-rules-take-effect/" target="_blank">FCC Pole Attachment Rules Take Effect — Broadband Breakfast</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://www.federalregister.gov/documents/2026/05/07/2026-09083/accelerating-wireline-broadband-deployment-by-removing-barriers-to-infrastructure-investment" target="_blank">Accelerating Wireline Broadband Deployment by Removing Barriers — Federal Register</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://broadbandbreakfast.com/utilities-push-back-on-fccs-30-day-pole-contractor-approval-rule/" target="_blank">Utilities Push Back on FCC's 30-Day Pole Contractor Approval Rule — Broadband Breakfast</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://broadbandbreakfast.com/groups-push-back-on-proposed-massachusetts-pole-attachment-timeline/" target="_blank">Groups Push Back on Proposed Massachusetts Pole Attachment Timeline — Broadband Breakfast</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://www.ntia.gov/press-release/2026/assistant-secretary-arielle-roth-announces-50-bead-final-proposals-approved" target="_blank">Asst. Secretary Roth Announces 50 BEAD Final Proposals Approved — NTIA</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://www.ntia.gov/funding-programs/internet-all/broadband-equity-access-and-deployment-bead-program/progress-dashboard" target="_blank">BEAD Progress Dashboard — NTIA</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://www.ntia.gov/press-release/2026/statement-assistant-secretary-roth-ntia-s-approach-use-21-billion-bead-savings" target="_blank">NTIA's Approach to the $21B BEAD Savings — NTIA</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://statescoop.com/ntia-delays-guidance-bead-nondeployment-funds/" target="_blank">NTIA Delays Guidance on Nondeployment BEAD Funds — StateScoop</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://www.telecompetitor.com/updated-comprehensive-list-bead-benefit-of-the-bargain-provisional-awards/" target="_blank">Comprehensive List: BEAD Provisional Awards (PA/NV) — Telecompetitor</a></li>
+    <li><span class="src-cat">Supply Chain</span><a href="https://www.researchandmarkets.com/reports/5735277/fiber-optical-cable-market-report" target="_blank">Fiber Optical Cable Market Report 2026 (tariff impact) — Research and Markets</a></li>
+    <li><span class="src-cat">Competitive</span><a href="https://www.t-mobile.com/news/business/t-mobile-add-two-strategic-fiber-joint-ventures-gonetspeed-greenlight-i3" target="_blank">T-Mobile Adds GoNetspeed + Greenlight Fiber JVs — T-Mobile Newsroom</a></li>
+    <li><span class="src-cat">Competitive</span><a href="https://www.verizon.com/about/news/introducing-frontier-verizon-company" target="_blank">Introducing Frontier, a Verizon Company — Verizon</a></li>
+    <li><span class="src-cat">Competitive</span><a href="https://finance.biggo.com/news/US_T_2026-04-22" target="_blank">AT&amp;T Posts Record 584K Q1 Broadband Adds — BigGo / Q1 2026 Call</a></li>
+    <li><span class="src-cat">Market</span><a href="https://bbcmag.com/what-were-fibers-2025-gains-will-we-see-2026-acceleration/" target="_blank">What Were Fiber's 2025 Gains? Will We See 2026 Acceleration? — Broadband Communities</a></li>
+    <li><span class="src-cat">Market</span><a href="https://convergedigest.com/fiber-connect-2026-opens-amid-americas-largest-fiber-expansion-cycle/" target="_blank">Fiber Connect 2026 Opens Amid Largest Fiber Expansion Cycle — Converge Digest</a></li>
+    <li><span class="src-cat">Breaking News</span><a href="https://www.lightreading.com/fttx/for-nokia-25g-pon-looks-painless-but-50g-pon-might-hurt" target="_blank">For Nokia, 25G PON Looks Painless but 50G PON Might Hurt — Light Reading</a></li>
+    <li><span class="src-cat">M&amp;A</span><a href="https://www.fierce-network.com/broadband/2026-ma-tracker" target="_blank">M&amp;A Tracker — Zayo, T-Mobile Gobble Up Fiber Operators — Fierce Network</a></li>
+    <li><span class="src-cat">M&amp;A</span><a href="https://www.fierce-network.com/broadband/expect-massive-consolidation-ftth-market-2026" target="_blank">Expect Massive Consolidation in the FTTH Market in 2026 — Fierce Network</a></li>
+    <li><span class="src-cat">Technology</span><a href="https://fiberbroadband.org/2026/05/18/fiber-broadband-association-publishes-paper-on-transitioning-cable-networks-to-fiber-to-the-home/" target="_blank">FBA Paper: Transitioning Cable Networks to FTTH — Fiber Broadband Association</a></li>
+    <li><span class="src-cat">Parent/JV</span><a href="https://www.businesswire.com/news/home/20250828592914/en/Gigapower-Accelerates-High-Speed-Broadband-Fiber-Network-Deployment-with-Expansion-Across-Six-States" target="_blank">Gigapower Accelerates Deployment Across Six States — BusinessWire</a></li>
+  </ul>
+</details>
+
+</div>
+</body>
+</html>
