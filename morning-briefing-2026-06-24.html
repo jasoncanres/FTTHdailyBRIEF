@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Morning Briefing — June 24, 2026 | Fiber/FTTH Executive Intelligence</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+    line-height: 1.5;
+    padding: 32px 16px 64px;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  header.hero {
+    background: #0f172a;
+    color: #fff;
+    border-radius: 14px;
+    padding: 32px 32px 28px;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.18);
+  }
+  header.hero .kicker {
+    color: #3b82f6;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  header.hero h1 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  header.hero .subtitle {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  header.hero .meta {
+    display: flex;
+    gap: 18px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  header.hero .meta span {
+    background: rgba(59,130,246,0.14);
+    color: #cbd5e1;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  section.sec {
+    background: #fff;
+    border-radius: 14px;
+    margin-top: 22px;
+    padding: 26px 28px;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.06);
+  }
+  section.sec h2 {
+    font-size: 20px;
+    font-weight: 700;
+    padding-left: 12px;
+    border-left: 4px solid #3b82f6;
+    margin-bottom: 18px;
+    letter-spacing: -0.005em;
+  }
+  section.mna h2 { border-left-color: #8b5cf6; }
+  section.tech h2 { border-left-color: #06b6d4; }
+  .cat-divider {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #64748b;
+    margin: 20px 0 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .cat-divider:first-of-type { margin-top: 0; }
+  .card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    background: #fff;
+    transition: box-shadow 0.15s;
+  }
+  .card:hover { box-shadow: 0 4px 12px rgba(15,23,42,0.08); }
+  .card .head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .card h3 {
+    font-size: 15.5px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #0f172a;
+    flex: 1;
+  }
+  .card h3 a { color: inherit; text-decoration: none; }
+  .card h3 a:hover { color: #2563eb; text-decoration: underline; }
+  .score-badge {
+    background: #0f172a;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .mna .score-badge { background: #8b5cf6; }
+  .tech .score-badge { background: #06b6d4; }
+  .tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .tag.cat { background: #e0e7ff; color: #3730a3; }
+  .tag.status { background: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; }
+  .urg-red { background: #ef4444; color: #fff; }
+  .urg-yel { background: #f59e0b; color: #fff; }
+  .urg-grn { background: #10b981; color: #fff; }
+  .score-bar {
+    height: 5px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 4px 0 12px;
+  }
+  .score-bar .fill {
+    height: 100%;
+    background: #3b82f6;
+    border-radius: 999px;
+  }
+  .mna .score-bar .fill { background: #8b5cf6; }
+  .tech .score-bar .fill { background: #06b6d4; }
+  .card p { font-size: 13.5px; margin-bottom: 7px; color: #334155; }
+  .card p strong { color: #0f172a; font-weight: 700; }
+  .card p.action {
+    background: #f8fafc;
+    border-left: 3px solid #3b82f6;
+    padding: 8px 12px;
+    margin-top: 8px;
+    border-radius: 0 6px 6px 0;
+    font-size: 13.5px;
+  }
+  .mna .card p.action { border-left-color: #8b5cf6; }
+  .tech .card p.action { border-left-color: #06b6d4; }
+  .quick-hit {
+    font-size: 13.5px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+  }
+  .quick-hit:last-child { border-bottom: none; }
+  .quick-hit .cat-pill {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #3730a3;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-right: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .rec-callout {
+    background: #dbeafe;
+    border-left: 5px solid #2563eb;
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #0f172a;
+  }
+  .rec-callout strong { color: #1d4ed8; font-weight: 700; }
+  details.discard, details.sources {
+    background: #fff;
+    border-radius: 14px;
+    margin-top: 22px;
+    padding: 18px 24px;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.06);
+  }
+  details.discard summary, details.sources summary {
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 6px 0;
+    color: #475569;
+    outline: none;
+  }
+  details.discard summary:hover, details.sources summary:hover { color: #0f172a; }
+  details[open] summary { margin-bottom: 14px; }
+  .disc-card {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    opacity: 0.72;
+  }
+  .disc-card h4 {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #64748b;
+    text-decoration: line-through;
+    text-decoration-color: #94a3b8;
+    margin-bottom: 4px;
+  }
+  .disc-card .disc-meta { display: flex; gap: 8px; margin-bottom: 6px; }
+  .disc-card .sb { background: #94a3b8; color: #fff; padding: 2px 8px; border-radius: 999px; font-size: 10.5px; font-weight: 700; }
+  .disc-card .tag.cat { background: #e2e8f0; color: #64748b; }
+  .disc-card p { font-size: 12.5px; color: #64748b; margin-top: 4px; }
+  ul.src-list { list-style: none; padding: 0; }
+  ul.src-list li { font-size: 13px; padding: 6px 0; border-bottom: 1px solid #f1f5f9; }
+  ul.src-list li:last-child { border-bottom: none; }
+  ul.src-list a { color: #2563eb; text-decoration: none; }
+  ul.src-list a:hover { text-decoration: underline; }
+  ul.src-list .src-cat {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #3730a3;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    margin-right: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ============== HERO ============== -->
+<header class="hero">
+  <div class="kicker">Fiber / FTTH Executive Intelligence</div>
+  <h1>Morning Briefing — June 24, 2026</h1>
+  <div class="subtitle">Scanning the fiber, FTTH, and broadband telecom landscape for the past 48 hours. Wholesale open-access lens — Gigapower footprint: NV, AZ, PA, AL, FL.</div>
+  <div class="meta">
+    <span>31 sources scanned</span>
+    <span>14 findings scored</span>
+    <span>Threshold: 12/22</span>
+  </div>
+</header>
+
+<!-- ============== SECTION 1: INTELLIGENCE FEED ============== -->
+<section class="sec">
+  <h2>Section 1 — Intelligence Feed</h2>
+
+  <div class="cat-divider">Policy / Regulatory</div>
+
+  <div class="card">
+    <div class="head">
+      <h3><a href="https://www.telecompetitor.com/arizonas-broadband-director-on-the-states-new-permit-finder-interview/" target="_blank">Arizona Permit Finder Phase 2 — design-upload permit engine — lands by year-end across Maricopa</a></h3>
+      <span class="score-badge">21/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:95%"></div></div>
+    <div class="tags"><span class="tag cat">Policy / Regulatory</span><span class="tag urg-red">🔴 Act Today</span></div>
+    <p><strong>What happened:</strong> Arizona's State Broadband Office is building Phase 2 of its first-in-the-nation Permit Finder, launching by end of 2026. Providers will upload network designs and the tool returns the exact permit set and administering agencies required — covering Maricopa County municipalities including Mesa, Chandler, and Gilbert. Phase 1 already consolidates permit requirements and agency points-of-contact statewide.</p>
+    <p><strong>Why it matters:</strong> This directly compresses permitting timelines in Gigapower's three active AZ construction markets and standardizes the ROW data Permitting needs per municipality.</p>
+    <p class="action"><strong>Action:</strong> Permitting — register on the AZ Permit Finder this week, map Mesa/Chandler/Gilbert permit sets against current dossiers, and email beadpermitting@azcommerce.com to confirm Phase 2 beta access for design uploads.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3><a href="https://broadbandbreakfast.com/ntia-approves-9-bead-plans-promises-early-2026-guidance-on-non-deployment-funds/" target="_blank">BEAD pivots technology-neutral; $21B in non-deployment funds still frozen with no final guidance</a></h3>
+      <span class="score-badge">18/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:82%"></div></div>
+    <div class="tags"><span class="tag cat">Policy / Regulatory</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> All 56 states/territories have final proposals submitted; 54 approved by NTIA, 52 with funds released (dashboard updated June 8). Lutnick's revised guidance shifted BEAD away from a fiber preference toward technology-neutral awards — draft plans now show ~66% fiber, ~21% LEO satellite, ~11% fixed wireless. The promised early-2026 guidance on $21B in "non-deployment" savings has not been finalized.</p>
+    <p><strong>Why it matters:</strong> Technology-neutral scoring lets fixed wireless and LEO undercut fiber in marginal census blocks adjacent to Gigapower's greenfield builds, reshaping where wholesale demand concentrates.</p>
+    <p class="action"><strong>Action:</strong> Government Affairs — pull the approved AZ and NV final proposals by Friday, flag any fiber-eligible blocks reallocated to FWA/LEO inside or bordering Gigapower footprint, and brief Wholesale BD on take-rate exposure.</p>
+  </div>
+
+  <div class="cat-divider">Supply Chain</div>
+
+  <div class="card">
+    <div class="head">
+      <h3><a href="https://www.tomshardware.com/tech-industry/ai-data-centers-are-consuming-fiber-optic-cable-faster-than-suppliers-can-make-it" target="_blank">Fiber lead times stretch to a full year for smaller buyers as AI data centers consume 36x more glass</a></h3>
+      <span class="score-badge">21/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:95%"></div></div>
+    <div class="tags"><span class="tag cat">Supply Chain</span><span class="tag urg-red">🔴 Act Today</span></div>
+    <p><strong>What happened:</strong> The optical fiber supply chain is in its tightest squeeze in memory — driven by AI buildouts, a glass-preform bottleneck, and defense demand. Lead times are 20 weeks for large-volume buyers and up to a year for smaller purchasers. Corning has locked multibillion-dollar multiyear deals with Amazon (June 8), Meta (up to $6B), and a $300M Nvidia investment for new NC/TX plants. Data center fiber demand grew ~76% YoY in 2025 and heads toward ~30% of global demand by 2027.</p>
+    <p><strong>Why it matters:</strong> Gigapower's build cadence depends on cable allocation it does not currently have priced against hyperscaler-scale contracts; a year-long lead time silently slips every greenfield schedule.</p>
+    <p class="action"><strong>Action:</strong> Engineering + Procurement — convene a fiber-allocation review with Corning/Prysmian/OFS this week to lock 2026–2027 cable volumes against the AZ/NV/PA build plan before hyperscaler demand prices out the merchant market.</p>
+  </div>
+
+  <div class="cat-divider">Competitive Intelligence</div>
+
+  <div class="card">
+    <div class="head">
+      <h3><a href="https://www.fierce-network.com/broadband/att-unveils-250b-investment-expand-5g-fiber-satellite-network-infrastructure" target="_blank">AT&amp;T unveils $250B plan for 5G, fiber, and satellite; targets 60M fiber passings by 2030</a></h3>
+      <span class="score-badge">18/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:82%"></div></div>
+    <div class="tags"><span class="tag cat">Parent / JV Watch</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> JV parent and anchor tenant AT&amp;T announced a $250B multiyear infrastructure investment spanning 5G, fiber, and satellite. It is lifting fiber build pace from 3M passings in 2025 to a ~4M run rate by year-end 2026, targeting 40M passings this year en route to 60M by 2030, with the $5.75B Lumen consumer-fiber acquisition adding ~4M locations.</p>
+    <p><strong>Why it matters:</strong> AT&amp;T's in-footprint fiber acceleration sets the capital and homes-passed backdrop the JV's incremental builds are measured against, and signals continued anchor-tenant demand for Gigapower capacity out-of-footprint.</p>
+    <p class="action"><strong>Action:</strong> JV/Parent liaison — confirm with AT&amp;T whether the $250B envelope changes Gigapower's incremental-to-AT&amp;T build mandate or the 1.5M-location target, and report back to Wholesale BD before next JV governance review.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3><a href="https://www.fierce-network.com/broadband/fidium-leverages-fiber-home-experience-strengthen-its-wholesale-fiber-strategy" target="_blank">Fidium leans on FTTH operating history to build out a wholesale fiber strategy</a></h3>
+      <span class="score-badge">15/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:68%"></div></div>
+    <div class="tags"><span class="tag cat">Competitive &amp; Wholesale Peer</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> Fidium (Consolidated) is reframing its retail FTTH experience as the foundation for a wholesale fiber offer, joining Metronet's shift to a wholesale ISP model under T-Mobile. The open-access/wholesale posture is moving from niche to mainstream among Tier 2 operators.</p>
+    <p><strong>Why it matters:</strong> More wholesale peers validates Gigapower's open-access thesis but also seeds future competition for the same tenant ISPs and infrastructure-fund capital.</p>
+    <p class="action"><strong>Action:</strong> Wholesale BD — add Fidium and Metronet wholesale terms to the competitive matrix this week; benchmark their tenant pricing and SLA structure against Gigapower's open-access rate card.</p>
+  </div>
+
+  <div class="cat-divider">Market Trends</div>
+
+  <div class="card">
+    <div class="head">
+      <h3><a href="https://www.fierce-network.com/broadband/expect-massive-consolidation-ftth-market-2026" target="_blank">66% of fiber operators are slowing or stopping builds; 73% expect to do M&amp;A within a year</a></h3>
+      <span class="score-badge">16/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:73%"></div></div>
+    <div class="tags"><span class="tag cat">Market Trends</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> Analyst surveys show 66% of fiber operators slowing or halting new builds to protect unit economics and 73% likely to engage in M&amp;A over the next year. Sub-300K-location operators are rolling up sub-50K mom-and-pops. US fiber availability now reaches ~60% of households, up 11% in 2025, but the market is shifting from land-grab to capital discipline.</p>
+    <p><strong>Why it matters:</strong> A pullback in retail builds widens the white space where a wholesale open-access platform can aggregate demand from multiple ISPs instead of competing build-for-build.</p>
+    <p class="action"><strong>Action:</strong> Wholesale BD — identify stalled sub-scale builders inside the NV/AZ/PA footprint as candidate tenant ISPs or fiber-acquisition targets; draft a one-page open-access pitch for operators capitulating on capex.</p>
+  </div>
+</section>
+
+<!-- ============== SECTION 2: M&A WATCH ============== -->
+<section class="sec mna">
+  <h2>Section 2 — M&amp;A Watch</h2>
+
+  <div class="card">
+    <div class="head">
+      <h3><a href="https://www.lightreading.com/fttx/omni-fiber-acquires-citizens-fiber" target="_blank">Omni Fiber acquires Citizens Fiber, deepening a 200K-location push across western Pennsylvania</a></h3>
+      <span class="score-badge">18/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:82%"></div></div>
+    <div class="tags"><span class="tag cat">M&amp;A Watch</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> Oak Hill–backed Omni Fiber announced (June 1) the acquisition of Citizens Fiber, which serves Westmoreland County PA (Latrobe, Greensburg, Mt. Pleasant and surrounds). Omni has invested $500M+ across OH/PA/MI/TX and plans to add ~200K locations across Fayette, Indiana, Lawrence, Mercer, Washington, and Westmoreland counties, offering symmetrical speeds to 10 Gbps.</p>
+    <p><strong>Why it matters:</strong> An aggressive, well-capitalized fiber consolidator is locking down western PA while Gigapower sits in the Intelligence stage in NE PA (Wilkes-Barre/Scranton) — the same state, the same Oak Hill capital source backing T-Mobile's fiber JVs.</p>
+    <p class="action"><strong>Action:</strong> Wholesale BD — assess whether Omni's western-PA density creates a wholesale tenancy or backhaul opportunity, and confirm Omni is not advancing toward Luzerne/Lackawanna before Gigapower's NE PA dossiers advance to Permitting.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3><a href="https://resources.telegeography.com/mergers-acquisitions-may-june-2026" target="_blank">BlackRock and MGX strike $40B Allied Data Centers buy — largest digital-infra deal ever</a></h3>
+      <span class="score-badge">17/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:77%"></div></div>
+    <div class="tags"><span class="tag cat">Parent / JV Watch</span><span class="tag urg-yel">🟡 This Week</span></div>
+    <p><strong>What happened:</strong> JV parent BlackRock, with MGX, is acquiring Allied Data Centers for ~$40B — the largest digital-infrastructure transaction on record — expected to close in 1H 2026. The deal cements BlackRock's tilt toward AI/data-center physical infrastructure alongside its Gigapower fiber stake.</p>
+    <p><strong>Why it matters:</strong> BlackRock's capital is concentrating in data-center infrastructure, which both competes for and complements fiber — relevant to how the JV parent prioritizes Gigapower's funding and any data-center-adjacent fiber routes.</p>
+    <p class="action"><strong>Action:</strong> JV/Parent liaison — probe whether BlackRock's data-center thesis opens a Gigapower middle-mile/dark-fiber play connecting Allied facilities in or near the AZ/NV footprint; flag to Wholesale BD as a non-residential revenue lane.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h3><a href="https://www.fierce-network.com/broadband/t-mobile-invests-27b-more-fiber-acquisitions" target="_blank">T-Mobile commits $2.7B to two more fiber JVs, folding in GoNetspeed and Greenlight</a></h3>
+      <span class="score-badge">15/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:68%"></div></div>
+    <div class="tags"><span class="tag cat">M&amp;A Watch</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> T-Mobile is forming two more fiber JVs for ~$2.7B, including a 50/50 vehicle with Oak Hill Capital to combine GoNetspeed and Greenlight Networks (~$2B from T-Mobile, closing 1H 2027). Its KKR/EQT JVs already use Metronet and Lumos as regional wholesale platforms targeting 12–15M homes passed.</p>
+    <p><strong>Why it matters:</strong> T-Mobile is industrializing the wholesale-platform model Gigapower pioneered, raising the bar on scale and tenant economics for open-access operators.</p>
+    <p class="action"><strong>Action:</strong> Wholesale BD — monitor whether any T-Mobile JV platform enters NV/AZ/PA; queue for the next quarterly strategy review rather than acting now.</p>
+  </div>
+</section>
+
+<!-- ============== SECTION 3: TECHNOLOGY & GROWTH STRATEGY ============== -->
+<section class="sec tech">
+  <h2>Section 3 — Technology &amp; Growth Strategy</h2>
+
+  <div class="card">
+    <div class="head">
+      <h3><a href="https://www.fierce-network.com/broadband/major-fiber-vendors-strategize-huge-demand-ai-2026" target="_blank">AI-driven fiber demand reshapes PON roadmap as vendors split on 25G vs 50G next-gen path</a></h3>
+      <span class="score-badge">16/22</span>
+    </div>
+    <div class="score-bar"><div class="fill" style="width:73%"></div></div>
+    <div class="tags"><span class="tag cat">Technology &amp; Growth</span><span class="tag urg-grn">🟢 Monitor</span></div>
+    <p><strong>What happened:</strong> Access vendors are repositioning for AI-fueled fiber demand. Nokia, DZS and Ciena are pushing 25G PON now (Nokia's Quillion line cards run GPON/XGS-PON/25G concurrently), while Adtran and Calix argue 50G PON will be the more cost-effective leap once XGS-PON saturates. The AI buildout's 36x-per-rack fiber intensity is pulling roadmap and capacity decisions forward.</p>
+    <p><strong>Why it matters:</strong> Gigapower's OLT/ONT platform choice today determines whether the network can serve high-capacity business and data-center tenants without a forklift upgrade — a wholesale differentiator.</p>
+    <p class="action"><strong>Action:</strong> Engineering — validate that the current OLT platform supports a non-disruptive XGS-PON-to-25G path; request 25G vs 50G roadmaps from Nokia and Calix this quarter to inform the next capex cycle.</p>
+  </div>
+</section>
+
+<!-- ============== SECTION 4: QUICK HITS ============== -->
+<section class="sec">
+  <h2>Section 4 — Quick Hits</h2>
+  <div class="quick-hit"><span class="cat-pill">Parent / JV</span>AT&amp;T surpassed 37M fiber passings in Q1 2026 (incl. ~4M from Lumen) and targets 40M by year-end.</div>
+  <div class="quick-hit"><span class="cat-pill">Competitive</span>Metronet has formally become a wholesale ISP with T-Mobile Fiber as its residential retail partner.</div>
+  <div class="quick-hit"><span class="cat-pill">M&amp;A</span>BCE closed its $3.65B acquisition of Ziply Fiber; Ziply runs as a standalone unit out of Kirkland, WA.</div>
+  <div class="quick-hit"><span class="cat-pill">Market Trends</span>US fiber availability now reaches ~60% of households, up 11% in 2025, driven largely by private capital.</div>
+  <div class="quick-hit"><span class="cat-pill">Policy</span>Nevada's BEAD final proposal is approved; deployment is expected to begin mid-2026.</div>
+  <div class="quick-hit"><span class="cat-pill">Competitive</span>Brightspeed now claims the #3 US fiber-builder spot, targeting ~5M fiber-enabled locations across 20 states.</div>
+  <div class="quick-hit"><span class="cat-pill">Supply Chain</span>Labor is 64% of above-ground and 72% of below-ground fiber build cost — the binding constraint after glass.</div>
+</section>
+
+<!-- ============== SECTION 5: MY RECOMMENDATION ============== -->
+<section class="sec">
+  <h2>Section 5 — My Recommendation</h2>
+  <div class="rec-callout">
+    <strong>Lock multi-year fiber-cable allocation this week before the AI buildout prices Gigapower out of the merchant market.</strong> The supply story is no longer a watch item — it is the binding constraint on every greenfield schedule in NV, AZ, and PA. Lead times are already a full year for buyers without standing contracts, Corning has committed its expansion capacity to Amazon, Meta, and Nvidia, and data-center fiber demand is compounding ~76% a year. A wholesale operator that cannot guarantee cable delivery cannot guarantee homes-passed dates to tenant ISPs, and homes-passed dates are the entire wholesale value proposition. Engineering and Procurement should convene Corning, Prysmian, and OFS within five business days to convert the 2026–2027 build plan into firm volume commitments, with the AZ Permit Finder timeline as the schedule anchor. Every week of delay is a week closer to building permits in hand and no glass to pull through them.
+  </div>
+</section>
+
+<!-- ============== SECTION 6: DISCARDED FINDINGS ============== -->
+<details class="discard">
+  <summary>🗂 Discarded Findings (below threshold) — click to expand</summary>
+  <div class="disc-card">
+    <h4>Nokia introduces 16-port high-density 25G PON line card on Quillion chipset</h4>
+    <div class="disc-meta"><span class="sb">9/22</span><span class="tag cat">Technology</span></div>
+    <p>Why it didn't make the cut: Product was announced in May 2025 — outside the 48-hour window and already captured in the live Section 3 PON-roadmap card.</p>
+  </div>
+  <div class="disc-card">
+    <h4>Brightspeed lights up fiber in five new rural Ohio counties; C Spire expands in Mississippi</h4>
+    <div class="disc-meta"><span class="sb">9/22</span><span class="tag cat">Competitive</span></div>
+    <p>Why it didn't make the cut: Builds are well outside Gigapower's footprint and change no decision; the Brightspeed scale figure is retained as a quick hit.</p>
+  </div>
+  <div class="disc-card">
+    <h4>BCE completes $3.65B Ziply Fiber acquisition</h4>
+    <div class="disc-meta"><span class="sb">11/22</span><span class="tag cat">M&amp;A</span></div>
+    <p>Why it didn't make the cut: Closed earlier in 2026 and confined to the Pacific Northwest — no footprint overlap; retained as a quick hit for trend context.</p>
+  </div>
+  <div class="disc-card">
+    <h4>Frontier Fiber 2026 expansion map / new-cities listicle</h4>
+    <div class="disc-meta"><span class="sb">8/22</span><span class="tag cat">Competitive</span></div>
+    <p>Why it didn't make the cut: Aggregator SEO content, not a primary announcement; no verifiable dated development affecting Gigapower markets.</p>
+  </div>
+</details>
+
+<!-- ============== SECTION 7: SOURCES ============== -->
+<details class="sources">
+  <summary>📎 Sources — click to expand</summary>
+  <ul class="src-list">
+    <li><span class="src-cat">Policy</span><a href="https://www.telecompetitor.com/arizonas-broadband-director-on-the-states-new-permit-finder-interview/" target="_blank">Arizona's Broadband Director on the State's New Permit Finder: Interview — Telecompetitor</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://fiberbroadband.org/advocacy/arizona-launches-first-in-the-nation-broadband-permit-finder/" target="_blank">Arizona Launches First-in-the-Nation Broadband Permit Finder — Fiber Broadband Association</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://broadbandbreakfast.com/ntia-approves-9-bead-plans-promises-early-2026-guidance-on-non-deployment-funds/" target="_blank">NTIA Approves BEAD Plans, Promises Guidance on Non-Deployment Funds — Broadband Breakfast</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://www.ntia.gov/funding-programs/internet-all/broadband-equity-access-and-deployment-bead-program/progress-dashboard" target="_blank">BEAD Progress Dashboard (updated June 8, 2026) — NTIA</a></li>
+    <li><span class="src-cat">Policy</span><a href="https://nevadacurrent.com/briefs/nevadas-final-plan-for-federal-broadband-funding-approved/" target="_blank">Nevada's final plan for federal broadband funding approved — Nevada Current</a></li>
+    <li><span class="src-cat">Supply Chain</span><a href="https://www.tomshardware.com/tech-industry/ai-data-centers-are-consuming-fiber-optic-cable-faster-than-suppliers-can-make-it" target="_blank">AI data centers require 36x more fiber; lead times push to a year — Tom's Hardware</a></li>
+    <li><span class="src-cat">Supply Chain</span><a href="https://www.techtimes.com/articles/318032/20260608/amazon-corning-strike-multibillion-dollar-fiber-deal-ai-data-centers-us-jobs.htm" target="_blank">Amazon, Corning Strike Multibillion-Dollar Fiber Deal (June 8) — TechTimes</a></li>
+    <li><span class="src-cat">Supply Chain</span><a href="https://www.lightreading.com/fttx/-perfect-storm-in-fiber-supply-threatens-us-broadband-targets" target="_blank">'Perfect storm' in fiber supply threatens US broadband targets — Light Reading</a></li>
+    <li><span class="src-cat">Supply Chain</span><a href="https://www.govtech.com/network/with-private-investment-fiber-broadband-deployment-is-rising" target="_blank">With Private Investment, Fiber Broadband Deployment Is Rising (labor cost data) — GovTech</a></li>
+    <li><span class="src-cat">Competitive</span><a href="https://www.fierce-network.com/broadband/att-unveils-250b-investment-expand-5g-fiber-satellite-network-infrastructure" target="_blank">AT&amp;T unveils $250B investment to expand 5G, fiber, satellite — Fierce Network</a></li>
+    <li><span class="src-cat">Competitive</span><a href="https://about.att.com/story/2026/att-lumen-deal-close.html" target="_blank">AT&amp;T Completes Acquisition of Lumen's Mass Markets Fiber Business — AT&amp;T</a></li>
+    <li><span class="src-cat">Competitive</span><a href="https://www.fierce-network.com/broadband/fidium-leverages-fiber-home-experience-strengthen-its-wholesale-fiber-strategy" target="_blank">Fidium taps FTTH experience to strengthen wholesale strategy — Fierce Network</a></li>
+    <li><span class="src-cat">Market Trends</span><a href="https://www.fierce-network.com/broadband/expect-massive-consolidation-ftth-market-2026" target="_blank">Expect massive consolidation in the FTTH market in 2026 — Fierce Network</a></li>
+    <li><span class="src-cat">Market Trends</span><a href="https://www.cartesian.com/state-of-us-broadband-june-2026-data/" target="_blank">The State of US Broadband Report — June 2026 Data Tables — Cartesian</a></li>
+    <li><span class="src-cat">M&amp;A</span><a href="https://www.lightreading.com/fttx/omni-fiber-acquires-citizens-fiber" target="_blank">Omni Fiber acquires Citizens Fiber — Light Reading</a></li>
+    <li><span class="src-cat">M&amp;A</span><a href="https://www.prnewswire.com/news-releases/omni-fiber-acquires-citizens-fiber-expanding-its-footprint-in-western-pennsylvania-302787223.html" target="_blank">Omni Fiber Acquires Citizens Fiber (June 1) — PR Newswire</a></li>
+    <li><span class="src-cat">M&amp;A</span><a href="https://resources.telegeography.com/mergers-acquisitions-may-june-2026" target="_blank">M&amp;A Monthly: May/June 2026 (BlackRock/MGX Allied Data Centers) — TeleGeography</a></li>
+    <li><span class="src-cat">M&amp;A</span><a href="https://www.fierce-network.com/broadband/t-mobile-invests-27b-more-fiber-acquisitions" target="_blank">T-Mobile invests $2.7B for more fiber acquisitions — Fierce Network</a></li>
+    <li><span class="src-cat">M&amp;A</span><a href="https://www.fierce-network.com/broadband/2026-ma-tracker" target="_blank">2026 M&amp;A tracker — Omni Fiber scoops up Citizens Fiber — Fierce Network</a></li>
+    <li><span class="src-cat">Technology</span><a href="https://www.fierce-network.com/broadband/major-fiber-vendors-strategize-huge-demand-ai-2026" target="_blank">Fiber vendors strategize for huge demand from AI in 2026 — Fierce Network</a></li>
+    <li><span class="src-cat">Technology</span><a href="https://www.lightreading.com/opticalip/fttx/nokia-gains-troops-for-25g-pon-fight-against-50g-pon/d/d-id/767826" target="_blank">Nokia gains troops for 25G PON fight against 50G PON — Light Reading</a></li>
+    <li><span class="src-cat">Competitive</span><a href="https://www.metronet.com/blog/press-release/kkr-completes-acquisition-of-metronet-through-joint-venture-accelerating-fiber-expansion-across-the-u-s" target="_blank">KKR Completes Acquisition of Metronet through Joint Venture — Metronet</a></li>
+  </ul>
+</details>
+
+</div>
+</body>
+</html>
